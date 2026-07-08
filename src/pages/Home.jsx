@@ -15,19 +15,19 @@ export default function Home({ setCurrentPage }) {
     const heroSlides = [
         {
             badge: "Service Above Self since 1938",
-            title: "Pioneering fellowship and community service.",
+            title: "Pioneering fellowship and community service",
             desc: "As the first and oldest Rotary club in Madurai (District 3000), we have worked for over 85 years to establish dense Miyawaki forests, organize free healthcare clinics, and support local government school classrooms.",
             image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?q=80&w=600"
         },
         {
             badge: "Miyawaki Afforestation Drive",
-            title: "Creating dense urban green lungs.",
+            title: "Creating dense urban green lungs",
             desc: "We have planted over 50,000 native saplings in Kappalur SIDCO and Vandiyur Lake areas to restore local ecology, improve groundwater levels, and create self-sustaining miniature forests.",
             image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=600"
         },
         {
             badge: "Healthcare and Diagnostics",
-            title: "Extending medical aid where it matters.",
+            title: "Extending medical aid where it matters",
             desc: "From donating advanced dialysis machinery to local government hospitals to organizing free pediatric screening camps, we provide vital healthcare access to underprivileged communities.",
             image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=600"
         }
@@ -207,7 +207,7 @@ export default function Home({ setCurrentPage }) {
                     </div>
                     <div className="intro-content reveal-up" style={{ transitionDelay: '0.2s' }}>
                         <span className="badge">Who We Are</span>
-                        <h2>Sustainable impact for local community needs.</h2>
+                        <h2>Sustainable impact for local community needs</h2>
                         <blockquote>
                             "Service Above Self is more than a motto; it is our way of life, guiding our fellowship to build a stronger and more sustainable Madurai."
                         </blockquote>
@@ -359,7 +359,7 @@ export default function Home({ setCurrentPage }) {
                                     type="text" 
                                     id="fullname" 
                                     className="form-control" 
-                                    placeholder="John Doe" 
+                                    placeholder="Enter your full name" 
                                     value={membershipForm.name}
                                     onChange={(e) => setMembershipForm({ ...membershipForm, name: e.target.value })}
                                     required 
@@ -372,7 +372,7 @@ export default function Home({ setCurrentPage }) {
                                     type="email" 
                                     id="email" 
                                     className="form-control" 
-                                    placeholder="john@example.com" 
+                                    placeholder="Enter your email address" 
                                     value={membershipForm.email}
                                     onChange={(e) => setMembershipForm({ ...membershipForm, email: e.target.value })}
                                     required 
@@ -385,7 +385,7 @@ export default function Home({ setCurrentPage }) {
                                     type="tel" 
                                     id="phone" 
                                     className="form-control" 
-                                    placeholder="+91 98765 43210" 
+                                    placeholder="Enter your phone number" 
                                     value={membershipForm.phone}
                                     onChange={(e) => setMembershipForm({ ...membershipForm, phone: e.target.value })}
                                     required 
@@ -398,7 +398,7 @@ export default function Home({ setCurrentPage }) {
                                     type="text" 
                                     id="profession" 
                                     className="form-control" 
-                                    placeholder="e.g. Software Consultant, Architect, Business Director" 
+                                    placeholder="Enter your profession or classification" 
                                     value={membershipForm.profession}
                                     onChange={(e) => setMembershipForm({ ...membershipForm, profession: e.target.value })}
                                     required 
@@ -411,7 +411,7 @@ export default function Home({ setCurrentPage }) {
                                     id="message" 
                                     className="form-control" 
                                     rows="3"
-                                    placeholder="Tell us about your background and interest in community service..." 
+                                    placeholder="Enter why you want to join Rotary and your background..." 
                                     value={membershipForm.message}
                                     onChange={(e) => setMembershipForm({ ...membershipForm, message: e.target.value })}
                                     required 

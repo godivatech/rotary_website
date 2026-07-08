@@ -8,6 +8,7 @@ import Services from './pages/Services';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
 import Genealogy from './pages/Genealogy';
+import Members from './pages/Members';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -235,6 +236,8 @@ export default function App() {
         return <About />;
       case 'genealogy':
         return <Genealogy />;
+      case 'members':
+        return <Members />;
       case 'services':
         return <Services />;
       case 'projects':

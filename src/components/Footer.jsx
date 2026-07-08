@@ -55,7 +55,7 @@ export default function Footer({ setCurrentPage }) {
                 <div>
                     <h4 style={{ color: 'white', fontSize: '1.2rem', marginBottom: '24px' }}>Quick Links</h4>
                     <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                        {['home', 'about', 'genealogy', 'services', 'projects', 'contact'].map(page => (
+                        {['home', 'about', 'members', 'genealogy', 'services', 'projects', 'contact'].map(page => (
                             <li key={page}>
                                 <button
                                     onClick={() => handleNavClick(page)}
@@ -72,7 +72,7 @@ export default function Footer({ setCurrentPage }) {
                                     onMouseEnter={(e) => { e.target.style.color = 'var(--primary)'; e.target.style.transform = 'translateX(4px)'; }}
                                     onMouseLeave={(e) => { e.target.style.color = 'rgba(255,255,255,0.65)'; e.target.style.transform = 'translateX(0)'; }}
                                 >
-                                    {page === 'home' ? 'Home' : page === 'about' ? 'About Us' : page === 'genealogy' ? 'District Genealogy' : page === 'services' ? 'Areas of Focus' : page === 'projects' ? 'Our Projects' : 'Contact Us'}
+                                    {page === 'home' ? 'Home' : page === 'about' ? 'About Us' : page === 'members' ? 'Club Members & Leaders' : page === 'genealogy' ? 'District Genealogy' : page === 'services' ? 'Areas of Focus' : page === 'projects' ? 'Our Projects' : 'Contact Us'}
                                 </button>
                             </li>
                         ))}

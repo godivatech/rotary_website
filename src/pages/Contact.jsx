@@ -104,19 +104,19 @@ export default function Contact() {
                         <form onSubmit={handleFormSubmit}>
                             <div className="form-group">
                                 <label className="form-label" htmlFor="name">Full Name</label>
-                                <input type="text" id="name" className="form-control" placeholder="John Doe" required />
+                                <input type="text" id="name" className="form-control" placeholder="Enter your name" required />
                             </div>
                             <div className="form-group">
                                 <label className="form-label" htmlFor="email">Email Address</label>
-                                <input type="email" id="email" className="form-control" placeholder="john@example.com" required />
+                                <input type="email" id="email" className="form-control" placeholder="Enter your email address" required />
                             </div>
                             <div className="form-group">
                                 <label className="form-label" htmlFor="subject">Subject</label>
-                                <input type="text" id="subject" className="form-control" placeholder="Inquiry about volunteering" required />
+                                <input type="text" id="subject" className="form-control" placeholder="Enter subject" required />
                             </div>
                             <div className="form-group">
                                 <label className="form-label" htmlFor="message">Message</label>
-                                <textarea id="message" className="form-control" rows="5" placeholder="Write your message here..." required style={{ resize: 'vertical' }}></textarea>
+                                <textarea id="message" className="form-control" rows="5" placeholder="Enter your message here..." required style={{ resize: 'vertical' }}></textarea>
                             </div>
                             <button type="submit" className="btn btn-primary" style={{ width: '100%', gap: '10px' }}>
                                 Send Message <Send size={16} />

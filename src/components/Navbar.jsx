@@ -157,6 +157,24 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                                     </li>
                                     <li>
                                         <button 
+                                            onClick={() => handleNavClick('members')} 
+                                            style={{
+                                                width: '100%',
+                                                textAlign: 'left',
+                                                background: 'none',
+                                                border: 'none',
+                                                padding: '10px 20px',
+                                                color: 'rgba(255,255,255,0.8)',
+                                                cursor: 'pointer'
+                                            }}
+                                            onMouseEnter={(e) => { e.target.style.color = 'white'; e.target.style.backgroundColor = 'var(--primary)'; }}
+                                            onMouseLeave={(e) => { e.target.style.color = 'rgba(255,255,255,0.8)'; e.target.style.backgroundColor = 'transparent'; }}
+                                        >
+                                            Club Members & Leaders
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button 
                                             onClick={() => handleNavClick('genealogy')} 
                                             style={{
                                                 width: '100%',
@@ -293,6 +311,23 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                         }}
                     >
                         District Genealogy
+                    </button>
+                    <button
+                        onClick={() => handleNavClick('members')}
+                        style={{
+                            textAlign: 'left',
+                            background: 'none',
+                            border: 'none',
+                            outline: 'none',
+                            boxShadow: 'none',
+                            padding: '8px 12px',
+                            fontSize: '1.1rem',
+                            fontWeight: '600',
+                            color: currentPage === 'members' ? 'var(--primary)' : 'var(--secondary)',
+                            cursor: 'pointer'
+                        }}
+                    >
+                        Club Members & Leaders
                     </button>
                     <button 
                         onClick={() => { handleNavClick('home'); setTimeout(() => document.getElementById('join')?.scrollIntoView({ behavior: 'smooth' }), 100); }} 
