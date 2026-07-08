@@ -117,7 +117,7 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                                     gap: '4px'
                                 }}
                             >
-                                Links <ChevronDown size={14} style={{
+                                Explore <ChevronDown size={14} style={{
                                     transform: isDropdownOpen ? 'rotate(180deg)' : 'none',
                                     transition: 'transform 0.3s'
                                 }} />
@@ -139,6 +139,24 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                                 }}>
                                     <li>
                                         <button 
+                                            onClick={() => handleNavClick('about')} 
+                                            style={{
+                                                width: '100%',
+                                                textAlign: 'left',
+                                                background: 'none',
+                                                border: 'none',
+                                                padding: '10px 20px',
+                                                color: 'rgba(255,255,255,0.8)',
+                                                cursor: 'pointer'
+                                            }}
+                                            onMouseEnter={(e) => { e.target.style.color = 'white'; e.target.style.backgroundColor = 'var(--primary)'; }}
+                                            onMouseLeave={(e) => { e.target.style.color = 'rgba(255,255,255,0.8)'; e.target.style.backgroundColor = 'transparent'; }}
+                                        >
+                                            Club History
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button 
                                             onClick={() => handleNavClick('projects')} 
                                             style={{
                                                 width: '100%',
@@ -157,7 +175,7 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                                     </li>
                                     <li>
                                         <button 
-                                            onClick={() => { handleNavClick('about'); setTimeout(() => document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' }), 100); }} 
+                                            onClick={() => { handleNavClick('home'); setTimeout(() => document.getElementById('join')?.scrollIntoView({ behavior: 'smooth' }), 100); }} 
                                             style={{
                                                 width: '100%',
                                                 textAlign: 'left',
@@ -170,25 +188,7 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                                             onMouseEnter={(e) => { e.target.style.color = 'white'; e.target.style.backgroundColor = 'var(--primary)'; }}
                                             onMouseLeave={(e) => { e.target.style.color = 'rgba(255,255,255,0.8)'; e.target.style.backgroundColor = 'transparent'; }}
                                         >
-                                            Testimonials
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button 
-                                            onClick={() => { handleNavClick('home'); setTimeout(() => document.getElementById('faqs')?.scrollIntoView({ behavior: 'smooth' }), 100); }} 
-                                            style={{
-                                                width: '100%',
-                                                textAlign: 'left',
-                                                background: 'none',
-                                                border: 'none',
-                                                padding: '10px 20px',
-                                                color: 'rgba(255,255,255,0.8)',
-                                                cursor: 'pointer'
-                                            }}
-                                            onMouseEnter={(e) => { e.target.style.color = 'white'; e.target.style.backgroundColor = 'var(--primary)'; }}
-                                            onMouseLeave={(e) => { e.target.style.color = 'rgba(255,255,255,0.8)'; e.target.style.backgroundColor = 'transparent'; }}
-                                        >
-                                            FAQs
+                                            Become a Member
                                         </button>
                                     </li>
                                 </ul>
@@ -198,7 +198,7 @@ export default function Navbar({ currentPage, setCurrentPage }) {
 
                     <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                         <button 
-                            onClick={() => handleNavClick('contact')} 
+                            onClick={() => { handleNavClick('home'); setTimeout(() => document.getElementById('join')?.scrollIntoView({ behavior: 'smooth' }), 100); }} 
                             className="btn btn-primary"
                             style={{ padding: '10px 22px', fontSize: '0.9rem' }}
                         >
@@ -260,7 +260,7 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                         </button>
                     ))}
                     <button 
-                        onClick={() => handleNavClick('contact')} 
+                        onClick={() => { handleNavClick('home'); setTimeout(() => document.getElementById('join')?.scrollIntoView({ behavior: 'smooth' }), 100); }} 
                         className="btn btn-primary"
                         style={{ width: '100%', padding: '12px' }}
                     >

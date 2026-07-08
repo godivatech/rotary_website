@@ -2,9 +2,43 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Play, CheckCircle2, ShieldCheck } from 'lucide-react';
 
 export default function Home({ setCurrentPage }) {
-    const [selectedAmount, setSelectedAmount] = useState(50);
-    const [customAmount, setCustomAmount] = useState('50');
+    const [membershipForm, setMembershipForm] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        profession: '',
+        message: ''
+    });
     const [activeFaq, setActiveFaq] = useState(0);
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    const heroSlides = [
+        {
+            badge: "Service Above Self since 1938",
+            title: "Pioneering fellowship and community service.",
+            desc: "As the first and oldest Rotary club in Madurai (District 3000), we have worked for over 85 years to establish dense Miyawaki forests, organize free healthcare clinics, and support local government school classrooms.",
+            image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?q=80&w=600"
+        },
+        {
+            badge: "Miyawaki Afforestation Drive",
+            title: "Creating dense urban green lungs.",
+            desc: "We have planted over 50,000 native saplings in Kappalur SIDCO and Vandiyur Lake areas to restore local ecology, improve groundwater levels, and create self-sustaining miniature forests.",
+            image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=600"
+        },
+        {
+            badge: "Healthcare and Diagnostics",
+            title: "Extending medical aid where it matters.",
+            desc: "From donating advanced dialysis machinery to local government hospitals to organizing free pediatric screening camps, we provide vital healthcare access to underprivileged communities.",
+            image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=600"
+        }
+    ];
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentSlide(prev => (prev + 1) % heroSlides.length);
+        }, 6000);
+        return () => clearInterval(timer);
+    }, []);
 
     const parallaxBgRef = useRef(null);
 
@@ -73,39 +107,94 @@ export default function Home({ setCurrentPage }) {
         }
     ];
 
-    const handleAmountClick = (amount) => {
-        setSelectedAmount(amount);
-        setCustomAmount(amount.toString());
-    };
-
-    const handleCustomAmountChange = (e) => {
-        const val = e.target.value;
-        setCustomAmount(val);
-        setSelectedAmount(null);
-    };
-
-    const handleDonationSubmit = (e) => {
+    const handleMembershipSubmit = (e) => {
         e.preventDefault();
-        alert(`Thank you for your generous contribution of $${customAmount} to Rotary projects!`);
+        alert(`Thank you, ${membershipForm.name}! Your membership request has been submitted. The club secretary will get in touch with you shortly.`);
+        setMembershipForm({
+            name: '',
+            email: '',
+            phone: '',
+            profession: '',
+            message: ''
+        });
     };
 
     return (
         <div className="animate-fade-in">
             {/* Hero Section */}
             <section className="hero">
-                <div className="container hero-grid">
-                    <div className="hero-content reveal-up">
-                        <span className="badge">Service Above Self since 1938</span>
-                        <h1>Pioneering fellowship and community service.</h1>
-                        <p>As the first and oldest Rotary club in Madurai (District 3000), we have worked for over 85 years to establish dense Miyawaki forests, organize free healthcare clinics, and support local government school classrooms.</p>
-                        <div className="hero-buttons">
-                            <a href="#donate" className="btn btn-primary">Support Projects</a>
-                            <button onClick={() => { setCurrentPage('about'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="btn btn-outline">Our History</button>
+                <div className="hero-slides-container">
+                    {heroSlides.map((slide, idx) => (
+                        <div 
+                            key={idx} 
+                            className={`hero-slide ${currentSlide === idx ? 'active' : ''}`}
+                        >
+                            {/* Slide Background Image with Premium Dark Overlay */}
+                            <div 
+                                style={{
+                                    position: 'absolute',
+                                    top: 0,
+                                    left: 0,
+                                    width: '100%',
+                                    height: '100%',
+                                    backgroundImage: `linear-gradient(to right, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.5) 100%), url(${slide.image})`,
+                                    backgroundSize: 'cover',
+                                    backgroundPosition: 'center',
+                                    zIndex: 1
+                                }}
+                            />
+                            
+                            {/* Slide Content aligned to main container grid */}
+                            <div className="container" style={{ position: 'relative', zIndex: 2, width: '100%' }}>
+                                <div className="hero-content" style={{ maxWidth: '650px' }}>
+                                    <span className="badge" style={{ backgroundColor: 'var(--primary)', color: 'white', borderColor: 'transparent' }}>
+                                        {slide.badge}
+                                    </span>
+                                    <h1 style={{ color: 'white', marginTop: '16px' }}>{slide.title}</h1>
+                                    <p style={{ color: 'rgba(255, 255, 255, 0.85)' }}>{slide.desc}</p>
+                                    <div className="hero-buttons">
+                                        <a href="#join" className="btn btn-primary">Join Our Club</a>
+                                        <button 
+                                            onClick={() => { setCurrentPage('about'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} 
+                                            className="btn btn-outline"
+                                            style={{ borderColor: 'white', color: 'white' }}
+                                        >
+                                            Our History
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div className="hero-image-wrapper reveal-clip mouse-parallax" data-parallax-speed="-15" style={{ transitionDelay: '0.2s' }}>
-                        <img className="hero-image" src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?q=80&w=600" alt="Rotary community service project" />
-                        <div className="hero-shape"></div>
+                    ))}
+
+                    {/* Navigation Dots */}
+                    <div className="hero-dots" style={{
+                        position: 'absolute',
+                        bottom: '30px',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        display: 'flex',
+                        gap: '12px',
+                        zIndex: 10
+                    }}>
+                        {heroSlides.map((_, idx) => (
+                            <button
+                                key={idx}
+                                onClick={() => setCurrentSlide(idx)}
+                                aria-label={`Go to slide ${idx + 1}`}
+                                style={{
+                                    width: '12px',
+                                    height: '12px',
+                                    borderRadius: '50%',
+                                    border: 'none',
+                                    backgroundColor: currentSlide === idx ? 'var(--primary)' : 'rgba(255, 255, 255, 0.4)',
+                                    opacity: 1,
+                                    cursor: 'pointer',
+                                    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                                    padding: 0
+                                }}
+                            />
+                        ))}
                     </div>
                 </div>
             </section>
@@ -231,13 +320,13 @@ export default function Home({ setCurrentPage }) {
                 </div>
             </section>
 
-            {/* Donation Forms */}
-            <section id="donate" className="section-padding bg-light">
+            {/* Membership Inquiry Section */}
+            <section id="join" className="section-padding bg-light">
                 <div className="container donate-section-grid">
                     <div className="donate-info reveal-up">
-                        <span className="badge">Support Our Work</span>
-                        <h2>Empower community development today.</h2>
-                        <p style={{ marginBottom: '24px', color: 'var(--text-muted)' }}>Your financial contributions directly support regional outreach and global grant projects. We maintain complete operational transparency so you see exactly how every single contribution is optimized to build better futures.</p>
+                        <span className="badge">Become a Rotarian</span>
+                        <h2>Join the global network of community leaders.</h2>
+                        <p style={{ marginBottom: '24px', color: 'var(--text-muted)' }}>Membership in the Rotary Club of Madurai opens doors to lifelong friendships, professional networking, and directly leading local service initiatives. Fill out the application details to express your interest, and our membership chair will reach out to you.</p>
 
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                             <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
@@ -245,8 +334,8 @@ export default function Home({ setCurrentPage }) {
                                     <ShieldCheck size={24} />
                                 </div>
                                 <div>
-                                    <h4 style={{ color: 'var(--secondary)', fontSize: '1.1rem', marginBottom: '4px' }}>100% Secured Transactions</h4>
-                                    <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>All contribution channels utilize modern secure payment gateway standards.</p>
+                                    <h4 style={{ color: 'var(--secondary)', fontSize: '1.1rem', marginBottom: '4px' }}>Professional Classifications</h4>
+                                    <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>We invite diverse business, corporate, and vocational professionals to keep our club classification system representative of local trades.</p>
                                 </div>
                             </div>
                             <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
@@ -254,59 +343,82 @@ export default function Home({ setCurrentPage }) {
                                     <CheckCircle2 size={24} />
                                 </div>
                                 <div>
-                                    <h4 style={{ color: 'var(--secondary)', fontSize: '1.1rem', marginBottom: '4px' }}>Tax Deductible Support</h4>
-                                    <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>Donations to our charity trust qualify for applicable local tax relief certificates.</p>
+                                    <h4 style={{ color: 'var(--secondary)', fontSize: '1.1rem', marginBottom: '4px' }}>Active Community Leadership</h4>
+                                    <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>Our members are actively involved in designing, budgeting, and delivering community service projects.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div className="donation-form-wrapper reveal-up" style={{ transitionDelay: '0.2s' }}>
-                        <h3 style={{ marginBottom: '24px', fontSize: '1.5rem' }}>Select Contribution Amount</h3>
-                        <div className="donate-amount-grid" style={{ marginBottom: '24px' }}>
-                            {presetAmounts.map(amt => (
-                                <button
-                                    key={amt}
-                                    type="button"
-                                    className={`amount-btn ${selectedAmount === amt ? 'active' : ''}`}
-                                    onClick={() => handleAmountClick(amt)}
-                                    style={{
-                                        border: selectedAmount === amt ? '2px solid var(--primary)' : '1.5px solid var(--border-color)',
-                                        backgroundColor: selectedAmount === amt ? 'var(--primary)' : '#F8FAFC',
-                                        color: selectedAmount === amt ? 'white' : 'var(--secondary)',
-                                        padding: '14px',
-                                        borderRadius: '10px',
-                                        fontWeight: '700',
-                                        cursor: 'pointer',
-                                        transition: 'var(--transition)'
-                                    }}
-                                >
-                                    ${amt}
-                                </button>
-                            ))}
-                        </div>
-                        <form onSubmit={handleDonationSubmit}>
-                            <div className="form-group">
-                                <label className="form-label" htmlFor="custom-amount">Or Enter Custom Amount ($)</label>
-                                <input
-                                    type="number"
-                                    id="custom-amount"
-                                    className="form-control"
-                                    value={customAmount}
-                                    onChange={handleCustomAmountChange}
-                                    min="1"
-                                    required
+                        <h3 style={{ marginBottom: '24px', fontSize: '1.5rem', color: 'var(--secondary)' }}>Membership Application</h3>
+                        <form onSubmit={handleMembershipSubmit}>
+                            <div className="form-group" style={{ marginBottom: '16px' }}>
+                                <label className="form-label" htmlFor="fullname" style={{ display: 'block', marginBottom: '6px', fontWeight: 600, fontSize: '0.9rem' }}>Full Name</label>
+                                <input 
+                                    type="text" 
+                                    id="fullname" 
+                                    className="form-control" 
+                                    placeholder="John Doe" 
+                                    value={membershipForm.name}
+                                    onChange={(e) => setMembershipForm({ ...membershipForm, name: e.target.value })}
+                                    required 
+                                    style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1.5px solid var(--border-color)', outline: 'none' }}
                                 />
                             </div>
-                            <div className="form-group">
-                                <label className="form-label" htmlFor="fullname">Full Name</label>
-                                <input type="text" id="fullname" className="form-control" placeholder="John Doe" required />
+                            <div className="form-group" style={{ marginBottom: '16px' }}>
+                                <label className="form-label" htmlFor="email" style={{ display: 'block', marginBottom: '6px', fontWeight: 600, fontSize: '0.9rem' }}>Email Address</label>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    className="form-control" 
+                                    placeholder="john@example.com" 
+                                    value={membershipForm.email}
+                                    onChange={(e) => setMembershipForm({ ...membershipForm, email: e.target.value })}
+                                    required 
+                                    style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1.5px solid var(--border-color)', outline: 'none' }}
+                                />
                             </div>
-                            <div className="form-group">
-                                <label className="form-label" htmlFor="email">Email Address</label>
-                                <input type="email" id="email" className="form-control" placeholder="john@example.com" required />
+                            <div className="form-group" style={{ marginBottom: '16px' }}>
+                                <label className="form-label" htmlFor="phone" style={{ display: 'block', marginBottom: '6px', fontWeight: 600, fontSize: '0.9rem' }}>Phone Number</label>
+                                <input 
+                                    type="tel" 
+                                    id="phone" 
+                                    className="form-control" 
+                                    placeholder="+91 98765 43210" 
+                                    value={membershipForm.phone}
+                                    onChange={(e) => setMembershipForm({ ...membershipForm, phone: e.target.value })}
+                                    required 
+                                    style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1.5px solid var(--border-color)', outline: 'none' }}
+                                />
                             </div>
-                            <button type="submit" className="btn btn-primary" style={{ width: '100%', padding: '16px' }}>Complete Contribution</button>
+                            <div className="form-group" style={{ marginBottom: '16px' }}>
+                                <label className="form-label" htmlFor="profession" style={{ display: 'block', marginBottom: '6px', fontWeight: 600, fontSize: '0.9rem' }}>Profession / Classification</label>
+                                <input 
+                                    type="text" 
+                                    id="profession" 
+                                    className="form-control" 
+                                    placeholder="e.g. Software Consultant, Architect, Business Director" 
+                                    value={membershipForm.profession}
+                                    onChange={(e) => setMembershipForm({ ...membershipForm, profession: e.target.value })}
+                                    required 
+                                    style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1.5px solid var(--border-color)', outline: 'none' }}
+                                />
+                            </div>
+                            <div className="form-group" style={{ marginBottom: '24px' }}>
+                                <label className="form-label" htmlFor="message" style={{ display: 'block', marginBottom: '6px', fontWeight: 600, fontSize: '0.9rem' }}>Briefly describe why you want to join Rotary</label>
+                                <textarea 
+                                    id="message" 
+                                    className="form-control" 
+                                    rows="3"
+                                    placeholder="Tell us about your background and interest in community service..." 
+                                    value={membershipForm.message}
+                                    onChange={(e) => setMembershipForm({ ...membershipForm, message: e.target.value })}
+                                    required 
+                                    style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1.5px solid var(--border-color)', outline: 'none', resize: 'vertical', fontFamily: 'inherit' }}
+                                />
+                            </div>
+                            <button type="submit" className="btn btn-primary" style={{ width: '100%', padding: '16px', borderRadius: '8px', fontWeight: 700 }}>Submit Inquiry</button>
                         </form>
                     </div>
                 </div>
