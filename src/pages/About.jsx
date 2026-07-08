@@ -28,7 +28,7 @@ function Counter({ target, suffix }) {
 
 export default function About() {
     const [activeTestimonial, setActiveTestimonial] = useState(0);
-    const [activeTab, setActiveTab] = useState('origin');
+    const [activeTab, setActiveTab] = useState('birth');
 
     const testimonials = [
         {
@@ -157,10 +157,10 @@ export default function About() {
             <section className="section section-bg-light" style={{ padding: '80px 0', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)' }}>
                 <div className="container">
                     <div className="reveal-up" style={{ textAlign: 'center', marginBottom: '50px' }}>
-                        <span className="badge">Rotary International Heritage</span>
-                        <h2>Our Global History & Legacy</h2>
+                        <span className="badge">Rotary Club of Madurai Heritage</span>
+                        <h2>Birth & The March Forward</h2>
                         <p style={{ maxWidth: '700px', margin: '15px auto 0 auto', color: 'var(--text-muted)' }}>
-                            Explore the rich legacy of Rotary International—from a meeting of four friends in a Chicago office in 1905 to a global network of 1.2 million neighbors, friends, and leaders.
+                            Explore the rich local heritage of our club—from our initial charter meeting in 1938 to spawning a network of fellowship and community progress across Southern India.
                         </p>
                     </div>
 
@@ -173,10 +173,10 @@ export default function About() {
                         flexWrap: 'wrap'
                     }}>
                         {[
-                            { id: 'origin', label: 'Origin & Early Growth (1905-1922)' },
-                            { id: 'milestones', label: 'Historical Milestones & UNESCO' },
-                            { id: 'foundation', label: 'The Rotary Foundation' },
-                            { id: 'outreach', label: 'Global Impact & Programs' }
+                            { id: 'birth', label: 'Birth & Charter (1938-1939)' },
+                            { id: 'march', label: 'The March Forward' },
+                            { id: 'sponsored', label: 'Sponsored Clubs (21)' },
+                            { id: 'leaders', label: 'Leaders & Visitors' }
                         ].map(tab => (
                             <button
                                 key={tab.id}
@@ -227,159 +227,187 @@ export default function About() {
                         gridTemplateColumns: '1fr',
                         gap: '40px'
                     }}>
-                        {activeTab === 'origin' && (
+                        {activeTab === 'birth' && (
                             <div className="grid-2 animate-fade-in" style={{ alignItems: 'start', gap: '40px' }}>
                                 <div>
-                                    <h3 style={{ fontSize: '1.6rem', color: 'var(--secondary)', marginBottom: '20px' }}>The First Meeting & Early Development</h3>
+                                    <h3 style={{ fontSize: '1.6rem', color: 'var(--secondary)', marginBottom: '20px' }}>The Birth of Rotary in the South</h3>
                                     <p style={{ color: 'var(--text-muted)', lineHeight: '1.7', fontSize: '0.98rem', marginBottom: '20px' }}>
-                                        On <strong>February 23, 1905</strong>, Chicago attorney <strong>Paul P. Harris</strong> called three business associates to a meeting in Gustavus Loehr's office—Room 711 of the Unity Building at 127 North Dearborn Street, Chicago.
+                                        "Rotary" first touched South Asia in 1920 with the admission of the Rotary Club of Calcutta. In Tamil Nadu (formerly the Province of Madras), Madurai stood next to Madras in administrative stature. Following Madras starting its club in 1929, the next to establish a presence in the South was Madurai in 1938, after a gap of nine years.
                                     </p>
                                     <p style={{ color: 'var(--text-muted)', lineHeight: '1.7', fontSize: '0.98rem', marginBottom: '20px' }}>
-                                        Harris sought to recreate the friendly, supportive spirit he knew in the small towns of his youth within a busy metropolis. As the group continued to meet, they rotated venues among members' offices—hence the name <strong>"Rotary."</strong>
+                                        <strong>Rtn. Captain Abdul Hamid</strong> of the Rotary Club of Madras suggested the idea to <strong>Mr. K. Devaji Rao</strong> of Madurai. Devaji Rao convened an informal meeting on <strong>18th September 1938</strong> at the residence of <strong>Sir James Doak</strong>. Rtn. M.R.A. Baig, Joint Secretary of the Rotary Club of Bombay, gave a talk that inspired the attendees to resolve "that a provisional Rotary Club be constituted at Madura."
                                     </p>
-                                    <div style={{ backgroundColor: 'var(--primary-light)', padding: '20px', borderRadius: '16px', borderLeft: '4px solid var(--primary)' }}>
-                                        <h4 style={{ color: 'var(--primary)', marginBottom: '8px', fontSize: '1rem' }}>The First Four Rotarians:</h4>
-                                        <ul style={{ listStyle: 'square', paddingLeft: '20px', color: 'var(--secondary)', fontSize: '0.9rem', lineHeight: '1.6' }}>
-                                            <li><strong>Paul P. Harris</strong> — Chicago lawyer and founder</li>
-                                            <li><strong>Gustavus Loehr</strong> — Mining engineer and meeting host</li>
-                                            <li><strong>Silvester Schiele</strong> — Coal dealer</li>
-                                            <li><strong>Hiram Shorey</strong> — Merchant tailor</li>
+                                    <div style={{ backgroundColor: 'var(--primary-light)', padding: '20px', borderRadius: '16px', borderLeft: '4px solid var(--primary)', marginBottom: '20px' }}>
+                                        <h4 style={{ color: 'var(--primary)', marginBottom: '10px', fontSize: '1rem', fontWeight: '700' }}>First Office Bearers (1938):</h4>
+                                        <ul style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', listStyle: 'none', paddingLeft: 0, color: 'var(--secondary)', fontSize: '0.9rem' }}>
+                                            <li><strong>President:</strong> Sir James Doak</li>
+                                            <li><strong>Secretary:</strong> Mr. T.S. Krishna</li>
+                                            <li><strong>Vice-President:</strong> Mr. K. Devaji Rao</li>
+                                            <li><strong>Treasurer:</strong> Mr. H. Isherwood</li>
+                                            <li style={{ gridColumn: 'span 2' }}><strong>Directors:</strong> Mr. C.B. Koman, Rev. E.L. Nolting, Mr. S.K.M. Nainar</li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                                     <div style={{ border: '1px solid var(--border-color)', padding: '24px', borderRadius: '16px', backgroundColor: 'var(--bg-light)' }}>
-                                        <h4 style={{ color: 'var(--secondary)', marginBottom: '10px' }}>The Emblem Origin</h4>
+                                        <h4 style={{ color: 'var(--secondary)', marginBottom: '10px' }}>Admission and Charter Fee</h4>
                                         <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem', lineHeight: '1.6' }}>
-                                            Soon after the club name was agreed upon, one of the new members suggested a <strong>wagon wheel design</strong> as the club emblem. This was the direct precursor to the familiar cogwheel emblem now worn by over 1.2 million Rotarians around the world.
+                                            On <strong>3rd November 1938</strong>, Rtn. H.W. Bryant, Rotary Commissioner of India, addressed the provisional club. It was resolved that the charter fee of <strong>$100</strong> be sent to Rotary International. The charter was issued on <strong>27th December 1938</strong>, officially birthing the Rotary Club of Madurai. The entrance fee was fixed at Rs. 30 and the monthly subscription at Rs. 2.50.
                                         </p>
                                     </div>
                                     <div style={{ border: '1px solid var(--border-color)', padding: '24px', borderRadius: '16px', backgroundColor: 'var(--bg-light)' }}>
-                                        <h4 style={{ color: 'var(--secondary)', marginBottom: '10px' }}>Rapid Expansion</h4>
-                                        <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem', lineHeight: '1.6' }}>
-                                            By the end of 1905, the Chicago club had grown to 30 members. The second club was formed in San Francisco in 1908, followed by Oakland, Seattle, Los Angeles, and New York. In 1910, the first club outside the US was chartered in Winnipeg, Canada. By 1921, the organization was represented on every continent, and the name <strong>Rotary International</strong> was officially adopted in 1922.
+                                        <h4 style={{ color: 'var(--secondary)', marginBottom: '10px' }}>19 Charter Members</h4>
+                                        <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem', lineHeight: '1.6', marginBottom: '10px' }}>
+                                            The charter was presented on <strong>1st July 1939</strong> by Sir Fredrick E. James, Acting District Governor. The 19 charter members were:
                                         </p>
+                                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4px', fontSize: '0.85rem', color: 'var(--secondary)', maxHeight: '150px', overflowY: 'auto' }}>
+                                            <div>• Sir J.M. Doak</div>
+                                            <div>• Mr. T.S. Rajam</div>
+                                            <div>• Rev. E.L. Nolting</div>
+                                            <div>• Mr. C.V. Coulter</div>
+                                            <div>• Mr. J.A. Andrew</div>
+                                            <div>• Mr. K. Devaji Rao</div>
+                                            <div>• Mr. T.S. Krishna</div>
+                                            <div>• Mr. H. Isherwood</div>
+                                            <div>• Mr. K.M.S.L. Sundararaman</div>
+                                            <div>• Mr. A.H.S. Ramaswamy</div>
+                                            <div>• Mr. A.H. Charsley</div>
+                                            <div>• Mr. T.P. Menon</div>
+                                            <div>• Mr. T.P. Kurien</div>
+                                            <div>• Mr. C.B. Koman</div>
+                                            <div>• Dr. F.A.B. Sheppard</div>
+                                            <div>• Sir P.T. Rajan</div>
+                                            <div>• Dr. H.S. Thomas</div>
+                                            <div>• Mr. S.K.M. Nainar</div>
+                                            <div>• Mr. S.N.K. Sundaram</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         )}
 
-                        {activeTab === 'milestones' && (
+                        {activeTab === 'march' && (
                             <div className="grid-2 animate-fade-in" style={{ alignItems: 'start', gap: '40px' }}>
                                 <div>
-                                    <h3 style={{ fontSize: '1.6rem', color: 'var(--secondary)', marginBottom: '20px' }}>Historical Milestones & Global Legacy</h3>
+                                    <h3 style={{ fontSize: '1.6rem', color: 'var(--secondary)', marginBottom: '20px' }}>The March Forward & Steady Progress</h3>
                                     <p style={{ color: 'var(--text-muted)', lineHeight: '1.7', fontSize: '0.98rem', marginBottom: '20px' }}>
-                                        By July 1925, Rotary had grown to more than 2,000 clubs with an estimated 108,000 members. Over its first century, it attracted renowned leaders, writers, and scientists to its ranks, including author <strong>Thomas Mann</strong>, diplomat <strong>Carlos P. Romulo</strong>, humanitarian <strong>Albert Schweitzer</strong>, and composer <strong>Jean Sibelius</strong>.
+                                        Initially, meetings were held twice a month (typically luncheon meetings on the 2nd and 4th Saturdays). Later, they changed to supper meetings on the 1st Tuesday at the Cosmopolitan Club, and luncheon meetings on the penultimate Saturday. The club also published a monthly bulletin from inception under the stewardship of <strong>Rtn. T.S. Krishna</strong>.
                                     </p>
-                                    <div style={{ border: '1px solid var(--border-color)', padding: '24px', borderRadius: '16px', backgroundColor: 'var(--bg-light)', marginBottom: '20px' }}>
-                                        <h4 style={{ color: 'var(--secondary)', marginBottom: '10px' }}>Inspiring the Founding of UNESCO & UN:</h4>
-                                        <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem', lineHeight: '1.6', marginBottom: '10px' }}>
-                                            During World War II, many clubs were forced to disband. However, in 1942, Rotarians called for a conference in London to promote international educational and cultural exchanges. This historical event <strong>inspired the founding of UNESCO</strong>.
-                                        </p>
-                                        <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem', lineHeight: '1.6' }}>
-                                            In 1945, <strong>49 Rotary club members served as delegates, advisors, and consultants</strong> in 29 delegations during the historic United Nations Charter Conference in San Francisco.
-                                        </p>
-                                    </div>
+                                    <p style={{ color: 'var(--text-muted)', lineHeight: '1.7', fontSize: '0.98rem', marginBottom: '20px' }}>
+                                        In <strong>1948</strong>, the club took a major progressive step by switching from fortnightly to weekly meetings. However, by habit, the club used to take a month-long holiday from mid-April to mid-May.
+                                    </p>
                                 </div>
                                 <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                                    <div style={{ backgroundColor: '#0F172A', color: 'white', padding: '30px', borderRadius: '16px', borderLeft: '4px solid var(--primary)' }}>
-                                        <span style={{ fontSize: '2.5rem', color: 'var(--primary)', lineHeight: '1', display: 'block', marginBottom: '10px' }}>“</span>
-                                        <p style={{ fontSize: '1.05rem', fontStyle: 'italic', lineHeight: '1.6', marginBottom: '15px' }}>
-                                            Few there are who do not recognize the good work which is done by Rotary clubs throughout the free world.
+                                    <div style={{ backgroundColor: 'var(--primary-light)', padding: '24px', borderRadius: '16px', borderLeft: '4px solid var(--primary)' }}>
+                                        <h4 style={{ color: 'var(--secondary)', marginBottom: '8px', fontSize: '1.1rem' }}>Unbroken Routine Since 1955</h4>
+                                        <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem', lineHeight: '1.6' }}>
+                                            In <strong>1955</strong>, the club began holding its meetings every single week without a break. This routine has continued perfectly for over 70 years, serving as the heartbeat of the fellowship.
                                         </p>
-                                        <cite style={{ display: 'block', fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)', fontWeight: '600' }}>
-                                            — Winston Churchill, former Prime Minister of Great Britain
-                                        </cite>
                                     </div>
                                     <div style={{ border: '1px solid var(--border-color)', padding: '24px', borderRadius: '16px', backgroundColor: 'var(--bg-light)' }}>
-                                        <h4 style={{ color: 'var(--secondary)', marginBottom: '8px' }}>Admitting Women & Eastern Expansion</h4>
-                                        <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem', lineHeight: '1.6', marginBottom: '10px' }}>
-                                            In <strong>1989</strong>, the organization voted to admit women into clubs worldwide. Today, women are an integral and driving part of Rotary's global membership.
-                                        </p>
+                                        <h4 style={{ color: 'var(--secondary)', marginBottom: '8px' }}>Seniority & Stature</h4>
                                         <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem', lineHeight: '1.6' }}>
-                                            Following the collapse of the Berlin Wall, clubs were re-established across Central and Eastern Europe, with the first Russian Rotary club chartered in Moscow in 1990.
+                                            As the club stabilized, it attained a membership strength and activity portfolio comparable to capital city clubs (Madras, Colombo, and Trivandrum), making it a leading senior club in the region.
                                         </p>
                                     </div>
                                 </div>
                             </div>
                         )}
 
-                        {activeTab === 'foundation' && (
-                            <div className="grid-2 animate-fade-in" style={{ alignItems: 'start', gap: '40px' }}>
-                                <div>
-                                    <h3 style={{ fontSize: '1.6rem', color: 'var(--secondary)', marginBottom: '20px' }}>History of The Rotary Foundation</h3>
-                                    <p style={{ color: 'var(--text-muted)', lineHeight: '1.7', fontSize: '0.98rem', marginBottom: '20px' }}>
-                                        In <strong>1917</strong>, RI President <strong>Arch C. Klumph</strong> proposed the creation of an endowment fund "for the purpose of doing good in the world." In 1928, when the fund grew to over $5,000, it was renamed <strong>The Rotary Foundation</strong> and became a distinct entity.
-                                    </p>
-                                    <p style={{ color: 'var(--text-muted)', lineHeight: '1.7', fontSize: '0.98rem', marginBottom: '20px' }}>
-                                        The foundation's very first contribution was a modest sum of <strong>$26.50</strong> in 1917. In 1928, it made its first grant of <strong>$500</strong> to the International Society for Crippled Children (founded by Rotarian Edgar F. "Daddy" Allen, which later grew into Easter Seals).
-                                    </p>
-                                    <div style={{ backgroundColor: 'var(--primary-light)', padding: '20px', borderRadius: '16px', borderLeft: '4px solid var(--primary)' }}>
-                                        <h4 style={{ color: 'var(--primary)', marginBottom: '6px', fontSize: '0.95rem' }}>Paul Harris Memorial Fund (1947)</h4>
-                                        <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', lineHeight: '1.5' }}>
-                                            Following the death of founder Paul Harris in 1947, contributions poured in from around the globe, prompting the creation of the memorial fund which launched the foundation's first program—the Ambassadorial Scholarships.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                                    <div style={{ border: '1px solid var(--border-color)', padding: '24px', borderRadius: '16px', backgroundColor: 'var(--bg-light)' }}>
-                                        <h4 style={{ color: 'var(--secondary)', marginBottom: '10px' }}>Milestones in Foundation Giving</h4>
-                                        <ul style={{ listStyle: 'square', paddingLeft: '20px', color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.7' }}>
-                                            <li><strong>1965–66</strong>: Launched Group Study Exchange and Awards for Technical Training.</li>
-                                            <li><strong>1978</strong>: Launched Health, Hunger and Humanity (3-H) Grants program.</li>
-                                            <li><strong>1980</strong>: Created the Rotary Volunteers program.</li>
-                                            <li><strong>1984–85</strong>: Formally launched the PolioPlus program.</li>
-                                        </ul>
-                                    </div>
-                                    <div style={{ border: '1px solid var(--border-color)', padding: '24px', borderRadius: '16px', backgroundColor: 'var(--bg-light)' }}>
-                                        <h4 style={{ color: 'var(--secondary)', marginBottom: '8px' }}>Paul Harris Fellows</h4>
-                                        <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem', lineHeight: '1.6' }}>
-                                            Individuals who contribute $1,000 or more to the Foundation (or have it contributed in their name) are recognized as <strong>Paul Harris Fellows</strong>. Over 1 million individuals have received this honor, ensuring a secure future for international goodwill.
-                                        </p>
-                                    </div>
+                        {activeTab === 'sponsored' && (
+                            <div className="animate-fade-in">
+                                <h3 style={{ fontSize: '1.6rem', color: 'var(--secondary)', marginBottom: '16px' }}>Mother Club of the Region</h3>
+                                <p style={{ color: 'var(--text-muted)', marginBottom: '24px', fontSize: '0.98rem' }}>
+                                    The Rotary Club of Madurai has played a pivotal role in expanding Rotary's reach in Southern India, sponsoring <strong>20 clubs in RI District 3000</strong> and <strong>1 in a neighboring district</strong>:
+                                </p>
+                                <div style={{ 
+                                    display: 'grid', 
+                                    gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', 
+                                    gap: '16px',
+                                    maxHeight: '320px',
+                                    overflowY: 'auto',
+                                    paddingRight: '10px'
+                                }}>
+                                    {[
+                                        { name: "Rotary Club of Karaikudi", date: "Chartered 13.09.1951" },
+                                        { name: "Rotary Club of Dindigul", date: "Chartered 29.08.1956" },
+                                        { name: "Rotary Club of Madurai West", date: "Chartered 24.08.1965" },
+                                        { name: "Rotary Club of Chinnamanur", date: "Chartered 15.04.1973" },
+                                        { name: "Rotary Club of Kodaikanal", date: "Chartered 05.11.1973" },
+                                        { name: "Rotary Club of Nilakottai", date: "Chartered 1982-1983" },
+                                        { name: "Rotary Club of Madurai Central", date: "Chartered 28.06.1983" },
+                                        { name: "Rotary Club of Madurai Down Town", date: "Chartered 26.06.1985" },
+                                        { name: "Rotary Club of Madurai Kings City", date: "Chartered 24.04.2009" },
+                                        { name: "Rotary Club of Madurai Elite", date: "Chartered 12.11.2009" },
+                                        { name: "Rotary Club of Madurai Mahal", date: "Chartered 24.09.2012" },
+                                        { name: "Rotary Club of Madurai Next Gen", date: "Sponsored" },
+                                        { name: "Rotary Club of Madurai East", date: "Sponsored" },
+                                        { name: "Rotary Club of Madurai Mid-Town", date: "Sponsored" },
+                                        { name: "Rotary Club of Madurai-Tirumangalam", date: "Sponsored" },
+                                        { name: "Rotary Club of Madurai North West", date: "Sponsored" },
+                                        { name: "Rotary Club of Tirunagar-Madurai", date: "Sponsored" },
+                                        { name: "Rotary Club of Madurai South", date: "Sponsored" },
+                                        { name: "Rotary Club of Madurai-Nagamalai", date: "Sponsored" }
+                                    ].map((club, idx) => (
+                                        <div key={idx} style={{ 
+                                            padding: '12px 16px', 
+                                            borderRadius: '8px', 
+                                            border: '1.5px solid var(--border-color)', 
+                                            backgroundColor: '#F8FAFC',
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            justifyContent: 'center'
+                                        }}>
+                                            <span style={{ fontWeight: '700', fontSize: '0.92rem', color: 'var(--secondary)' }}>{club.name}</span>
+                                            <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>{club.date}</span>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                         )}
 
-                        {activeTab === 'outreach' && (
+                        {activeTab === 'leaders' && (
                             <div className="grid-2 animate-fade-in" style={{ alignItems: 'start', gap: '40px' }}>
                                 <div>
-                                    <h3 style={{ fontSize: '1.6rem', color: 'var(--secondary)', marginBottom: '20px' }}>Global Impact & Humanitarian Programs</h3>
-                                    <p style={{ color: 'var(--text-muted)', lineHeight: '1.7', fontSize: '0.98rem', marginBottom: '20px' }}>
-                                        Rotary clubs address critical issues worldwide by funding healthcare, sanitation, clean water, education, job training, and child development. Key global programs include:
-                                    </p>
+                                    <h3 style={{ fontSize: '1.6rem', color: 'var(--secondary)', marginBottom: '20px' }}>National Leaders, Visitors & Speakers</h3>
                                     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                                         <div style={{ borderLeft: '3px solid var(--primary)', paddingLeft: '15px' }}>
-                                            <h4 style={{ color: 'var(--secondary)', fontSize: '1rem', marginBottom: '4px' }}>Polio Eradication (PolioPlus)</h4>
+                                            <h4 style={{ color: 'var(--secondary)', fontSize: '1rem', marginBottom: '4px' }}>Distinguished Leaders:</h4>
                                             <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.5' }}>
-                                                Since 1985, Rotary has contributed over <strong>$1 billion</strong> and countless hours to immunize the world's children. Rotary raised $200 million towards a $355 million challenge grant from the Gates Foundation, leveraging over $6 billion from donor governments to nearly wipe out polio.
+                                                Charter member <strong>Sir P.T. Rajan</strong> served as President (1940-1941), and prominent leader <strong>Mr. R.V. Swaminathan</strong> served as President (1960-1961).
                                             </p>
                                         </div>
                                         <div style={{ borderLeft: '3px solid var(--primary)', paddingLeft: '15px' }}>
-                                            <h4 style={{ color: 'var(--secondary)', fontSize: '1rem', marginBottom: '4px' }}>Rotary Peace Fellowships</h4>
+                                            <h4 style={{ color: 'var(--secondary)', fontSize: '1rem', marginBottom: '4px' }}>Eminent Speakers:</h4>
                                             <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.5' }}>
-                                                Sponsors up to 110 Peace Fellows annually at 8 global universities. Over 430 fellows from 75 countries have trained in international relations, peace, and conflict resolution since 2002.
+                                                <strong>Sri Jayaprakash Narayan</strong>, Nobel Laureate <strong>Dr. C.V. Raman</strong>, and space pioneer <strong>Dr. Vikram Sarabhai</strong> addressed the club weekly in 1966-1967. The Vice-President of India <strong>Sri V.V. Giri</strong> addressed the club in 1967-1968.
+                                            </p>
+                                        </div>
+                                        <div style={{ borderLeft: '3px solid var(--primary)', paddingLeft: '15px' }}>
+                                            <h4 style={{ color: 'var(--secondary)', fontSize: '1rem', marginBottom: '4px' }}>Global & Matching Grants:</h4>
+                                            <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.5' }}>
+                                                More than <strong>27 Matching Grants</strong> and <strong>6 Global Grants</strong> have been completed by the club since 1999 to support communities.
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                                 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                                     <div style={{ borderLeft: '3px solid var(--primary)', paddingLeft: '15px' }}>
-                                        <h4 style={{ color: 'var(--secondary)', fontSize: '1rem', marginBottom: '4px' }}>International Education & Scholarships</h4>
-                                        <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.5' }}>
-                                            The world's largest privately funded source of international scholarships. Rotary sponsors 1,000 university scholars study abroad and 8,000 high-school student exchanges annually.
-                                        </p>
+                                        <h4 style={{ color: 'var(--secondary)', fontSize: '1rem', marginBottom: '4px' }}>Historical Visits:</h4>
+                                        <ul style={{ listStyle: 'square', paddingLeft: '20px', color: 'var(--text-muted)', fontSize: '0.88rem', lineHeight: '1.6' }}>
+                                            <li>Chief Minister <strong>Mr. K. Kamaraj</strong> visited on 29.08.1954.</li>
+                                            <li>Chief Minister <strong>Mr. O.P. Ramaswamy Reddiar</strong> visited on 01.08.1953.</li>
+                                            <li>Union Health Minister <strong>Rajakumari Amrit Kaur</strong> visited on 02.02.1954.</li>
+                                            <li>RI President <strong>Joseph A. Abbey</strong> and Mrs. Abbey visited on 22.08.1961.</li>
+                                        </ul>
                                     </div>
                                     <div style={{ borderLeft: '3px solid var(--primary)', paddingLeft: '15px' }}>
-                                        <h4 style={{ color: 'var(--secondary)', fontSize: '1rem', marginBottom: '4px' }}>Literacy (Concentrated Language Encounter)</h4>
-                                        <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.5' }}>
-                                            Rotary pioneered a resource-strapped literacy teaching methodology. Its massive success in pilot schools in Thailand prompted the Thai government to adopt it nationwide.
+                                        <h4 style={{ color: 'var(--secondary)', fontSize: '1rem', marginBottom: '4px' }}>Pioneering Youth & Infrastructure:</h4>
+                                        <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.5', marginBottom: '8px' }}>
+                                            In 1968-1969, the club sponsored the <strong>first Rotaract Club in India</strong> at Madurai Medical College. Sponsoring Interact Clubs started in 1965-1966 at Sourashtra and Sethupathi High Schools.
                                         </p>
-                                    </div>
-                                    <div style={{ borderLeft: '3px solid var(--primary)', paddingLeft: '15px' }}>
-                                        <h4 style={{ color: 'var(--secondary)', fontSize: '1rem', marginBottom: '4px' }}>Water Management & Sanitation</h4>
                                         <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.5' }}>
-                                            Rotary clubs help install wells and develop water treatment and distribution systems, ensuring fresh drinking water and sanitation systems for rural communities.
+                                            Donated the <strong>Maternity and Child Welfare Centre at Irumbady</strong> (opened by CM Bakthavatsalam on 16.12.1962) and organized the <strong>Rotary Laharry School</strong> (opened on 23.06.1963).
                                         </p>
                                     </div>
                                 </div>
@@ -412,12 +440,12 @@ export default function About() {
                             }}></div>
 
                             <blockquote style={{ fontSize: '1.25rem', lineHeight: '1.6', fontWeight: '500', marginBottom: '20px', fontStyle: 'italic', color: 'rgba(255,255,255,0.95)', maxWidth: '800px', margin: '0 auto 20px auto' }}>
-                                "If we ever reach the point where we can feel that the greatest and noblest things that Rotary could possibly do have already been done, at that very moment our organization will begin to disintegrate."
+                                "The Rotary Club of Madurai has kept up this stature not only in its membership strength but also by notable activities that are expected of a senior club, marching forward on a path of continuous progress."
                             </blockquote>
                             <cite style={{ display: 'block', fontWeight: '700', fontSize: '1.02rem', color: 'white', fontStyle: 'normal' }}>
-                                — Address to 1944 Rotary Convention
+                                — Celebrating over 85 years of service
                             </cite>
-                            <span style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)' }}>Chicago, Illinois, USA</span>
+                            <span style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)' }}>Madurai, RI District 3000, India</span>
                         </div>
                     </div>
                 </div>
