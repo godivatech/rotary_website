@@ -1,10 +1,56 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Play, CheckCircle2, ShieldCheck } from 'lucide-react';
 
 export default function Home({ setCurrentPage }) {
     const [selectedAmount, setSelectedAmount] = useState(50);
     const [customAmount, setCustomAmount] = useState('50');
     const [activeFaq, setActiveFaq] = useState(0);
+
+    const parallaxBgRef = useRef(null);
+
+    useEffect(() => {
+        const bgEl = parallaxBgRef.current;
+        if (!bgEl) return;
+
+        let ticking = false;
+
+        const updateParallax = () => {
+            if (!bgEl) return;
+            const parentEl = bgEl.parentElement;
+            if (!parentEl) return;
+            const rect = parentEl.getBoundingClientRect();
+            const viewHeight = window.innerHeight;
+
+            if (rect.bottom < 0 || rect.top > viewHeight) return;
+
+            const parentHeight = rect.height;
+            const totalRange = viewHeight + parentHeight;
+            const currentPosition = viewHeight - rect.top;
+            const progress = Math.max(0, Math.min(1, currentPosition / totalRange));
+            
+            const maxTranslate = 180; // offset in px
+            const translateVal = (0.5 - progress) * 2 * maxTranslate;
+            
+            bgEl.style.transform = `translate3d(0, ${translateVal}px, 0)`;
+        };
+
+        const onScroll = () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    updateParallax();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        };
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        updateParallax();
+
+        return () => {
+            window.removeEventListener('scroll', onScroll);
+        };
+    }, []);
 
     const presetAmounts = [10, 50, 100, 500];
 
@@ -157,7 +203,23 @@ export default function Home({ setCurrentPage }) {
 
             {/* Video Ripple Section */}
             <section className="video-section">
-                <div className="video-content">
+                <div 
+                    ref={parallaxBgRef}
+                    className="video-parallax-bg" 
+                    style={{
+                        position: 'absolute',
+                        top: '-40%',
+                        left: 0,
+                        width: '100%',
+                        height: '180%',
+                        backgroundImage: "linear-gradient(rgba(15, 23, 42, 0.72), rgba(15, 23, 42, 0.72)), url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1920')",
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        zIndex: 1,
+                        willChange: 'transform'
+                    }}
+                />
+                <div className="video-content reveal-up" style={{ position: 'relative', zIndex: 2 }}>
                     <div className="play-btn-wrapper">
                         <div className="play-btn"><Play size={24} fill="white" /></div>
                         <div className="play-pulse"></div>
@@ -172,7 +234,7 @@ export default function Home({ setCurrentPage }) {
             {/* Donation Forms */}
             <section id="donate" className="section-padding bg-light">
                 <div className="container donate-section-grid">
-                    <div className="donate-info">
+                    <div className="donate-info reveal-up">
                         <span className="badge">Support Our Work</span>
                         <h2>Empower community development today.</h2>
                         <p style={{ marginBottom: '24px', color: 'var(--text-muted)' }}>Your financial contributions directly support regional outreach and global grant projects. We maintain complete operational transparency so you see exactly how every single contribution is optimized to build better futures.</p>
@@ -199,7 +261,7 @@ export default function Home({ setCurrentPage }) {
                         </div>
                     </div>
 
-                    <div className="donation-form-wrapper" style={{ transitionDelay: '0.2s' }}>
+                    <div className="donation-form-wrapper reveal-up" style={{ transitionDelay: '0.2s' }}>
                         <h3 style={{ marginBottom: '24px', fontSize: '1.5rem' }}>Select Contribution Amount</h3>
                         <div className="donate-amount-grid" style={{ marginBottom: '24px' }}>
                             {presetAmounts.map(amt => (
@@ -253,7 +315,7 @@ export default function Home({ setCurrentPage }) {
             {/* Accordion FAQ & Google Reviews */}
             <section id="faqs" className="section-padding">
                 <div className="container faq-section-grid">
-                    <div className="review-badge-container fade-in-up">
+                    <div className="review-badge-container reveal-scale">
                         <div className="google-review-badge">
                             <div style={{ fontWeight: '800', fontSize: '1.6rem', marginBottom: '8px', fontFamily: 'var(--font-heading)' }}>
                                 <span style={{ color: '#4285F4' }}>G</span><span style={{ color: '#EA4335' }}>o</span><span style={{ color: '#FBBC05' }}>o</span><span style={{ color: '#4285F4' }}>g</span><span style={{ color: '#34A853' }}>l</span><span style={{ color: '#EA4335' }}>e</span>
@@ -264,7 +326,7 @@ export default function Home({ setCurrentPage }) {
                         </div>
                     </div>
 
-                    <div className="faq-accordion fade-in-up" style={{ transitionDelay: '0.2s' }}>
+                    <div className="faq-accordion reveal-up" style={{ transitionDelay: '0.2s' }}>
                         <span className="badge">Frequently Asked Questions</span>
                         <h2 style={{ marginBottom: '30px' }}>Answers to your common queries.</h2>
 
@@ -331,7 +393,7 @@ export default function Home({ setCurrentPage }) {
 
             {/* Partner Grid */}
             <section className="partners-section" style={{ padding: '60px 0', borderTop: '1px solid var(--border-color)' }}>
-                <div className="container partners-grid fade-in-up" style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', flexWrap: 'wrap', gap: '30px' }}>
+                <div className="container partners-grid reveal-up" style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', flexWrap: 'wrap', gap: '30px' }}>
                     <img style={{ opacity: 0.4, height: '40px' }} src="https://images.unsplash.com/photo-1599305445671-ac291c95aba9?q=80&w=120" alt="Partner Logo" />
                     <img style={{ opacity: 0.4, height: '40px' }} src="https://images.unsplash.com/photo-1599305446868-59b861c36dcf?q=80&w=120" alt="Partner Logo" />
                     <img style={{ opacity: 0.4, height: '40px' }} src="https://images.unsplash.com/photo-1599305446908-41712a52efc1?q=80&w=120" alt="Partner Logo" />

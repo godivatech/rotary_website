@@ -99,13 +99,82 @@ export default function App() {
           entry.target.classList.add('in-view');
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.05 });
 
     const revealElements = document.querySelectorAll('.reveal-up, .reveal-scale, .reveal-clip');
     revealElements.forEach(el => observer.observe(el));
 
+    // Fallback: Check if elements are already in the viewport
+    const checkInViewFallback = () => {
+      const elements = document.querySelectorAll('.reveal-up, .reveal-scale, .reveal-clip');
+      elements.forEach(el => {
+        if (el.classList.contains('in-view')) return;
+        const rect = el.getBoundingClientRect();
+        const viewHeight = window.innerHeight || document.documentElement.clientHeight;
+        // If element is partially visible in the viewport
+        if (rect.top < viewHeight - 20 && rect.bottom > 20) {
+          el.classList.add('in-view');
+        }
+      });
+    };
+
+    // Run fallback check immediately and after short delays (to wait for page transitions)
+    checkInViewFallback();
+    const t1 = setTimeout(checkInViewFallback, 100);
+    const t2 = setTimeout(checkInViewFallback, 400);
+
+    // Listen to scroll events as a fallback trigger
+    window.addEventListener('scroll', checkInViewFallback, { passive: true });
+
     return () => {
       revealElements.forEach(el => observer.unobserve(el));
+      clearTimeout(t1);
+      clearTimeout(t2);
+      window.removeEventListener('scroll', checkInViewFallback);
+    };
+  }, [currentPage]);
+
+  // 1.7 Performant Window Scroll-Parallax (Awwwards Style)
+  useEffect(() => {
+    const scrollParallaxElements = document.querySelectorAll('.scroll-parallax');
+    if (scrollParallaxElements.length === 0) return;
+
+    let ticking = false;
+
+    const updateParallax = () => {
+      const pageY = window.scrollY || window.pageYOffset;
+      const viewHeight = window.innerHeight;
+
+      scrollParallaxElements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        const elementTop = rect.top + pageY;
+        const elementHeight = rect.height;
+
+        // Calculate relative position to viewport center (-1 to 1)
+        const relativeScroll = (pageY + viewHeight / 2 - (elementTop + elementHeight / 2)) / (viewHeight / 2 + elementHeight / 2);
+        
+        // Clamp and calculate speed factor
+        const factor = Math.max(-1.5, Math.min(1.5, relativeScroll));
+        const speed = parseFloat(el.getAttribute('data-scroll-speed')) || 50;
+        const yOffset = factor * speed;
+
+        el.style.transform = `translate3d(0, ${yOffset}px, 0)`;
+      });
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    updateParallax(); // Initial positioning
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
     };
   }, [currentPage]);
 

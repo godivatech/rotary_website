@@ -28,7 +28,7 @@ export default function Contact() {
                 <div className="container grid-2" style={{ alignItems: 'start' }}>
 
                     {/* Left Column - Contact info */}
-                    <div className="fade-in-up active">
+                    <div className="reveal-up">
                         <span className="badge">Get in touch</span>
                         <h2>We would love to hear from you.</h2>
                         <p style={{ color: 'var(--text-muted)', marginBottom: '40px', marginTop: '15px' }}>
@@ -99,7 +99,7 @@ export default function Contact() {
                     </div>
 
                     {/* Right Column - Form */}
-                    <div className="fade-in-up active" style={{ transitionDelay: '0.2s', backgroundColor: 'white', border: '1.5px solid var(--border-color)', borderRadius: '20px', padding: '40px', boxShadow: 'var(--shadow-md)' }}>
+                    <div className="reveal-up" style={{ transitionDelay: '0.2s', backgroundColor: 'white', border: '1.5px solid var(--border-color)', borderRadius: '20px', padding: '40px', boxShadow: 'var(--shadow-md)' }}>
                         <h3 style={{ fontSize: '1.4rem', marginBottom: '24px' }}>Send a Message</h3>
                         <form onSubmit={handleFormSubmit}>
                             <div className="form-group">

@@ -69,7 +69,7 @@ export default function About() {
             {/* Journey Grid */}
             <section className="section section-bg-white" style={{ padding: '80px 0' }}>
                 <div className="container grid-2">
-                    <div className="fade-in-up active">
+                    <div className="reveal-up">
                         <span className="badge">Our Legacy</span>
                         <h2>Pioneering Rotary service in the Temple City since 1938.</h2>
                         <p style={{ marginBottom: '20px', color: 'var(--text-muted)' }}>Established on December 27, 1938, the Rotary Club of Madurai stands as the first and oldest Rotary club in the city and the second oldest in Tamil Nadu. Our early foundation was laid by British educator and industrialist Sir J.M. Doak as our charter President, with T.S. Krishna of the TVS Group serving as our charter Secretary, alongside leaders like P.T. Rajan.</p>
@@ -88,12 +88,14 @@ export default function About() {
                         </div>
                     </div>
 
-                    <div className="mouse-parallax reveal-clip" data-parallax-speed="-12" style={{ transitionDelay: '0.2s' }}>
-                        <img
-                            src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?q=80&w=600"
-                            alt="Rotary fellowship meeting and projects"
-                            style={{ borderRadius: '20px', boxShadow: 'var(--shadow-lg)', width: '100%', display: 'block' }}
-                        />
+                    <div className="reveal-up" style={{ transitionDelay: '0.2s', width: '100%' }}>
+                        <div className="mouse-parallax" data-parallax-speed="-12">
+                            <img
+                                src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?q=80&w=600"
+                                alt="Rotary fellowship meeting and projects"
+                                style={{ borderRadius: '20px', boxShadow: 'var(--shadow-lg)', width: '100%', display: 'block' }}
+                            />
+                        </div>
                     </div>
                 </div>
             </section>
@@ -154,7 +156,7 @@ export default function About() {
             {/* Origin & Foundation Section */}
             <section className="section section-bg-light" style={{ padding: '80px 0', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)' }}>
                 <div className="container">
-                    <div style={{ textAlign: 'center', marginBottom: '50px' }} className="fade-in-up active">
+                    <div className="reveal-up" style={{ textAlign: 'center', marginBottom: '50px' }}>
                         <span className="badge">Rotary International Heritage</span>
                         <h2>Our Global History & Legacy</h2>
                         <p style={{ maxWidth: '700px', margin: '15px auto 0 auto', color: 'var(--text-muted)' }}>
@@ -386,7 +388,7 @@ export default function About() {
                     </div>
 
                     {/* Historical Quote Overlay Banner */}
-                    <div className="fade-in-up active" style={{ marginTop: '50px' }}>
+                    <div className="reveal-up" style={{ marginTop: '50px' }}>
                         <div style={{
                             backgroundColor: '#0F172A',
                             color: 'white',
@@ -425,25 +427,25 @@ export default function About() {
             <section style={{ backgroundColor: '#0F172A', color: 'white', padding: '80px 0' }}>
                 <div className="container">
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '40px', textAlign: 'center' }}>
-                        <div>
+                        <div className="reveal-up" style={{ transitionDelay: '0s' }}>
                             <h3 style={{ fontSize: '3.6rem', color: 'var(--primary)', fontWeight: '800', marginBottom: '6px' }}>
                                 <Counter target={1250} suffix="+" />
                             </h3>
                             <p style={{ color: 'rgba(255,255,255,0.7)', fontWeight: '600' }}>Projects Completed</p>
                         </div>
-                        <div>
+                        <div className="reveal-up" style={{ transitionDelay: '0.1s' }}>
                             <h3 style={{ fontSize: '3.6rem', color: 'var(--primary)', fontWeight: '800', marginBottom: '6px' }}>
                                 <Counter target={50000} suffix="+" />
                             </h3>
                             <p style={{ color: 'rgba(255,255,255,0.7)', fontWeight: '600' }}>Trees Planted</p>
                         </div>
-                        <div>
+                        <div className="reveal-up" style={{ transitionDelay: '0.2s' }}>
                             <h3 style={{ fontSize: '3.6rem', color: 'var(--primary)', fontWeight: '800', marginBottom: '6px' }}>
                                 <Counter target={85} suffix="+" />
                             </h3>
                             <p style={{ color: 'rgba(255,255,255,0.7)', fontWeight: '600' }}>Active Members</p>
                         </div>
-                        <div>
+                        <div className="reveal-up" style={{ transitionDelay: '0.3s' }}>
                             <h3 style={{ fontSize: '3.6rem', color: 'var(--primary)', fontWeight: '800', marginBottom: '6px' }}>
                                 <Counter target={88} suffix="+" />
                             </h3>
@@ -456,7 +458,7 @@ export default function About() {
             {/* Club Leadership Section */}
             <section className="section section-bg-white" style={{ padding: '80px 0' }}>
                 <div className="container">
-                    <div style={{ textAlign: 'center', marginBottom: '50px' }} className="fade-in-up active">
+                    <div className="reveal-up" style={{ textAlign: 'center', marginBottom: '50px' }}>
                         <span className="badge">Club Governance</span>
                         <h2>Meet Our Office Bearers</h2>
                         <p style={{ maxWidth: '600px', margin: '15px auto 0 auto', color: 'var(--text-muted)' }}>
@@ -471,25 +473,14 @@ export default function About() {
                             { name: "Rtn. K. Senthil Kumar", role: "Club Treasurer", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200" },
                             { name: "Rtn. P. Rajasekar", role: "Director, Community Service", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200" }
                         ].map((leader, idx) => (
-                            <div key={idx} style={{
+                            <div key={idx} className="tilt-card reveal-up" style={{
+                                transitionDelay: `${idx * 0.1}s`,
                                 backgroundColor: 'white',
                                 border: '1.5px solid var(--border-color)',
                                 borderRadius: '16px',
                                 padding: '24px',
                                 textAlign: 'center',
-                                transition: 'var(--transition)'
-                            }}
-                                onMouseEnter={(e) => {
-                                    e.currentTarget.style.transform = 'translateY(-6px)';
-                                    e.currentTarget.style.boxShadow = 'var(--shadow-md)';
-                                    e.currentTarget.style.borderColor = 'var(--primary)';
-                                }}
-                                onMouseLeave={(e) => {
-                                    e.currentTarget.style.transform = 'translateY(0)';
-                                    e.currentTarget.style.boxShadow = 'none';
-                                    e.currentTarget.style.borderColor = 'var(--border-color)';
-                                }}
-                            >
+                            }}>
                                 <img src={leader.image} alt={leader.name} style={{ width: '90px', height: '90px', borderRadius: '50%', objectFit: 'cover', marginBottom: '16px', border: '3px solid var(--primary-light)' }} />
                                 <h4 style={{ fontSize: '1.05rem', marginBottom: '6px', color: 'var(--secondary)' }}>{leader.name}</h4>
                                 <p style={{ fontSize: '0.85rem', color: 'var(--primary)', fontWeight: '600' }}>{leader.role}</p>
@@ -502,12 +493,12 @@ export default function About() {
             {/* Testimonials Slider */}
             <section id="testimonials" className="section section-bg-light" style={{ padding: '80px 0' }}>
                 <div className="container" style={{ maxWidth: '800px' }}>
-                    <div style={{ textAlign: 'center', marginBottom: '40px' }} className="fade-in-up active">
+                    <div className="reveal-up" style={{ textAlign: 'center', marginBottom: '40px' }}>
                         <span className="badge">Community Impact</span>
                         <h2>Voices of our beneficiaries & partners.</h2>
                     </div>
 
-                    <div className="testimonials-slider fade-in-up active">
+                    <div className="testimonials-slider reveal-scale">
                         <div className="testimonials-track" style={{ transform: `translateX(-${activeTestimonial * 100}%)`, display: 'flex', transition: 'transform 0.5s ease' }}>
                             {testimonials.map((test, index) => (
                                 <div key={index} className="testimonial-card" style={{ minWidth: '100%', padding: '40px', backgroundColor: 'white', borderRadius: '20px', boxShadow: 'var(--shadow-md)', textAlign: 'center' }}>
