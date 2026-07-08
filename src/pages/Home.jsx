@@ -209,7 +209,7 @@ export default function Home({ setCurrentPage }) {
                         <span className="badge">Who We Are</span>
                         <h2>Sustainable impact for local community needs</h2>
                         <blockquote>
-                            "Service Above Self is more than a motto; it is our way of life, guiding our fellowship to build a stronger and more sustainable Madurai."
+                            "Service Above Self is more than a motto, it is our way of life, guiding our fellowship to build a stronger and more sustainable Madurai."
                         </blockquote>
                         <cite>Rotary Club of Madurai Board</cite>
                     </div>
