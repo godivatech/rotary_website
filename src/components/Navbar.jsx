@@ -157,6 +157,24 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                                     </li>
                                     <li>
                                         <button 
+                                            onClick={() => handleNavClick('genealogy')} 
+                                            style={{
+                                                width: '100%',
+                                                textAlign: 'left',
+                                                background: 'none',
+                                                border: 'none',
+                                                padding: '10px 20px',
+                                                color: 'rgba(255,255,255,0.8)',
+                                                cursor: 'pointer'
+                                            }}
+                                            onMouseEnter={(e) => { e.target.style.color = 'white'; e.target.style.backgroundColor = 'var(--primary)'; }}
+                                            onMouseLeave={(e) => { e.target.style.color = 'rgba(255,255,255,0.8)'; e.target.style.backgroundColor = 'transparent'; }}
+                                        >
+                                            District Genealogy
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button 
                                             onClick={() => handleNavClick('projects')} 
                                             style={{
                                                 width: '100%',
@@ -259,6 +277,23 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                             {item.label}
                         </button>
                     ))}
+                    <button
+                        onClick={() => handleNavClick('genealogy')}
+                        style={{
+                            textAlign: 'left',
+                            background: 'none',
+                            border: 'none',
+                            outline: 'none',
+                            boxShadow: 'none',
+                            padding: '8px 12px',
+                            fontSize: '1.1rem',
+                            fontWeight: '600',
+                            color: currentPage === 'genealogy' ? 'var(--primary)' : 'var(--secondary)',
+                            cursor: 'pointer'
+                        }}
+                    >
+                        District Genealogy
+                    </button>
                     <button 
                         onClick={() => { handleNavClick('home'); setTimeout(() => document.getElementById('join')?.scrollIntoView({ behavior: 'smooth' }), 100); }} 
                         className="btn btn-primary"

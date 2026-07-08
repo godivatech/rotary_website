@@ -7,6 +7,7 @@ import About from './pages/About';
 import Services from './pages/Services';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
+import Genealogy from './pages/Genealogy';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -232,6 +233,8 @@ export default function App() {
         return <Home setCurrentPage={navigateTo} />;
       case 'about':
         return <About />;
+      case 'genealogy':
+        return <Genealogy />;
       case 'services':
         return <Services />;
       case 'projects':
