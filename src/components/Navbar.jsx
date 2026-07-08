@@ -50,35 +50,64 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                padding: isSticky ? '14px 24px' : '24px 24px',
+                padding: isSticky ? '10px 24px' : '12px 24px',
                 transition: 'all 0.3s ease'
             }}>
                 <a href="#home" onClick={() => handleNavClick('home')} style={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '10px',
-                    color: '#0F172A',
+                    gap: '12px',
                     textDecoration: 'none'
                 }}>
-                    <div style={{
-                        backgroundColor: 'var(--primary)',
-                        color: 'white',
-                        padding: '6px',
-                        borderRadius: '10px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                    }}>
-                        <Globe size={20} />
-                    </div>
-                    <div style={{ display: 'flex', flexDirection: 'column' }}>
-                        <span style={{ fontSize: '1.4rem', fontWeight: 800, lineHeight: 1.1, fontFamily: 'var(--font-heading)' }}>
-                            Rotary <span style={{ color: 'var(--primary)' }}>Madurai</span>
+                    {/* Left Side: Logo Text */}
+                    <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left', lineHeight: 1.05 }}>
+                        <span style={{ 
+                            fontSize: '1.45rem', 
+                            fontWeight: 800, 
+                            color: '#003DA5', 
+                            fontFamily: 'var(--font-heading)',
+                            letterSpacing: '-0.3px'
+                        }}>
+                            Rotary
                         </span>
-                        <span style={{ fontSize: '0.65rem', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px', marginTop: '2px' }}>
-                            RI District 3000
+                        <span style={{ 
+                            fontSize: '0.68rem', 
+                            fontWeight: 800, 
+                            color: '#0F172A', 
+                            letterSpacing: '0.3px'
+                        }}>
+                            CLUB OF MADURAI
+                        </span>
+                        <span style={{ 
+                            fontSize: '0.52rem', 
+                            fontWeight: 600, 
+                            color: '#3B82F6', 
+                            letterSpacing: '0.1px',
+                            marginTop: '1px'
+                        }}>
+                            Rotary International District 3000
+                        </span>
+                        <span style={{ 
+                            fontSize: '0.52rem', 
+                            fontWeight: 600, 
+                            color: '#0F172A', 
+                            letterSpacing: '0.1px',
+                            marginTop: '1px'
+                        }}>
+                            Chartered on 27th December 1938
                         </span>
                     </div>
+
+                    {/* Right Side: Chakra PNG */}
+                    <img 
+                        src="/images/Logo chakra.png" 
+                        alt="Rotary Club of Madurai Logo" 
+                        style={{ 
+                            height: '46px', 
+                            width: '46px', 
+                            objectFit: 'contain'
+                        }} 
+                    />
                 </a>
 
                 {/* Desktop Nav */}
