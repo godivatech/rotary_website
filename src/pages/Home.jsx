@@ -221,7 +221,7 @@ export default function Home({ setCurrentPage }) {
                 <div className="container">
                     <div className="initiatives-header reveal-up">
                         <span className="badge">Our Focus Areas</span>
-                        <h2>Empowering Madurai through dedicated action</h2>
+                        <h2>Empowering <span className="shiny-text">Madurai</span> through dedicated action</h2>
                     </div>
                     <div className="initiatives-grid">
                         {/* Initiative 1 */}
@@ -315,7 +315,7 @@ export default function Home({ setCurrentPage }) {
                         <div className="play-pulse play-pulse-2"></div>
                         <div className="play-pulse play-pulse-3"></div>
                     </div>
-                    <h2>Eighty-Five Years of Legacy</h2>
+                    <h2>Eighty-Five Years of <span className="shiny-text">Legacy</span></h2>
                     <p>Watch our service projects and fellowship milestones across Madurai.</p>
                 </div>
             </section>
@@ -325,7 +325,7 @@ export default function Home({ setCurrentPage }) {
                 <div className="container donate-section-grid">
                     <div className="donate-info reveal-up">
                         <span className="badge">Become a Rotarian</span>
-                        <h2>Join the global network of community leaders</h2>
+                        <h2>Join the global network of <span className="shiny-text">community leaders</span></h2>
                         <p style={{ marginBottom: '24px', color: 'var(--text-muted)' }}>Membership in the Rotary Club of Madurai opens doors to lifelong friendships, professional networking, and directly leading local service initiatives. Fill out the application details to express your interest, and our membership chair will reach out to you.</p>
 
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>

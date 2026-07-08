@@ -488,7 +488,7 @@ export default function About() {
                 <div className="container">
                     <div className="reveal-up" style={{ textAlign: 'center', marginBottom: '50px' }}>
                         <span className="badge">Club Governance</span>
-                        <h2>Meet Our Office Bearers</h2>
+                        <h2>Meet Our <span className="shiny-text">Office Bearers</span></h2>
                         <p style={{ maxWidth: '600px', margin: '15px auto 0 auto', color: 'var(--text-muted)' }}>
                             The leadership team steering our fellowship and community development initiatives for the current Rotary year.
                         </p>

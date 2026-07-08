@@ -80,6 +80,12 @@ export default function App() {
           
           card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.02, 1.02, 1.02)`;
           card.style.transition = 'none';
+
+          // Set mouse variables for spotlight glow:
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
         } else {
           card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
           card.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';

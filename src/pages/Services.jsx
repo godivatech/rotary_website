@@ -45,7 +45,7 @@ export default function Services() {
                 <div className="container">
                     <div style={{ textAlign: 'center', marginBottom: '50px' }}>
                         <span className="badge">What We Do</span>
-                        <h2>Scalable solutions for real community growth</h2>
+                        <h2>Scalable solutions for real <span className="shiny-text">community growth</span></h2>
                         <p style={{ maxWidth: '600px', margin: '15px auto 0 auto', color: 'var(--text-muted)' }}>
                             We deliver targeted support programs designed to build self-sufficiency, restore personal dignity, and guarantee safe environments.
                         </p>

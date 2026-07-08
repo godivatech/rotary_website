@@ -942,3 +942,57 @@ body.cursor-hover .custom-cursor-ring {
     opacity: 1;
     transform: scale(1);
 }
+
+/* --- Premium Spotlight Glow Effect on Cards --- */
+.tilt-card {
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.tilt-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+        350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(0, 61, 165, 0.08),
+        transparent 80%
+    );
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tilt-card:hover::after {
+    opacity: 1;
+}
+
+/* --- Premium Shiny Text Effect --- */
+.shiny-text {
+    background: linear-gradient(
+        120deg,
+        rgba(0, 61, 165, 0.9) 30%,
+        #3b82f6 50%,
+        rgba(0, 61, 165, 0.9) 70%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shiny-text-sweep 5s linear infinite;
+    display: inline-block;
+}
+
+@keyframes shiny-text-sweep {
+    0% {
+        background-position: 100% 0;
+    }
+    100% {
+        background-position: -100% 0;
+    }
+}
