@@ -132,7 +132,7 @@ export default function Footer({ setCurrentPage }) {
                 gap: '16px',
                 fontSize: '0.9rem'
             }}>
-                <p>&copy; {new Date().getFullYear()} Rotary Club of Madurai. All rights reserved.</p>
+                <p>&copy; {new Date().getFullYear()} Rotary Club of Madurai. All rights reserved. | <strong>Designed and Developed by <a href="https://godivatech.com" target="_blank" rel="noopener noreferrer" style={{ color: 'white', textDecoration: 'none' }}>godivatech</a></strong></p>
                 <div style={{ display: 'flex', gap: '20px' }}>
                     <a href="#privacy" style={{ color: 'rgba(255,255,255,0.5)' }}>Privacy Policy</a>
                     <a href="#terms" style={{ color: 'rgba(255,255,255,0.5)' }}>Terms of Service</a>

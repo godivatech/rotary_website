@@ -191,42 +191,6 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                                             District Genealogy
                                         </button>
                                     </li>
-                                    <li>
-                                        <button 
-                                            onClick={() => handleNavClick('projects')} 
-                                            style={{
-                                                width: '100%',
-                                                textAlign: 'left',
-                                                background: 'none',
-                                                border: 'none',
-                                                padding: '10px 20px',
-                                                color: 'rgba(255,255,255,0.8)',
-                                                cursor: 'pointer'
-                                            }}
-                                            onMouseEnter={(e) => { e.target.style.color = 'white'; e.target.style.backgroundColor = 'var(--primary)'; }}
-                                            onMouseLeave={(e) => { e.target.style.color = 'rgba(255,255,255,0.8)'; e.target.style.backgroundColor = 'transparent'; }}
-                                        >
-                                            Project Gallery
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button 
-                                            onClick={() => { handleNavClick('home'); setTimeout(() => document.getElementById('join')?.scrollIntoView({ behavior: 'smooth' }), 100); }} 
-                                            style={{
-                                                width: '100%',
-                                                textAlign: 'left',
-                                                background: 'none',
-                                                border: 'none',
-                                                padding: '10px 20px',
-                                                color: 'rgba(255,255,255,0.8)',
-                                                cursor: 'pointer'
-                                            }}
-                                            onMouseEnter={(e) => { e.target.style.color = 'white'; e.target.style.backgroundColor = 'var(--primary)'; }}
-                                            onMouseLeave={(e) => { e.target.style.color = 'rgba(255,255,255,0.8)'; e.target.style.backgroundColor = 'transparent'; }}
-                                        >
-                                            Become a Member
-                                        </button>
-                                    </li>
                                 </ul>
                             )}
                         </li>
