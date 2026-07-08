@@ -109,7 +109,7 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                         <li style={{ position: 'relative' }}>
                             <button
                                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                                className={`nav-link-item ${isDropdownOpen ? 'active' : ''}`}
+                                className={`nav-link-item ${isDropdownOpen || ['members', 'genealogy'].includes(currentPage) ? 'active' : ''}`}
                                 style={{
                                     outline: 'none',
                                     boxShadow: 'none',

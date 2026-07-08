@@ -10,8 +10,14 @@ import Contact from './pages/Contact';
 import Genealogy from './pages/Genealogy';
 import Members from './pages/Members';
 
+const getPageFromHash = () => {
+  const hash = window.location.hash.replace('#', '');
+  const validPages = ['home', 'about', 'genealogy', 'members', 'services', 'projects', 'contact'];
+  return validPages.includes(hash) ? hash : 'home';
+};
+
 export default function App() {
-  const [currentPage, setCurrentPage] = useState('home');
+  const [currentPage, setCurrentPage] = useState(getPageFromHash);
   const [transitionState, setTransitionState] = useState(''); // '', 'in', 'out'
   const [pendingPage, setPendingPage] = useState(null);
 
@@ -25,6 +31,7 @@ export default function App() {
     if (transitionState === 'in') {
       flushSync(() => {
         setCurrentPage(pendingPage);
+        window.location.hash = pendingPage === 'home' ? 'home' : pendingPage;
       });
       window.scrollTo(0, 0);
       setTransitionState('out');
@@ -33,6 +40,17 @@ export default function App() {
       setPendingPage(null);
     }
   };
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const newPage = getPageFromHash();
+      if (newPage !== currentPage && newPage !== pendingPage) {
+        navigateTo(newPage);
+      }
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, [currentPage, pendingPage, transitionState]);
 
   // 1. Advanced 3D Mouse Parallax & Tilt Effects
   useEffect(() => {

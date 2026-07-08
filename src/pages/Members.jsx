@@ -1,6 +1,32 @@
 import React, { useState, useMemo } from 'react';
 import { Search, Calendar, Award, Users, Image as ImageIcon } from 'lucide-react';
 
+const getCloudinaryUrl = (localPath) => {
+    if (!localPath) return '';
+    let cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME || 'doeodacsg';
+    // Strip quotes from the cloud name if they were preserved by the bundler/parser
+    cloudName = cloudName.replace(/['"]/g, '');
+    
+    // Normalize path: remove leading slash, replace spaces with underscores
+    let cleanPath = localPath.startsWith('/') ? localPath.substring(1) : localPath;
+    cleanPath = cleanPath.replace(/ /g, '_');
+    
+    // Extract file extension (e.g., .jpg, .JPG, .jpeg, .gif, .bmp)
+    const extMatch = cleanPath.match(/\.[a-zA-Z0-9]+$/);
+    const ext = extMatch ? extMatch[0] : '';
+    
+    // Strip extension for the public ID
+    const cleanPathWithoutExt = cleanPath.replace(/\.[a-zA-Z0-9]+$/, '');
+    
+    const publicId = `websites/rotary-website/${cleanPathWithoutExt}`;
+    const encodedPublicId = publicId.split('/').map(part => encodeURIComponent(part)).join('/');
+    
+    const isJubilee = localPath.includes('Jubilee') || localPath.includes('jubilee');
+    const transform = isJubilee ? 'q_auto,f_auto' : 'w_300,c_limit,q_auto,f_auto';
+    
+    return `https://res.cloudinary.com/${cloudName}/image/upload/${transform}/${encodedPublicId}${ext}`;
+};
+
 export default function Members() {
     const [activeTab, setActiveTab] = useState('presidents');
     const [searchTerm, setSearchTerm] = useState('');
@@ -374,7 +400,7 @@ export default function Members() {
                                         position: 'relative'
                                     }}>
                                         <img 
-                                            src={pres.img} 
+                                            src={getCloudinaryUrl(pres.img)} 
                                             alt={pres.name}
                                             onError={(e) => handleImageError(e, pres.name)}
                                             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
@@ -435,7 +461,7 @@ export default function Members() {
                                     position: 'relative'
                                 }}>
                                     <img 
-                                        src={charter.img} 
+                                        src={getCloudinaryUrl(charter.img)} 
                                         alt={charter.name}
                                         onError={(e) => handleImageError(e, charter.name)}
                                         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
@@ -476,7 +502,7 @@ export default function Members() {
                             >
                                 <div style={{ height: '240px', overflow: 'hidden', backgroundColor: '#0F172A', position: 'relative' }}>
                                     <img 
-                                        src={jub.img} 
+                                        src={getCloudinaryUrl(jub.img)} 
                                         alt={jub.title}
                                         onError={(e) => {
                                             e.target.style.display = 'none';
