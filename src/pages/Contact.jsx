@@ -30,7 +30,7 @@ export default function Contact() {
                     {/* Left Column - Contact info */}
                     <div className="reveal-up">
                         <span className="badge">Get in touch</span>
-                        <h2>We would love to hear from you.</h2>
+                        <h2>We would love to hear from you</h2>
                         <p style={{ color: 'var(--text-muted)', marginBottom: '40px', marginTop: '15px' }}>
                             Have questions about our initiatives, sponsorship models, or volunteer sign-ups? Send us a message and our support team will reach out.
                         </p>

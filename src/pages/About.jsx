@@ -71,7 +71,7 @@ export default function About() {
                 <div className="container grid-2">
                     <div className="reveal-up">
                         <span className="badge">Our Legacy</span>
-                        <h2>Pioneering Rotary service in the Temple City since 1938.</h2>
+                        <h2>Pioneering Rotary service in the Temple City since 1938</h2>
                         <p style={{ marginBottom: '20px', color: 'var(--text-muted)' }}>Established on December 27, 1938, the Rotary Club of Madurai stands as the first and oldest Rotary club in the city and the second oldest in Tamil Nadu. Our early foundation was laid by British educator and industrialist Sir J.M. Doak as our charter President, with T.S. Krishna of the TVS Group serving as our charter Secretary, alongside leaders like P.T. Rajan.</p>
                         <p style={{ marginBottom: '20px', color: 'var(--text-muted)' }}>Over the decades, our platform has had the privilege of hosting and working with distinguished figures including Nobel laureate Dr. C.V. Raman, space pioneer Dr. Vikram Sarabhai, former Indian President V.V. Giri, and legendary Chief Minister K. Kamaraj.</p>
                         <p style={{ marginBottom: '32px', color: 'var(--text-muted)' }}>We are proud of our history of landmark contributions, such as installing essential borewells at the Government Rajaji Hospital to solve water shortage crises, and donating Braille printing machinery to the Indian Association for the Blind (IAB) to transform literacy rates for visually impaired students.</p>
@@ -523,7 +523,7 @@ export default function About() {
                 <div className="container" style={{ maxWidth: '800px' }}>
                     <div className="reveal-up" style={{ textAlign: 'center', marginBottom: '40px' }}>
                         <span className="badge">Community Impact</span>
-                        <h2>Voices of our beneficiaries & partners.</h2>
+                        <h2>Voices of our beneficiaries & partners</h2>
                     </div>
 
                     <div className="testimonials-slider reveal-scale">
