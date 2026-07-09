@@ -1176,4 +1176,82 @@ body.cursor-hover .custom-cursor-ring {
     100% {
         transform: rotate(360deg);
     }
+}
+
+/* --- Avenues of Service Cards --- */
+.avenue-card {
+    background-color: #ffffff;
+    padding: 36px 28px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color, #e2e8f0);
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.02);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.avenue-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent-color, var(--primary));
+    box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
+}
+
+.avenue-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--accent-color, var(--primary));
+    opacity: 0.8;
+    transition: height 0.3s ease;
+}
+
+.avenue-card:hover::before {
+    height: 6px;
+}
+
+.avenue-icon-wrapper {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    background-color: var(--accent-light, rgba(0, 61, 165, 0.06));
+    transition: all 0.3s ease;
+}
+
+.avenue-card:hover .avenue-icon-wrapper {
+    transform: scale(1.1) rotate(6deg);
+    background-color: var(--accent-color, var(--primary));
+}
+
+.avenue-card:hover .avenue-icon-wrapper svg {
+    color: #ffffff !important;
+}
+
+.avenue-title {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--secondary);
+    margin-bottom: 12px;
+    transition: color 0.3s ease;
+}
+
+.avenue-card:hover .avenue-title {
+    color: var(--accent-color, var(--primary));
+}
+
+.avenue-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
 }

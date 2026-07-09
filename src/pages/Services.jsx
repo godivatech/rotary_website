@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, Activity, TreePine, Users } from 'lucide-react';
+import { BookOpen, Activity, TreePine, Users, Briefcase, HeartHandshake, Globe, Award } from 'lucide-react';
 
 export default function Services() {
     const servicesList = [
@@ -95,23 +95,57 @@ export default function Services() {
                         </p>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '24px' }}>
                         {[
-                            { title: "Club Service", desc: "Focuses on strengthening fellowship, member engagement, and efficient internal club operations." },
-                            { title: "Vocational Service", desc: "Encourages Rotarians to serve others through their professions and promote high ethical standards." },
-                            { title: "Community Service", desc: "Covers local projects that improve the quality of life in the Madurai region (health, water, trees)." },
-                            { title: "International Service", desc: "Sponsors global projects and collaborations to advance world peace, understanding, and goodwill." },
-                            { title: "Youth Service", desc: "Mentors next-generation leaders through Rotaract, Interact, and RYLA leadership camps." }
+                            { 
+                                title: "Club Service", 
+                                desc: "Focuses on strengthening fellowship, member engagement, and efficient internal club operations.",
+                                icon: <Users size={24} style={{ color: 'var(--primary)', transition: 'color 0.3s ease' }} />,
+                                accent: 'var(--primary)',
+                                accentLight: 'rgba(0, 61, 165, 0.08)'
+                            },
+                            { 
+                                title: "Vocational Service", 
+                                desc: "Encourages Rotarians to serve others through their professions and promote high ethical standards.",
+                                icon: <Briefcase size={24} style={{ color: '#F97316', transition: 'color 0.3s ease' }} />,
+                                accent: '#F97316',
+                                accentLight: 'rgba(249, 115, 22, 0.08)'
+                            },
+                            { 
+                                title: "Community Service", 
+                                desc: "Covers local projects that improve the quality of life in the Madurai region (health, water, trees).",
+                                icon: <HeartHandshake size={24} style={{ color: '#10B981', transition: 'color 0.3s ease' }} />,
+                                accent: '#10B981',
+                                accentLight: 'rgba(16, 185, 129, 0.08)'
+                            },
+                            { 
+                                title: "International Service", 
+                                desc: "Sponsors global projects and collaborations to advance world peace, understanding, and goodwill.",
+                                icon: <Globe size={24} style={{ color: '#3B82F6', transition: 'color 0.3s ease' }} />,
+                                accent: '#3B82F6',
+                                accentLight: 'rgba(59, 130, 246, 0.08)'
+                            },
+                            { 
+                                title: "Youth Service", 
+                                desc: "Mentors next-generation leaders through Rotaract, Interact, and RYLA leadership camps.",
+                                icon: <Award size={24} style={{ color: '#8B5CF6', transition: 'color 0.3s ease' }} />,
+                                accent: '#8B5CF6',
+                                accentLight: 'rgba(139, 92, 246, 0.08)'
+                            }
                         ].map((ave, idx) => (
-                            <div key={idx} className="tilt-card" style={{
-                                backgroundColor: 'white',
-                                padding: '30px',
-                                borderRadius: '16px',
-                                border: '1px solid var(--border-color)',
-                                boxShadow: 'var(--shadow-sm)'
-                            }}>
-                                <h4 style={{ color: 'var(--primary)', marginBottom: '12px', fontSize: '1.1rem' }}>{ave.title}</h4>
-                                <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>{ave.desc}</p>
+                            <div 
+                                key={idx} 
+                                className="avenue-card" 
+                                style={{
+                                    '--accent-color': ave.accent,
+                                    '--accent-light': ave.accentLight
+                                }}
+                            >
+                                <div className="avenue-icon-wrapper">
+                                    {ave.icon}
+                                </div>
+                                <h4 className="avenue-title">{ave.title}</h4>
+                                <p className="avenue-desc">{ave.desc}</p>
                             </div>
                         ))}
                     </div>
