@@ -15,47 +15,60 @@ export default function Preloader({ onComplete }) {
 
         const startYear = 1938;
         const endYear = 2026;
-        const duration = 1800; // 1.8 seconds counting duration
+        const duration = 2800; // Slower, highly legible 2.8s duration
+        const startDelay = 800; // 800ms initial pause on 1938 so users can read it clearly first
         let startTime = null;
         let animationFrameId;
         let t1, t2, t3, t4, t5;
-
+ 
         const animate = (timestamp) => {
             if (!startTime) startTime = timestamp;
-            const progress = timestamp - startTime;
+            const elapsed = timestamp - startTime;
+            
+            if (elapsed < startDelay) {
+                // Keep showing 1938 during initial pause
+                setYear(startYear);
+                animationFrameId = requestAnimationFrame(animate);
+                return;
+            }
+            
+            const progress = elapsed - startDelay;
             const percentage = Math.min(progress / duration, 1);
             
-            // easeOutExpo function for a very smooth ending deceleration
-            const easedPercentage = percentage === 1 ? 1 : 1 - Math.pow(2, -10 * percentage);
+            // easeInOutQuad formula: slower start and end to make the years readable
+            const easedPercentage = percentage < 0.5 
+                ? 2 * percentage * percentage 
+                : 1 - Math.pow(-2 * percentage + 2, 2) / 2;
+                
             const currentYear = Math.floor(startYear + (endYear - startYear) * easedPercentage);
             
             setYear(currentYear);
-
+ 
             if (progress < duration) {
                 animationFrameId = requestAnimationFrame(animate);
             } else {
                 setYear(endYear);
                 setShowSince(true);
                 
-                // Stagger milestone reveals
-                t1 = setTimeout(() => setMilestoneStep(1), 600);
-                t2 = setTimeout(() => setMilestoneStep(2), 1200);
-                t3 = setTimeout(() => setMilestoneStep(3), 1800);
+                // Stagger milestone reveals after counting finishes
+                t1 = setTimeout(() => setMilestoneStep(1), 400);
+                t2 = setTimeout(() => setMilestoneStep(2), 900);
+                t3 = setTimeout(() => setMilestoneStep(3), 1400);
                 
-                // Start collapsing the content (Chakra logo shrinks & spins away)
+                // Start collapsing the content (Chakra logo zooms in and fades)
                 t4 = setTimeout(() => {
                     setIsCollapsing(true);
-                }, 3800);
-
+                }, 3200);
+ 
                 // Wait for collapse transition to complete, then exit the full screen overlay
                 t5 = setTimeout(() => {
                     setIsExiting(true);
-                }, 4500); // 700ms after isCollapsing
+                }, 4700); // 1500ms after isCollapsing (3200 + 1500 = 4700)
             }
         };
-
+ 
         animationFrameId = requestAnimationFrame(animate);
-
+ 
         return () => {
             cancelAnimationFrame(animationFrameId);
             clearTimeout(t1);
