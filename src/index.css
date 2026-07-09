@@ -802,55 +802,6 @@ a:active,
     box-shadow: none !important;
 }
 
-/* --- Custom Premium Cursor Follower --- */
-.custom-cursor {
-    width: 6px;
-    height: 6px;
-    background-color: var(--primary);
-    border-radius: 50%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 10002;
-    transition: width 0.2s, height 0.2s, background-color 0.2s;
-}
-
-.custom-cursor-ring {
-    width: 32px;
-    height: 32px;
-    border: 1.5px solid var(--primary);
-    border-radius: 50%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 10001;
-    transition: width 0.3s, height 0.3s, border-color 0.3s, background-color 0.3s;
-}
-
-/* Hover States for Cursor */
-body.cursor-hover .custom-cursor {
-    width: 4px;
-    height: 4px;
-    background-color: var(--secondary);
-}
-
-body.cursor-hover .custom-cursor-ring {
-    width: 48px;
-    height: 48px;
-    background-color: rgba(0, 61, 165, 0.08);
-    border-color: var(--primary);
-}
-
-/* Hide default cursor on desktop when custom cursor is active */
-@media (min-width: 1025px) {
-    body, a, button, input, textarea, select {
-        cursor: none !important;
-    }
-}
 
 /* --- Awwwards Page Transition Overlay --- */
 .transition-overlay {

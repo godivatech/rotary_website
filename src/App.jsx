@@ -231,53 +231,6 @@ export default function App() {
     };
   }, [currentPage]);
 
-  // 2. Custom Elastic Ring Cursor
-  useEffect(() => {
-    if (window.matchMedia('(max-width: 1024px)').matches) return;
-
-    const cursor = document.querySelector('.custom-cursor');
-    const ring = document.querySelector('.custom-cursor-ring');
-    if (!cursor || !ring) return;
-
-    let cMouseX = 0;
-    let cMouseY = 0;
-    let ringX = 0;
-    let ringY = 0;
-
-    const onCursorMove = (e) => {
-      cMouseX = e.clientX;
-      cMouseY = e.clientY;
-      cursor.style.transform = `translate3d(${cMouseX}px, ${cMouseY}px, 0)`;
-    };
-
-    let cursorAnimId;
-    const animateRing = () => {
-      ringX += (cMouseX - ringX) * 0.15;
-      ringY += (cMouseY - ringY) * 0.15;
-      ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
-      cursorAnimId = requestAnimationFrame(animateRing);
-    };
-
-    window.addEventListener('mousemove', onCursorMove, { passive: true });
-    cursorAnimId = requestAnimationFrame(animateRing);
-
-    const handleMouseOver = (e) => {
-      const target = e.target.closest('a, button, .btn, .interactive-hover');
-      if (target) {
-        document.body.classList.add('cursor-hover');
-      } else {
-        document.body.classList.remove('cursor-hover');
-      }
-    };
-
-    window.addEventListener('mouseover', handleMouseOver, { passive: true });
-
-    return () => {
-      window.removeEventListener('mousemove', onCursorMove);
-      window.removeEventListener('mouseover', handleMouseOver);
-      cancelAnimationFrame(cursorAnimId);
-    };
-  }, [currentPage]);
 
   const renderPage = () => {
     switch (currentPage) {
@@ -305,9 +258,6 @@ export default function App() {
       {/* Dynamic Wheel of Time Preloader */}
       {!isAppLoaded && <Preloader onComplete={() => setIsAppLoaded(true)} />}
 
-      {/* Custom Awwwards Cursor Elements */}
-      <div className="custom-cursor" />
-      <div className="custom-cursor-ring" />
 
       {/* Screen Liquid wipe layout transition overlay */}
       <div 
