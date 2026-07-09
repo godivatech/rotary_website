@@ -267,7 +267,7 @@ export default function App() {
 
       <Navbar currentPage={currentPage} setCurrentPage={navigateTo} />
 
-      <main style={{ flexGrow: 1, paddingTop: '80px' }}>
+      <main style={{ flexGrow: 1, paddingTop: '100px' }}>
         {renderPage()}
       </main>
 

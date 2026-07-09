@@ -25,22 +25,56 @@ export default function Footer({ setCurrentPage }) {
                     <a href="#home" onClick={() => handleNavClick('home')} style={{
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '8px',
-                        fontSize: '1.5rem',
-                        fontWeight: 800,
-                        color: 'white',
+                        gap: '12px',
+                        textDecoration: 'none',
                         marginBottom: '20px'
                     }}>
-                        <div style={{
-                            backgroundColor: 'var(--primary)',
-                            color: 'white',
-                            padding: '4px',
-                            borderRadius: '8px',
-                            display: 'flex'
-                        }}>
-                            <Globe size={16} />
+                        <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left', lineHeight: 1.1 }}>
+                            <span style={{ 
+                                fontSize: '1.75rem', 
+                                fontWeight: 800, 
+                                color: '#FFFFFF', 
+                                fontFamily: 'var(--font-heading)',
+                                letterSpacing: '-0.3px'
+                            }}>
+                                Rotary
+                            </span>
+                            <span style={{ 
+                                fontSize: '0.82rem', 
+                                fontWeight: 800, 
+                                color: '#F8FAFC', 
+                                letterSpacing: '0.3px'
+                            }}>
+                                CLUB OF MADURAI
+                            </span>
+                            <span style={{ 
+                                fontSize: '0.62rem', 
+                                fontWeight: 600, 
+                                color: '#60A5FA', 
+                                letterSpacing: '0.1px',
+                                marginTop: '2px'
+                            }}>
+                                Rotary International District 3000
+                            </span>
+                            <span style={{ 
+                                fontSize: '0.62rem', 
+                                fontWeight: 600, 
+                                color: '#E2E8F0', 
+                                letterSpacing: '0.1px',
+                                marginTop: '1px'
+                            }}>
+                                Chartered on 27th December 1938
+                            </span>
                         </div>
-                        Rotary <span style={{ color: 'var(--primary)' }}>Madurai</span>
+                        <img 
+                            src="/images/Logo chakra.png" 
+                            alt="Rotary Club of Madurai Logo" 
+                            style={{ 
+                                height: '56px', 
+                                width: '56px', 
+                                objectFit: 'contain'
+                            }} 
+                        />
                     </a>
                     <p style={{ fontSize: '0.95rem', marginBottom: '20px', lineHeight: '1.6' }}>
                         Upholding the motto "Service Above Self" since 1938. The first and oldest Rotary club in Madurai, dedicated to sustainable community development.

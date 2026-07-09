@@ -52,7 +52,7 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                padding: isSticky ? '10px 24px' : '12px 24px',
+                padding: isSticky ? '12px 24px' : '20px 24px',
                 transition: 'all 0.3s ease'
             }}>
                 <a href="#home" onClick={() => handleNavClick('home')} style={{
@@ -62,9 +62,9 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                     textDecoration: 'none'
                 }}>
                     {/* Left Side: Logo Text */}
-                    <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left', lineHeight: 1.05 }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left', lineHeight: 1.1 }}>
                         <span style={{ 
-                            fontSize: '1.45rem', 
+                            fontSize: '1.75rem', 
                             fontWeight: 800, 
                             color: '#003DA5', 
                             fontFamily: 'var(--font-heading)',
@@ -73,7 +73,7 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                             Rotary
                         </span>
                         <span style={{ 
-                            fontSize: '0.68rem', 
+                            fontSize: '0.82rem', 
                             fontWeight: 800, 
                             color: '#0F172A', 
                             letterSpacing: '0.3px'
@@ -81,16 +81,16 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                             CLUB OF MADURAI
                         </span>
                         <span style={{ 
-                            fontSize: '0.52rem', 
+                            fontSize: '0.62rem', 
                             fontWeight: 600, 
                             color: '#3B82F6', 
                             letterSpacing: '0.1px',
-                            marginTop: '1px'
+                            marginTop: '2px'
                         }}>
                             Rotary International District 3000
                         </span>
                         <span style={{ 
-                            fontSize: '0.52rem', 
+                            fontSize: '0.62rem', 
                             fontWeight: 600, 
                             color: '#0F172A', 
                             letterSpacing: '0.1px',
@@ -105,8 +105,8 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                         src="/images/Logo chakra.png" 
                         alt="Rotary Club of Madurai Logo" 
                         style={{ 
-                            height: '46px', 
-                            width: '46px', 
+                            height: '56px', 
+                            width: '56px', 
                             objectFit: 'contain'
                         }} 
                     />
