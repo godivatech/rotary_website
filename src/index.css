@@ -1091,12 +1091,12 @@ a:active,
 
 .preloader-year {
     font-family: var(--font-heading);
-    font-size: 5rem;
+    font-size: 4.2rem;
     font-weight: 900;
     color: var(--secondary);
     letter-spacing: 2px;
     line-height: 1;
-    height: 5rem;
+    height: 4.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1253,4 +1253,45 @@ a:active,
 .dark-section .chakra-watermark {
     opacity: 0.04;
     filter: brightness(0) invert(1);
+}
+
+/* --- Preloader Milestones --- */
+.preloader-milestones {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+}
+
+.preloader-milestone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.preloader-milestone.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.milestone-bullet {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #FFB800; /* Rotary Gold */
+    flex-shrink: 0;
+    box-shadow: 0 0 8px rgba(255, 184, 0, 0.4);
+}
+
+.milestone-highlight {
+    font-weight: 700;
+    color: var(--secondary);
 }

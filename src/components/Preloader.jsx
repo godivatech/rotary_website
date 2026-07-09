@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 export default function Preloader({ onComplete }) {
     const [year, setYear] = useState(1938);
     const [showSince, setShowSince] = useState(false);
+    const [milestoneStep, setMilestoneStep] = useState(0);
     const [isExiting, setIsExiting] = useState(false);
 
     useEffect(() => {
@@ -14,6 +15,7 @@ export default function Preloader({ onComplete }) {
         const duration = 1800; // 1.8 seconds counting duration
         let startTime = null;
         let animationFrameId;
+        let t1, t2, t3, t4;
 
         const animate = (timestamp) => {
             if (!startTime) startTime = timestamp;
@@ -31,10 +33,16 @@ export default function Preloader({ onComplete }) {
             } else {
                 setYear(endYear);
                 setShowSince(true);
-                // Wait for the subtitle reveal to sink in, then exit
-                setTimeout(() => {
+                
+                // Stagger milestone reveals
+                t1 = setTimeout(() => setMilestoneStep(1), 600);
+                t2 = setTimeout(() => setMilestoneStep(2), 1200);
+                t3 = setTimeout(() => setMilestoneStep(3), 1800);
+                
+                // Wait for the full reveal to be read, then exit
+                t4 = setTimeout(() => {
                     setIsExiting(true);
-                }, 2200);
+                }, 3800);
             }
         };
 
@@ -42,6 +50,10 @@ export default function Preloader({ onComplete }) {
 
         return () => {
             cancelAnimationFrame(animationFrameId);
+            clearTimeout(t1);
+            clearTimeout(t2);
+            clearTimeout(t3);
+            clearTimeout(t4);
         };
     }, []);
 
@@ -72,7 +84,7 @@ export default function Preloader({ onComplete }) {
                     {year}
                 </div>
                 
-                <div className={`preloader-subtitle ${showSince ? 'show' : ''}`}>
+                <div className={`preloader-subtitle ${showSince ? 'show' : ''}`} style={{ marginBottom: '25px' }}>
                     {"Since 1938".split('').map((char, index) => (
                         <span 
                             key={index} 
@@ -85,6 +97,21 @@ export default function Preloader({ onComplete }) {
                             {char}
                         </span>
                     ))}
+                </div>
+
+                <div className="preloader-milestones">
+                    <div className={`preloader-milestone ${milestoneStep >= 1 ? 'show' : ''}`}>
+                        <span className="milestone-bullet"></span>
+                        <span><strong className="milestone-highlight">India's 3rd</strong> Rotary Club</span>
+                    </div>
+                    <div className={`preloader-milestone ${milestoneStep >= 2 ? 'show' : ''}`}>
+                        <span className="milestone-bullet"></span>
+                        <span><strong className="milestone-highlight">Tamil Nadu's 2nd</strong> Rotary Club</span>
+                    </div>
+                    <div className={`preloader-milestone ${milestoneStep >= 3 ? 'show' : ''}`}>
+                        <span className="milestone-bullet"></span>
+                        <span><strong className="milestone-highlight">Madurai's 1st</strong> Rotary Club</span>
+                    </div>
                 </div>
             </div>
         </div>
