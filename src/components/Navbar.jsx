@@ -168,24 +168,6 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                                 }}>
                                     <li>
                                         <button 
-                                            onClick={() => handleNavClick('about')} 
-                                            style={{
-                                                width: '100%',
-                                                textAlign: 'left',
-                                                background: 'none',
-                                                border: 'none',
-                                                padding: '10px 20px',
-                                                color: 'rgba(255,255,255,0.8)',
-                                                cursor: 'pointer'
-                                            }}
-                                            onMouseEnter={(e) => { e.target.style.color = 'white'; e.target.style.backgroundColor = 'var(--primary)'; }}
-                                            onMouseLeave={(e) => { e.target.style.color = 'rgba(255,255,255,0.8)'; e.target.style.backgroundColor = 'transparent'; }}
-                                        >
-                                            Club History
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button 
                                             onClick={() => handleNavClick('members')} 
                                             style={{
                                                 width: '100%',

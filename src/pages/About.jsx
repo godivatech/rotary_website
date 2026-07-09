@@ -522,7 +522,7 @@ export default function About() {
                 </div>
             </section>
 
-            {/* Testimonials Slider */}
+            {/* Testimonials Slider 
             <section id="testimonials" className="section section-bg-light" style={{ padding: '80px 0' }}>
                 <div className="container" style={{ maxWidth: '800px' }}>
                     <div className="reveal-up" style={{ textAlign: 'center', marginBottom: '40px' }}>
@@ -566,6 +566,7 @@ export default function About() {
                     </div>
                 </div>
             </section>
+            */}
         </div>
     );
 }
