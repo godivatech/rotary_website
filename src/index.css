@@ -1746,86 +1746,103 @@ a:active,
     }
 }
 
-/* Board Members Grid */
+/* Board Members Grid - Glassmorphic Overlay Design */
 .board-members-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    max-width: 900px;
+    gap: 40px;
+    max-width: 1050px;
     margin: 0 auto;
 }
 
 @media (max-width: 768px) {
     .board-members-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        gap: 30px;
     }
 }
 
 @media (max-width: 480px) {
     .board-members-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 30px;
     }
 }
 
 .board-member-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
+    position: relative;
+    border-radius: 24px;
     overflow: hidden;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+    aspect-ratio: 4 / 5;
+    background: #000;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+    cursor: pointer;
 }
 
 .board-member-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 61, 165, 0.15);
 }
 
 .board-member-img-wrap {
     width: 100%;
-    aspect-ratio: 4 / 5;
+    height: 100%;
     overflow: hidden;
     position: relative;
-    background: #f8fafc;
 }
 
 .board-member-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    filter: brightness(0.9) contrast(1.05);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
 }
 
 .board-member-card:hover .board-member-img {
-    transform: scale(1.06);
+    transform: scale(1.08);
+    filter: brightness(1) contrast(1.05);
 }
 
 .board-member-info {
-    padding: 20px;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 16px;
+    padding: 16px 20px;
     text-align: center;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    transition: background 0.4s ease, border-color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(0);
+}
+
+.board-member-card:hover .board-member-info {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: translateY(-4px);
 }
 
 .board-member-role {
-    font-size: 0.75rem;
-    font-weight: 700;
+    font-size: 0.72rem;
+    font-weight: 800;
     text-transform: uppercase;
     color: var(--primary);
-    letter-spacing: 1px;
-    margin-bottom: 6px;
+    letter-spacing: 1.5px;
+    margin-bottom: 4px;
     display: block;
 }
 
 .board-member-name {
-    font-size: 1.1rem;
-    font-weight: 700;
+    font-size: 1.15rem;
+    font-weight: 800;
     color: var(--secondary);
     margin: 0;
+    letter-spacing: -0.3px;
 }
