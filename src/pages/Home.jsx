@@ -370,7 +370,7 @@ export default function Home({ setCurrentPage }) {
                         <div className="play-pulse play-pulse-2"></div>
                         <div className="play-pulse play-pulse-3"></div>
                     </div>
-                    <h2>Eighty-Five Years of <span className="shiny-text">Legacy</span></h2>
+                    <h2>Eighty-Nine Years of <span className="shiny-text">Legacy</span></h2>
                     <p>Watch our service projects and fellowship milestones across Madurai.</p>
                 </div>
             </section>
