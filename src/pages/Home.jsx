@@ -16,7 +16,7 @@ export default function Home({ setCurrentPage }) {
         {
             badge: "Service Above Self since 1938",
             title: "Pioneering fellowship and community service",
-            desc: "As the first and oldest Rotary club in Madurai (District 3000), we have worked for over 85 years to establish dense Miyawaki forests, organize free healthcare clinics, and support local government school classrooms.",
+            desc: "As the first and oldest Rotary club in Madurai (District 3000), we have worked for over 89 years to establish dense Miyawaki forests, organize free healthcare clinics, and support local government school classrooms.",
             image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?q=80&w=600"
         },
         {

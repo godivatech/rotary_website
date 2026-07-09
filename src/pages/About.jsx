@@ -443,7 +443,7 @@ export default function About() {
                                 "The Rotary Club of Madurai has kept up this stature not only in its membership strength but also by notable activities that are expected of a senior club, marching forward on a path of continuous progress."
                             </blockquote>
                             <cite style={{ display: 'block', fontWeight: '700', fontSize: '1.02rem', color: 'white', fontStyle: 'normal' }}>
-                                — Celebrating over 85 years of service
+                                — Celebrating over 89 years of service
                             </cite>
                             <span style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)' }}>Madurai, RI District 3000, India</span>
                         </div>
@@ -475,7 +475,7 @@ export default function About() {
                         </div>
                         <div className="reveal-up" style={{ transitionDelay: '0.3s' }}>
                             <h3 style={{ fontSize: '3.6rem', color: 'var(--primary)', fontWeight: '800', marginBottom: '6px' }}>
-                                <Counter target={88} suffix="+" />
+                                <Counter target={89} suffix="+" />
                             </h3>
                             <p style={{ color: 'rgba(255,255,255,0.7)', fontWeight: '600' }}>Years of Legacy</p>
                         </div>
