@@ -736,22 +736,32 @@ export default function Home({ setCurrentPage }) {
                         left: 0,
                         width: '100%',
                         height: '180%',
-                        backgroundImage: "linear-gradient(rgba(15, 23, 42, 0.72), rgba(15, 23, 42, 0.72)), url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1920')",
+                        backgroundImage: "linear-gradient(rgba(0, 61, 165, 0.8), rgba(0, 61, 165, 0.8)), url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1920')",
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         zIndex: 1,
                         willChange: 'transform'
                     }}
                 />
-                <div className="video-content reveal-up" style={{ position: 'relative', zIndex: 2 }}>
-                    <div className="play-btn-wrapper">
-                        <div className="play-btn"><Play size={24} fill="white" /></div>
-                        <div className="play-pulse"></div>
-                        <div className="play-pulse play-pulse-2"></div>
-                        <div className="play-pulse play-pulse-3"></div>
-                    </div>
-                    <h2>Eighty-Nine Years of <span className="shiny-text">Legacy</span></h2>
-                    <p>Watch our service projects and fellowship milestones across Madurai.</p>
+                <div className="video-content reveal-up" style={{ 
+                    position: 'relative', 
+                    zIndex: 2,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    padding: '40px 20px'
+                }}>
+                    <img 
+                        src="/images/89.png" 
+                        alt="89 Years of Legacy" 
+                        style={{ 
+                            maxHeight: '450px', 
+                            maxWidth: '100%', 
+                            height: 'auto',
+                            objectFit: 'contain',
+                            filter: 'drop-shadow(0 15px 35px rgba(0,0,0,0.45))'
+                        }} 
+                    />
                 </div>
             </section>
 
