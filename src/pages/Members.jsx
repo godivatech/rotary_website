@@ -28,7 +28,14 @@ const getCloudinaryUrl = (localPath) => {
 };
 
 export default function Members() {
-    const [activeTab, setActiveTab] = useState('presidents');
+    const [activeTab, setActiveTab] = useState(() => {
+        const saved = sessionStorage.getItem('members_active_tab');
+        if (saved) {
+            sessionStorage.removeItem('members_active_tab');
+            return saved;
+        }
+        return 'presidents';
+    });
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedDecade, setSelectedDecade] = useState('All');
 

@@ -36,6 +36,28 @@ const AnimatedSentence = ({ text, boldWordCount, delayOffset = 0, isItalic = fal
     );
 };
 
+const getCloudinaryUrl = (localPath) => {
+    if (!localPath) return '';
+    let cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME || 'doeodacsg';
+    cloudName = cloudName.replace(/['"]/g, '');
+    let cleanPath = localPath.startsWith('/') ? localPath.substring(1) : localPath;
+    cleanPath = cleanPath.replace(/ /g, '_');
+    const extMatch = cleanPath.match(/\.[a-zA-Z0-9]+$/);
+    const ext = extMatch ? extMatch[0] : '';
+    const cleanPathWithoutExt = cleanPath.replace(/\.[a-zA-Z0-9]+$/, '');
+    const publicId = `websites/rotary-website/${cleanPathWithoutExt}`;
+    const encodedPublicId = publicId.split('/').map(part => encodeURIComponent(part)).join('/');
+    const transform = 'w_300,c_limit,q_auto,f_auto';
+    return `https://res.cloudinary.com/${cloudName}/image/upload/${transform}/${encodedPublicId}${ext}`;
+};
+
+const charterPioneers = [
+    { name: "Sir James Macaffie Doak", designation: "Charter President", img: "/images/Charter Member/Sir James Macaffie Doak.gif" },
+    { name: "Rao Bahadur K. Devaji Rao", designation: "Charter Vice-President", img: "/images/Charter Member/002 - Rao Bahadur K.Devaji Rao-5x3.jpg" },
+    { name: "Trichur Sundaram Krishna", designation: "Charter Secretary", img: "/images/Charter Member/003 - Trichur Sundaram Krishna.jpg" },
+    { name: "Harry Isherwood", designation: "Charter Treasurer", img: "/images/Charter Member/004 - Harry Isherwood.jpg" }
+];
+
 export default function Home({ setCurrentPage }) {
     const [membershipForm, setMembershipForm] = useState({
         name: '',
@@ -420,6 +442,52 @@ export default function Home({ setCurrentPage }) {
                             </div>
                         </div>
 
+                    </div>
+                </div>
+            </section>
+
+            {/* Charter Members Spotlights Section */}
+            <section className="charter-spotlight section-padding">
+                <div className="container">
+                    <div className="section-header text-center" style={{ marginBottom: '50px' }}>
+                        <span className="badge">The Pioneers of 1938</span>
+                        <h2>Our Charter Leaders</h2>
+                        <p style={{ maxWidth: '600px', margin: '15px auto 0', color: 'var(--text-muted)' }}>
+                            Celebrating the visionary leaders who established the foundation of service above self in Madurai.
+                        </p>
+                    </div>
+
+                    <div className="charter-pioneers-grid">
+                        {charterPioneers.map((pioneer, idx) => (
+                            <div className="charter-pioneer-card" key={idx}>
+                                <div className="charter-pioneer-img-wrap">
+                                    <img 
+                                        src={getCloudinaryUrl(pioneer.img)} 
+                                        alt={pioneer.name} 
+                                        className="charter-pioneer-img"
+                                        onError={(e) => {
+                                            e.target.src = '/images/placeholder.jpg';
+                                        }}
+                                    />
+                                </div>
+                                <div className="charter-pioneer-info">
+                                    <span className="charter-pioneer-role">{pioneer.designation}</span>
+                                    <h4 className="charter-pioneer-name">{pioneer.name}</h4>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div style={{ marginTop: '40px', textAlign: 'center' }}>
+                        <button 
+                            className="btn btn-primary"
+                            onClick={() => {
+                                sessionStorage.setItem('members_active_tab', 'charter');
+                                setCurrentPage('members');
+                            }}
+                        >
+                            Explore All Charter Members
+                        </button>
                     </div>
                 </div>
             </section>
