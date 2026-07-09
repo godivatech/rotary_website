@@ -26,11 +26,13 @@ export default function Navbar({ currentPage, setCurrentPage }) {
         { id: 'contact', label: 'Contact Us' }
     ];
 
-    const handleNavClick = (pageId) => {
-        setCurrentPage(pageId);
+    const handleNavClick = (pageId, sectionId = null) => {
+        setCurrentPage(pageId, sectionId);
         setIsMobileMenuOpen(false);
         setIsDropdownOpen(false);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (!sectionId) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
     };
 
     return (
@@ -209,7 +211,7 @@ export default function Navbar({ currentPage, setCurrentPage }) {
 
                     <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                         <button 
-                            onClick={() => { handleNavClick('home'); setTimeout(() => document.getElementById('join')?.scrollIntoView({ behavior: 'smooth' }), 100); }} 
+                            onClick={() => handleNavClick('home', 'join')} 
                             className="btn btn-primary"
                             style={{ padding: '10px 22px', fontSize: '0.9rem' }}
                         >
@@ -305,7 +307,7 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                         Club Members & Leaders
                     </button>
                     <button 
-                        onClick={() => { handleNavClick('home'); setTimeout(() => document.getElementById('join')?.scrollIntoView({ behavior: 'smooth' }), 100); }} 
+                        onClick={() => handleNavClick('home', 'join')} 
                         className="btn btn-primary"
                         style={{ width: '100%', padding: '12px' }}
                     >

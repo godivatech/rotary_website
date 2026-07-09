@@ -22,10 +22,25 @@ export default function App() {
   const [transitionState, setTransitionState] = useState(''); // '', 'in', 'out'
   const [pendingPage, setPendingPage] = useState(null);
   const [isAppLoaded, setIsAppLoaded] = useState(false);
+  const [scrollTarget, setScrollTarget] = useState(null);
 
-  const navigateTo = (pageId) => {
-    if (pageId === currentPage || transitionState !== '') return;
+  const navigateTo = (pageId, targetSectionId = null) => {
+    if (pageId === currentPage) {
+      if (targetSectionId) {
+        const element = document.getElementById(targetSectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      return;
+    }
+    if (transitionState !== '') return;
     setPendingPage(pageId);
+    if (targetSectionId) {
+      setScrollTarget(targetSectionId);
+    }
     setTransitionState('in');
   };
 
@@ -35,7 +50,17 @@ export default function App() {
         setCurrentPage(pendingPage);
         window.location.hash = pendingPage === 'home' ? 'home' : pendingPage;
       });
-      window.scrollTo(0, 0);
+      if (scrollTarget) {
+        setTimeout(() => {
+          const element = document.getElementById(scrollTarget);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+          setScrollTarget(null);
+        }, 150);
+      } else {
+        window.scrollTo(0, 0);
+      }
       setTransitionState('out');
     } else if (transitionState === 'out') {
       setTransitionState('');
