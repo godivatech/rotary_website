@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Play, CheckCircle2, ShieldCheck, Heart, Sparkles } from 'lucide-react';
+import { Play, CheckCircle2, ShieldCheck, Heart, Sparkles, Gift, Globe, Handshake, Award, Calendar } from 'lucide-react';
 
 const AnimatedSentence = ({ text, boldWordCount, delayOffset = 0, isItalic = false, trigger = false }) => {
     const words = text.split(' ');
@@ -287,7 +287,10 @@ export default function Home({ setCurrentPage }) {
                         
                         {/* Left Column: Historical Milestones */}
                         <div className="legacy-left" ref={legacySectionRef}>
-                            <h3>Since 1938</h3>
+                            <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                <Calendar size={16} style={{ color: '#000000' }} />
+                                Since 1938
+                            </h3>
                             <h2>
                                 <AnimatedSentence 
                                     text="A Legacy of Service" 
@@ -370,26 +373,44 @@ export default function Home({ setCurrentPage }) {
                         {/* Right Column: Foundation & Grant Metrics */}
                         <div className="legacy-right">
                             <div className="legacy-right-card">
-                                <div className="grant-main-stat">
-                                    <div className="grant-main-label">All-Time Giving to The Rotary Foundation</div>
-                                    <div className="grant-main-val">$375,284 USD</div>
+                                <div className="grant-main-header">
+                                    <div className="grant-icon-wrapper main-icon">
+                                        <Gift size={24} />
+                                    </div>
+                                    <div>
+                                        <div className="grant-main-label">All-Time Giving to The Rotary Foundation</div>
+                                        <div className="grant-main-val">$375,284 USD</div>
+                                    </div>
                                 </div>
 
                                 <div className="grant-grid">
                                     <div className="grant-card-item">
-                                        <div className="grant-card-title">Global Grants</div>
+                                        <div className="grant-card-header">
+                                            <div className="grant-icon-wrapper sub-icon">
+                                                <Globe size={16} />
+                                            </div>
+                                            <div className="grant-card-title">Global Grants</div>
+                                        </div>
                                         <div className="grant-card-val">$915,237 USD</div>
                                         <div className="grant-card-sub">11 Projects Completed</div>
                                     </div>
                                     <div className="grant-card-item">
-                                        <div className="grant-card-title">Matching Grants</div>
+                                        <div className="grant-card-header">
+                                            <div className="grant-icon-wrapper sub-icon">
+                                                <Handshake size={16} />
+                                            </div>
+                                            <div className="grant-card-title">Matching Grants</div>
+                                        </div>
                                         <div className="grant-card-val">$550,000 USD</div>
                                         <div className="grant-card-sub">22 Projects Completed</div>
                                     </div>
                                 </div>
 
                                 <div className="donors-section">
-                                    <div className="donors-title">Major Donors</div>
+                                    <div className="donors-title">
+                                        <Award size={18} style={{ color: '#000000' }} />
+                                        Major Donors
+                                    </div>
                                     <div className="donors-list">
                                         <span className="donor-badge">Level 3: 1 Member</span>
                                         <span className="donor-badge">Level 2: 1 Member</span>

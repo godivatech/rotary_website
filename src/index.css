@@ -1425,10 +1425,42 @@ a:active,
     pointer-events: none;
 }
 
-.grant-main-stat {
+.grant-main-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
     margin-bottom: 25px;
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 20px;
+}
+
+.grant-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.grant-icon-wrapper.main-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(0, 61, 165, 0.08);
+    color: #000000;
+}
+
+.grant-card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.grant-icon-wrapper.sub-icon {
+    width: 28px;
+    height: 28px;
+    background: rgba(0, 61, 165, 0.05);
+    color: #000000;
 }
 
 .grant-main-label {
@@ -1496,6 +1528,9 @@ a:active,
 }
 
 .donors-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
     font-size: 0.85rem;
     font-weight: 700;
     text-transform: uppercase;
