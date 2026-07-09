@@ -20,7 +20,6 @@ export default function Navbar({ currentPage, setCurrentPage }) {
 
     const navItems = [
         { id: 'home', label: 'Home' },
-        { id: 'about', label: 'About Us' },
         { id: 'services', label: 'Areas of Focus' },
         { id: 'projects', label: 'Our Projects' },
         { id: 'contact', label: 'Contact Us' }
@@ -120,27 +119,26 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                         gap: '8px',
                         listStyle: 'none'
                     }}>
-                        {navItems.map(item => (
-                            <li key={item.id} style={{ position: 'relative' }}>
-                                <button
-                                    onClick={() => handleNavClick(item.id)}
-                                    className={`nav-link-item ${currentPage === item.id ? 'active' : ''}`}
-                                    style={{
-                                        outline: 'none',
-                                        boxShadow: 'none',
-                                        border: 'none'
-                                    }}
-                                >
-                                    {item.label}
-                                </button>
-                            </li>
-                        ))}
-                        
-                        {/* Dropdown Menu Item */}
+                        {/* Home Link */}
+                        <li style={{ position: 'relative' }}>
+                            <button
+                                onClick={() => handleNavClick('home')}
+                                className={`nav-link-item ${currentPage === 'home' ? 'active' : ''}`}
+                                style={{
+                                    outline: 'none',
+                                    boxShadow: 'none',
+                                    border: 'none'
+                                }}
+                            >
+                                Home
+                            </button>
+                        </li>
+
+                        {/* About Us Dropdown */}
                         <li style={{ position: 'relative' }}>
                             <button
                                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                                className={`nav-link-item ${isDropdownOpen || ['members', 'genealogy'].includes(currentPage) ? 'active' : ''}`}
+                                className={`nav-link-item ${isDropdownOpen || ['about', 'members', 'genealogy'].includes(currentPage) ? 'active' : ''}`}
                                 style={{
                                     outline: 'none',
                                     boxShadow: 'none',
@@ -148,7 +146,7 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                                     gap: '4px'
                                 }}
                             >
-                                Explore <ChevronDown size={14} style={{
+                                About Us <ChevronDown size={14} style={{
                                     transform: isDropdownOpen ? 'rotate(180deg)' : 'none',
                                     transition: 'transform 0.3s'
                                 }} />
@@ -160,14 +158,35 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                                     top: '100%',
                                     left: 0,
                                     backgroundColor: '#0F172A',
-                                    minWidth: '200px',
+                                    minWidth: '220px',
                                     borderRadius: '10px',
                                     padding: '10px 0',
                                     boxShadow: 'var(--shadow-lg)',
                                     listStyle: 'none',
                                     marginTop: '8px',
-                                    animation: 'scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards'
+                                    animation: 'scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                                    zIndex: 1000
                                 }}>
+                                    <li>
+                                        <button 
+                                            onClick={() => handleNavClick('about')} 
+                                            style={{
+                                                width: '100%',
+                                                textAlign: 'left',
+                                                background: 'none',
+                                                border: 'none',
+                                                padding: '10px 20px',
+                                                color: 'rgba(255,255,255,0.8)',
+                                                cursor: 'pointer',
+                                                fontSize: '0.9rem',
+                                                fontWeight: '600'
+                                            }}
+                                            onMouseEnter={(e) => { e.target.style.color = 'white'; e.target.style.backgroundColor = 'var(--primary)'; }}
+                                            onMouseLeave={(e) => { e.target.style.color = 'rgba(255,255,255,0.8)'; e.target.style.backgroundColor = 'transparent'; }}
+                                        >
+                                            Our Club
+                                        </button>
+                                    </li>
                                     <li>
                                         <button 
                                             onClick={() => handleNavClick('members')} 
@@ -178,7 +197,9 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                                                 border: 'none',
                                                 padding: '10px 20px',
                                                 color: 'rgba(255,255,255,0.8)',
-                                                cursor: 'pointer'
+                                                cursor: 'pointer',
+                                                fontSize: '0.9rem',
+                                                fontWeight: '600'
                                             }}
                                             onMouseEnter={(e) => { e.target.style.color = 'white'; e.target.style.backgroundColor = 'var(--primary)'; }}
                                             onMouseLeave={(e) => { e.target.style.color = 'rgba(255,255,255,0.8)'; e.target.style.backgroundColor = 'transparent'; }}
@@ -196,7 +217,9 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                                                 border: 'none',
                                                 padding: '10px 20px',
                                                 color: 'rgba(255,255,255,0.8)',
-                                                cursor: 'pointer'
+                                                cursor: 'pointer',
+                                                fontSize: '0.9rem',
+                                                fontWeight: '600'
                                             }}
                                             onMouseEnter={(e) => { e.target.style.color = 'white'; e.target.style.backgroundColor = 'var(--primary)'; }}
                                             onMouseLeave={(e) => { e.target.style.color = 'rgba(255,255,255,0.8)'; e.target.style.backgroundColor = 'transparent'; }}
@@ -207,6 +230,23 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                                 </ul>
                             )}
                         </li>
+
+                        {/* Remaining navItems */}
+                        {navItems.filter(item => item.id !== 'home').map(item => (
+                            <li key={item.id} style={{ position: 'relative' }}>
+                                <button
+                                    onClick={() => handleNavClick(item.id)}
+                                    className={`nav-link-item ${currentPage === item.id ? 'active' : ''}`}
+                                    style={{
+                                        outline: 'none',
+                                        boxShadow: 'none',
+                                        border: 'none'
+                                    }}
+                                >
+                                    {item.label}
+                                </button>
+                            </li>
+                        ))}
                     </ul>
 
                     <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
@@ -252,7 +292,97 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                     gap: '16px',
                     animation: 'fadeInUp 0.3s ease forwards'
                 }}>
-                    {navItems.map(item => (
+                    <button
+                        onClick={() => handleNavClick('home')}
+                        style={{
+                            textAlign: 'left',
+                            background: 'none',
+                            border: 'none',
+                            outline: 'none',
+                            boxShadow: 'none',
+                            padding: '8px 12px',
+                            fontSize: '1.1rem',
+                            fontWeight: '600',
+                            color: currentPage === 'home' ? 'var(--primary)' : 'var(--secondary)',
+                            cursor: 'pointer'
+                        }}
+                    >
+                        Home
+                    </button>
+
+                    {/* About Submenu on Mobile */}
+                    <div style={{ 
+                        display: 'flex', 
+                        flexDirection: 'column', 
+                        gap: '8px', 
+                        paddingLeft: '12px',
+                        borderLeft: '2px solid rgba(0, 61, 165, 0.1)'
+                    }}>
+                        <span style={{ 
+                            fontSize: '0.75rem', 
+                            fontWeight: '800', 
+                            textTransform: 'uppercase', 
+                            color: 'var(--primary)', 
+                            letterSpacing: '1px', 
+                            marginBottom: '4px',
+                            display: 'block'
+                        }}>
+                            About Us
+                        </span>
+                        <button
+                            onClick={() => handleNavClick('about')}
+                            style={{
+                                textAlign: 'left',
+                                background: 'none',
+                                border: 'none',
+                                outline: 'none',
+                                boxShadow: 'none',
+                                padding: '6px 12px',
+                                fontSize: '1.05rem',
+                                fontWeight: '600',
+                                color: currentPage === 'about' ? 'var(--primary)' : 'var(--secondary)',
+                                cursor: 'pointer'
+                            }}
+                        >
+                            Our Club
+                        </button>
+                        <button
+                            onClick={() => handleNavClick('members')}
+                            style={{
+                                textAlign: 'left',
+                                background: 'none',
+                                border: 'none',
+                                outline: 'none',
+                                boxShadow: 'none',
+                                padding: '6px 12px',
+                                fontSize: '1.05rem',
+                                fontWeight: '600',
+                                color: currentPage === 'members' ? 'var(--primary)' : 'var(--secondary)',
+                                cursor: 'pointer'
+                            }}
+                        >
+                            Club Members & Leaders
+                        </button>
+                        <button
+                            onClick={() => handleNavClick('genealogy')}
+                            style={{
+                                textAlign: 'left',
+                                background: 'none',
+                                border: 'none',
+                                outline: 'none',
+                                boxShadow: 'none',
+                                padding: '6px 12px',
+                                fontSize: '1.05rem',
+                                fontWeight: '600',
+                                color: currentPage === 'genealogy' ? 'var(--primary)' : 'var(--secondary)',
+                                cursor: 'pointer'
+                            }}
+                        >
+                            District Genealogy
+                        </button>
+                    </div>
+
+                    {navItems.filter(item => item.id !== 'home').map(item => (
                         <button
                             key={item.id}
                             onClick={() => handleNavClick(item.id)}
@@ -272,40 +402,6 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                             {item.label}
                         </button>
                     ))}
-                    <button
-                        onClick={() => handleNavClick('genealogy')}
-                        style={{
-                            textAlign: 'left',
-                            background: 'none',
-                            border: 'none',
-                            outline: 'none',
-                            boxShadow: 'none',
-                            padding: '8px 12px',
-                            fontSize: '1.1rem',
-                            fontWeight: '600',
-                            color: currentPage === 'genealogy' ? 'var(--primary)' : 'var(--secondary)',
-                            cursor: 'pointer'
-                        }}
-                    >
-                        District Genealogy
-                    </button>
-                    <button
-                        onClick={() => handleNavClick('members')}
-                        style={{
-                            textAlign: 'left',
-                            background: 'none',
-                            border: 'none',
-                            outline: 'none',
-                            boxShadow: 'none',
-                            padding: '8px 12px',
-                            fontSize: '1.1rem',
-                            fontWeight: '600',
-                            color: currentPage === 'members' ? 'var(--primary)' : 'var(--secondary)',
-                            cursor: 'pointer'
-                        }}
-                    >
-                        Club Members & Leaders
-                    </button>
                     <button 
                         onClick={() => handleNavClick('home', 'join')} 
                         className="btn btn-primary"
