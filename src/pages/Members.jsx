@@ -39,6 +39,13 @@ export default function Members() {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedDecade, setSelectedDecade] = useState('All');
 
+    const seniorMembers = [
+        { name: "Rtn. PP. PHF. A.C. Essa", designation: "Rotary Member since 1966", img: "/images/senior members/Rtn. PP. PHF. A.C. Essa - Rotary Member from 1966.jpeg" },
+        { name: "Rtn. PP. Major Donor M.K. Jawahar Baapu", designation: "Rotary Member since 1969", img: "/images/senior members/Rtn. PP. Major Donor M.K. Jawahar Baapu - Rotary Member from 1969.jpeg" },
+        { name: "Rtn. PP. MPHF. Er. K. Arumugasamy", designation: "Rotary Member since 1976", img: "/images/senior members/Rtn. PP. MPHF. Er. K. Arumugasamy - Rotary Member from 1976.jpeg" },
+        { name: "Rtn. PP. PHF. A.H.S.K. Venugopalan", designation: "Rotary Member since 1979", img: "/images/senior members/Rtn. PP. PHF. A.H.S.K. Venugopalan - Rotary Member from 1979.jpeg" }
+    ];
+
     const charterMembers = [
         { name: "Sir James Macaffie Doak", designation: "Charter President", img: "/images/Charter Member/Sir James Macaffie Doak.gif" },
         { name: "Rao Bahadur K. Devaji Rao", designation: "Charter Vice-President", img: "/images/Charter Member/002 - Rao Bahadur K.Devaji Rao-5x3.jpg" },
@@ -172,7 +179,12 @@ export default function Members() {
         });
     }, [searchTerm, selectedDecade]);
 
-    const handleImageError = (e, name) => {
+    const handleImageError = (e, name, localPath) => {
+        if (e.target.src.includes('res.cloudinary.com') && localPath) {
+            // Try loading from local path if Cloudinary fails (e.g. during development/prior to upload)
+            e.target.src = localPath;
+            return;
+        }
         e.target.style.display = 'none';
         const parent = e.target.parentNode;
         if (parent && !parent.querySelector('.avatar-fallback')) {
@@ -307,6 +319,28 @@ export default function Members() {
                         <ImageIcon size={18} />
                         Jubilee Archives
                     </button>
+                    <button 
+                        onClick={() => { setActiveTab('senior'); setSearchTerm(''); }}
+                        style={{
+                            flex: 1,
+                            padding: '12px 24px',
+                            border: 'none',
+                            borderRadius: '14px',
+                            fontSize: '1rem',
+                            fontWeight: '700',
+                            cursor: 'pointer',
+                            transition: 'all 0.3s ease',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: '8px',
+                            backgroundColor: activeTab === 'senior' ? 'var(--primary)' : 'transparent',
+                            color: activeTab === 'senior' ? 'white' : 'var(--secondary)'
+                        }}
+                    >
+                        <Users size={18} />
+                        Senior Members
+                    </button>
                 </div>
             </section>
 
@@ -407,7 +441,7 @@ export default function Members() {
                                         <img 
                                             src={getCloudinaryUrl(pres.img)} 
                                             alt={pres.name}
-                                            onError={(e) => handleImageError(e, pres.name)}
+                                            onError={(e) => handleImageError(e, pres.name, pres.img)}
                                             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                         />
                                     </div>
@@ -468,7 +502,7 @@ export default function Members() {
                                     <img 
                                         src={getCloudinaryUrl(charter.img)} 
                                         alt={charter.name}
-                                        onError={(e) => handleImageError(e, charter.name)}
+                                        onError={(e) => handleImageError(e, charter.name, charter.img)}
                                         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                     />
                                 </div>
@@ -540,6 +574,59 @@ export default function Members() {
                                         Archival group photograph commemorating the historic milestone anniversary of the Rotary Club of Madurai.
                                     </p>
                                 </div>
+                            </div>
+                        ))}
+                    </div>
+                )}
+
+                {/* 4. Senior Members Grid */}
+                {activeTab === 'senior' && (
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(225px, 1fr))', gap: '30px' }}>
+                        {seniorMembers.map((member, idx) => (
+                            <div key={idx} className="tilt-card" style={{
+                                backgroundColor: 'white',
+                                borderRadius: '20px',
+                                border: '1.5px solid var(--border-color)',
+                                overflow: 'hidden',
+                                boxShadow: 'var(--shadow-sm)',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                padding: '24px 16px',
+                                textAlign: 'center',
+                                transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+                            }}>
+                                <div style={{ 
+                                    width: '130px', 
+                                    height: '130px', 
+                                    borderRadius: '50%', 
+                                    overflow: 'hidden', 
+                                    border: '4px solid var(--primary-light)',
+                                    backgroundColor: '#F8FAFC',
+                                    marginBottom: '16px',
+                                    position: 'relative'
+                                }}>
+                                    <img 
+                                        src={getCloudinaryUrl(member.img)} 
+                                        alt={member.name}
+                                        onError={(e) => handleImageError(e, member.name, member.img)}
+                                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                    />
+                                </div>
+                                <span style={{ 
+                                    fontSize: '0.78rem', 
+                                    fontWeight: '800', 
+                                    color: 'var(--primary)', 
+                                    backgroundColor: 'var(--primary-light)', 
+                                    padding: '4px 12px', 
+                                    borderRadius: '20px',
+                                    marginBottom: '10px'
+                                }}>
+                                    {member.designation}
+                                </span>
+                                <h3 style={{ fontSize: '1.05rem', fontWeight: '700', color: 'var(--secondary)', margin: 0, lineHeight: '1.3' }}>
+                                    {member.name}
+                                </h3>
                             </div>
                         ))}
                     </div>

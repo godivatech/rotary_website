@@ -58,6 +58,27 @@ const charterPioneers = [
     { name: "Harry Isherwood", designation: "Charter Treasurer", img: "/images/Charter Member/004 - Harry Isherwood.jpg" }
 ];
 
+const sponsoredClubs = [
+    "Madurai East",
+    "Madurai Kings City",
+    "Madurai Mid-Town",
+    "Madurai South",
+    "Madurai Down Town",
+    "Madurai Next Gen",
+    "Madurai Elite",
+    "Madurai North West",
+    "Madurai West",
+    "Tirunagar-Madurai",
+    "Madurai Central",
+    "Madurai Majesty"
+];
+
+const currentBoard = [
+    { name: "Rtn. Mukesh", designation: "Club President", img: "/images/Board memebers/Mukesh Jain.jpeg" },
+    { name: "Rtn. Karthik", designation: "Club Secretary", img: "/images/Board memebers/Karthik.jpeg" },
+    { name: "Rtn. Rajaguru", designation: "Club Treasurer", img: "/images/Board memebers/Raja Prabu.jpeg" }
+];
+
 export default function Home({ setCurrentPage }) {
     const [membershipForm, setMembershipForm] = useState({
         name: '',
@@ -446,6 +467,24 @@ export default function Home({ setCurrentPage }) {
                 </div>
             </section>
 
+            {/* Sponsored Clubs Scrolling Ticker Section */}
+            <div className="sponsored-ticker-container">
+                <div className="sponsored-ticker-label">
+                    <span>Sponsor of Rotary Club</span>
+                </div>
+                <div className="sponsored-ticker-wrap">
+                    <div className="sponsored-ticker-track">
+                        {/* Repeat 4 times to ensure no gaps during animation */}
+                        {[...sponsoredClubs, ...sponsoredClubs, ...sponsoredClubs, ...sponsoredClubs].map((club, idx) => (
+                            <div className="sponsored-ticker-item" key={idx}>
+                                <span className="sponsored-club-dot"></span>
+                                <span className="sponsored-club-name">{club}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
             {/* Charter Members Spotlights Section */}
             <section className="charter-spotlight section-padding">
                 <div className="container">
@@ -488,6 +527,44 @@ export default function Home({ setCurrentPage }) {
                         >
                             Explore All Charter Members
                         </button>
+                    </div>
+                </div>
+            </section>
+
+            {/* Current Board / Leadership Section */}
+            <section className="current-board-section section-padding section-bg-white" style={{ borderBottom: '1px solid var(--border-color)' }}>
+                <div className="container">
+                    <div className="section-header text-center" style={{ marginBottom: '50px' }}>
+                        <span className="badge">Current Leadership</span>
+                        <h2>Board of Directors (2025 – 2026)</h2>
+                        <p style={{ maxWidth: '600px', margin: '15px auto 0', color: 'var(--text-muted)' }}>
+                            Leading our club’s mission of service, fellowship, and community transformation.
+                        </p>
+                    </div>
+
+                    <div className="board-members-grid">
+                        {currentBoard.map((member, idx) => (
+                            <div className="board-member-card" key={idx}>
+                                <div className="board-member-img-wrap">
+                                    <img 
+                                        src={getCloudinaryUrl(member.img)} 
+                                        alt={member.name} 
+                                        className="board-member-img"
+                                        onError={(e) => {
+                                            if (e.target.src.includes('res.cloudinary.com')) {
+                                                e.target.src = member.img;
+                                            } else {
+                                                e.target.src = '/images/placeholder.jpg';
+                                            }
+                                        }}
+                                    />
+                                </div>
+                                <div className="board-member-info">
+                                    <span className="board-member-role">{member.designation}</span>
+                                    <h4 className="board-member-name">{member.name}</h4>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>

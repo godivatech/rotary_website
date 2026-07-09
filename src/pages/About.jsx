@@ -524,10 +524,9 @@ export default function About() {
 
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '30px', justifyContent: 'center' }}>
                         {[
-                            { name: "Rtn. Dr. A. Sundararajan", role: "Club President", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200" },
-                            { name: "Rtn. M. Saravanan", role: "Club Secretary", image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200" },
-                            { name: "Rtn. K. Senthil Kumar", role: "Club Treasurer", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200" },
-                            { name: "Rtn. P. Rajasekar", role: "Director, Community Service", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200" }
+                            { name: "Rtn. Mukesh", role: "Club President", image: "/images/Board memebers/Mukesh Jain.jpeg" },
+                            { name: "Rtn. Karthik", role: "Club Secretary", image: "/images/Board memebers/Karthik.jpeg" },
+                            { name: "Rtn. Rajaguru", role: "Club Treasurer", image: "/images/Board memebers/Raja Prabu.jpeg" }
                         ].map((leader, idx) => (
                             <div key={idx} className="tilt-card reveal-up" style={{
                                 transitionDelay: `${idx * 0.1}s`,
