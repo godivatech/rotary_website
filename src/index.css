@@ -996,3 +996,96 @@ body.cursor-hover .custom-cursor-ring {
         background-position: -100% 0;
     }
 }
+
+/* --- Infinite Marquee CSS --- */
+.ticker-container {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.ticker-wrap {
+    display: flex;
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+}
+
+.ticker-row-upper-static {
+    background-color: var(--bg-white);
+    padding: 22px 20px;
+    border-top: 1.5px solid var(--border-color);
+    border-bottom: 1.5px solid var(--border-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    width: 100%;
+}
+
+.ticker-row-lower {
+    background: linear-gradient(90deg, #003DA5 0%, #002575 100%);
+    padding: 14px 0;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.ticker-track-reverse {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll-reverse 45s linear infinite;
+}
+
+/* Pause scroll on hover */
+.ticker-wrap:hover .ticker-track-reverse {
+    animation-play-state: paused;
+}
+
+.ticker-item-upper-static {
+    font-family: var(--font-heading);
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: var(--secondary);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.ticker-item-lower {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-white);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 35px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.ticker-icon-gold {
+    color: #F59E0B;
+}
+
+@keyframes marquee-scroll {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-50%, 0, 0);
+    }
+}
+
+@keyframes marquee-scroll-reverse {
+    0% {
+        transform: translate3d(-50%, 0, 0);
+    }
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+}

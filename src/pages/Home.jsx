@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Play, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { Play, CheckCircle2, ShieldCheck, Heart, Sparkles } from 'lucide-react';
 
 export default function Home({ setCurrentPage }) {
     const [membershipForm, setMembershipForm] = useState({
@@ -199,6 +199,7 @@ export default function Home({ setCurrentPage }) {
                 </div>
             </section>
 
+
             {/* Intro / Quote Section */}
             <section className="intro section-padding section-bg-light">
                 <div className="container intro-grid">
@@ -215,6 +216,60 @@ export default function Home({ setCurrentPage }) {
                     </div>
                 </div>
             </section>
+
+            {/* Values & Focus Ticker Section */}
+            <div className="ticker-container" style={{ margin: '30px 0 0 0' }}>
+                {/* Upper Row: White background, Static Centered Text */}
+                <div className="ticker-row-upper-static">
+                    <span className="ticker-item-upper-static">Service Above Self</span>
+                    <Heart size={18} fill="#F59E0B" style={{ stroke: 'none', color: '#F59E0B' }} />
+                    <span className="ticker-item-upper-static">Fellowship</span>
+                    <Heart size={18} fill="#F59E0B" style={{ stroke: 'none', color: '#F59E0B' }} />
+                    <span className="ticker-item-upper-static">Integrity</span>
+                    <Heart size={18} fill="#F59E0B" style={{ stroke: 'none', color: '#F59E0B' }} />
+                    <span className="ticker-item-upper-static">Diversity</span>
+                    <Heart size={18} fill="#F59E0B" style={{ stroke: 'none', color: '#F59E0B' }} />
+                    <span className="ticker-item-upper-static">Leadership</span>
+                </div>
+
+                {/* Lower Row: Rotary Blue Gradient Background, Small White Scrolling Text */}
+                <div className="ticker-wrap ticker-row-lower">
+                    <div className="ticker-track-reverse">
+                        {[1, 2, 3, 4].map((i) => (
+                            <React.Fragment key={i}>
+                                <span className="ticker-item-lower">
+                                    <span style={{ marginRight: '8px' }}>✦</span>
+                                    Peace Promotion
+                                </span>
+                                <span className="ticker-item-lower">
+                                    <span style={{ marginRight: '8px' }}>✦</span>
+                                    Disease Prevention
+                                </span>
+                                <span className="ticker-item-lower">
+                                    <span style={{ marginRight: '8px' }}>✦</span>
+                                    Clean Water & Sanitation
+                                </span>
+                                <span className="ticker-item-lower">
+                                    <span style={{ marginRight: '8px' }}>✦</span>
+                                    Maternal & Child Health
+                                </span>
+                                <span className="ticker-item-lower">
+                                    <span style={{ marginRight: '8px' }}>✦</span>
+                                    Basic Education & Literacy
+                                </span>
+                                <span className="ticker-item-lower">
+                                    <span style={{ marginRight: '8px' }}>✦</span>
+                                    Community Economic Development
+                                </span>
+                                <span className="ticker-item-lower">
+                                    <span style={{ marginRight: '8px' }}>✦</span>
+                                    Environmental Support
+                                </span>
+                            </React.Fragment>
+                        ))}
+                    </div>
+                </div>
+            </div>
 
             {/* Initiatives Preview */}
             <section className="section-padding section-bg-white">
