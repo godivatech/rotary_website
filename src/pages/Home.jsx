@@ -13,7 +13,7 @@ const AnimatedSentence = ({ text, boldWordCount, delayOffset = 0, isItalic = fal
                         style={{ 
                             display: 'inline-block',
                             marginRight: '8px',
-                            fontWeight: (isBold || isItalic) ? '700' : 'normal',
+                            fontWeight: isItalic ? '900' : (isBold ? '800' : 'normal'),
                             color: isItalic ? 'var(--primary)' : (isBold ? 'var(--secondary)' : 'inherit'),
                             fontStyle: isItalic ? 'italic' : 'normal'
                         }}
@@ -400,7 +400,7 @@ export default function Home({ setCurrentPage }) {
                                 </div>
                                 <div className="legacy-point-item">
                                     <span className="legacy-point-dot" style={{ backgroundColor: 'var(--primary)' }}></span>
-                                    <span className="legacy-point-text">
+                                    <span className="legacy-point-text legacy-blink-active">
                                         <AnimatedSentence 
                                             text="The Legacy Continues..." 
                                             boldWordCount={0} 
@@ -906,11 +906,8 @@ export default function Home({ setCurrentPage }) {
                                     style={{ width: '45px', height: '45px', objectFit: 'contain', filter: 'brightness(0) invert(1) sepia(100%) saturate(1000%) hue-rotate(30deg)' }} 
                                 />
                                 <div>
-                                    <div style={{ fontSize: '0.75rem', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '1.5px', color: '#FBBF24' }}>
+                                    <div style={{ fontSize: '1rem', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '1.5px', color: '#FBBF24' }}>
                                         Rotary International
-                                    </div>
-                                    <div style={{ fontSize: '1.1rem', fontWeight: '800', fontFamily: 'var(--font-heading)' }}>
-                                        Club ID: 4880
                                     </div>
                                 </div>
                             </div>

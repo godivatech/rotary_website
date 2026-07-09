@@ -1589,6 +1589,19 @@ a:active,
     animation: legacy-fade-in-up 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
+@keyframes legacy-blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.35;
+    }
+}
+
+.legacy-blink-active {
+    animation: legacy-blink 2s ease-in-out infinite;
+}
+
 /* Charter Pioneers Section */
 .charter-spotlight {
     background: var(--bg-light);
