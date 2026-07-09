@@ -46,8 +46,11 @@ export default function Preloader({ onComplete }) {
     }, []);
 
     const handleTransitionEnd = (e) => {
-        // Only trigger on the main container exit slide transition
-        if (e.propertyName === 'transform') {
+        // Prevent event bubbling from children's transitions
+        if (e.target !== e.currentTarget) return;
+
+        // Trigger onComplete when the main overlay finishing animating
+        if (e.propertyName === 'opacity' || e.propertyName === 'transform') {
             document.body.style.overflow = '';
             onComplete();
         }

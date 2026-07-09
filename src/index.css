@@ -1105,11 +1105,13 @@ body.cursor-hover .custom-cursor-ring {
     align-items: center;
     overflow: hidden;
     pointer-events: all;
-    transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1);
+    transition: transform 0.9s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.9s cubic-bezier(0.85, 0, 0.15, 1);
 }
 
 .preloader-overlay.exit-active {
-    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(1.06);
 }
 
 .preloader-content {
@@ -1119,6 +1121,12 @@ body.cursor-hover .custom-cursor-ring {
     justify-content: center;
     position: relative;
     text-align: center;
+    transition: transform 0.9s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.8s ease;
+}
+
+.preloader-overlay.exit-active .preloader-content {
+    transform: scale(1.25);
+    opacity: 0;
 }
 
 .preloader-chakra {
