@@ -1275,7 +1275,7 @@ a:active,
     align-items: center;
     justify-content: center;
     gap: 10px;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     color: var(--text-muted);
     font-weight: 500;
     opacity: 0;
@@ -1289,8 +1289,8 @@ a:active,
 }
 
 .milestone-bullet {
-    width: 7px;
-    height: 7px;
+    width: 9px;
+    height: 9px;
     border-radius: 50%;
     background-color: #FFB800; /* Rotary Gold */
     flex-shrink: 0;

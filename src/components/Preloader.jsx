@@ -241,7 +241,7 @@ export default function Preloader({ onComplete }) {
                     transform: isCollapsing ? 'scale(0.9) translateY(-15px)' : 'none'
                 }}>
                     <div className={`preloader-tagline ${milestoneStep >= 4 ? 'show' : ''}`} style={{
-                        fontSize: '1.2rem',
+                        fontSize: '1.5rem',
                         fontWeight: '800',
                         color: 'var(--secondary)',
                         opacity: milestoneStep >= 4 ? 1 : 0,
@@ -253,7 +253,7 @@ export default function Preloader({ onComplete }) {
                         85+ Years of Leadership, Fellowship & Service
                     </div>
                     <div className={`preloader-tagline ${milestoneStep >= 5 ? 'show' : ''}`} style={{
-                        fontSize: '1.05rem',
+                        fontSize: '1.3rem',
                         fontWeight: '700',
                         color: 'var(--primary)',
                         opacity: milestoneStep >= 5 ? 1 : 0,
