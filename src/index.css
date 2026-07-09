@@ -1110,14 +1110,37 @@ a:active,
     color: var(--primary);
     letter-spacing: 6px;
     text-transform: uppercase;
-    opacity: 0;
-    transform: translateY(12px);
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.preloader-subtitle.show {
-    opacity: 1;
-    transform: translateY(0);
+.preloader-char {
+    opacity: 0;
+    transform: translateY(25px) scale(1.6) rotate(-15deg);
+    filter: blur(8px);
+    display: inline-block;
+}
+
+.preloader-subtitle.show .preloader-char {
+    animation: particle-settle 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes particle-settle {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(1.8) rotate(-20deg);
+        filter: blur(12px);
+    }
+    40% {
+        opacity: 0.5;
+        filter: blur(4px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(0deg);
+        filter: blur(0px);
+    }
 }
 
 @keyframes preloader-spin {

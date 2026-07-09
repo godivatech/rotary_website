@@ -34,7 +34,7 @@ export default function Preloader({ onComplete }) {
                 // Wait for the subtitle reveal to sink in, then exit
                 setTimeout(() => {
                     setIsExiting(true);
-                }, 800);
+                }, 2200);
             }
         };
 
@@ -73,7 +73,18 @@ export default function Preloader({ onComplete }) {
                 </div>
                 
                 <div className={`preloader-subtitle ${showSince ? 'show' : ''}`}>
-                    Since 1938
+                    {"Since 1938".split('').map((char, index) => (
+                        <span 
+                            key={index} 
+                            className="preloader-char" 
+                            style={{ 
+                                animationDelay: `${index * 0.08}s`,
+                                marginRight: char === ' ' ? '10px' : '0px'
+                            }}
+                        >
+                            {char}
+                        </span>
+                    ))}
                 </div>
             </div>
         </div>
