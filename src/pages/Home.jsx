@@ -470,7 +470,7 @@ export default function Home({ setCurrentPage }) {
             {/* Sponsored Clubs Scrolling Ticker Section */}
             <div className="sponsored-ticker-container">
                 <div className="sponsored-ticker-label">
-                    <span>Sponsor of Rotary Club</span>
+                    <span>Sponsor of Rotary Club Madurai</span>
                 </div>
                 <div className="sponsored-ticker-wrap">
                     <div className="sponsored-ticker-track">

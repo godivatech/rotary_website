@@ -164,12 +164,12 @@ export default function Footer({ setCurrentPage }) {
                 justifyContent: 'space-between',
                 flexWrap: 'wrap',
                 gap: '16px',
-                fontSize: '0.9rem'
+                fontSize: '1.05rem'
             }}>
-                <p>&copy; {new Date().getFullYear()} Rotary Club of Madurai. All rights reserved. | <strong>Designed and Developed by <a href="https://godivatech.com" target="_blank" rel="noopener noreferrer" style={{ color: '#FFB800', fontWeight: '800', textDecoration: 'none', transition: 'all 0.2s', borderBottom: '1px solid rgba(255,184,0,0.3)', paddingBottom: '2px' }} onMouseEnter={(e) => { e.target.style.color = '#FFFFFF'; e.target.style.borderBottomColor = '#FFFFFF'; }} onMouseLeave={(e) => { e.target.style.color = '#FFB800'; e.target.style.borderBottomColor = 'rgba(255,184,0,0.3)'; }}>godivatech</a></strong></p>
+                <p>&copy; {new Date().getFullYear()} Rotary Club of Madurai. All rights reserved. | <strong>Designed and Developed by <a href="https://godivatech.com" target="_blank" rel="noopener noreferrer" style={{ color: '#FFB800', fontWeight: '800', textDecoration: 'none', transition: 'all 0.2s', borderBottom: '1.5px solid rgba(255,184,0,0.3)', paddingBottom: '2px' }} onMouseEnter={(e) => { e.target.style.color = '#FFFFFF'; e.target.style.borderBottomColor = '#FFFFFF'; }} onMouseLeave={(e) => { e.target.style.color = '#FFB800'; e.target.style.borderBottomColor = 'rgba(255,184,0,0.3)'; }}>godivatech</a></strong></p>
                 <div style={{ display: 'flex', gap: '20px' }}>
-                    <a href="#privacy" style={{ color: 'rgba(255,255,255,0.5)' }}>Privacy Policy</a>
-                    <a href="#terms" style={{ color: 'rgba(255,255,255,0.5)' }}>Terms of Service</a>
+                    <a href="#privacy" style={{ color: 'rgba(255,255,255,0.5)', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = '#FFFFFF'} onMouseLeave={(e) => e.target.style.color = 'rgba(255,255,255,0.5)'}>Privacy Policy</a>
+                    <a href="#terms" style={{ color: 'rgba(255,255,255,0.5)', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = '#FFFFFF'} onMouseLeave={(e) => e.target.style.color = 'rgba(255,255,255,0.5)'}>Terms of Service</a>
                 </div>
             </div>
         </footer>
