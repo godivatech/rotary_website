@@ -63,7 +63,7 @@ export default function Preloader({ onComplete }) {
         >
             <div className="preloader-content">
                 <img 
-                    src="/images/Logo chakra.png" 
+                    src="/images/Logo%20chakra.png" 
                     alt="Rotary Chakra Wheel" 
                     className="preloader-chakra"
                 />
