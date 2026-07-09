@@ -19,7 +19,7 @@ export default function Preloader({ onComplete }) {
         const startDelay = 800; // 800ms initial pause on 1938 so users can read it clearly first
         let startTime = null;
         let animationFrameId;
-        let t1, t2, t3, t4, t5;
+        let t1, t2, t3, t4, t5, t6, t7;
  
         const animate = (timestamp) => {
             if (!startTime) startTime = timestamp;
@@ -54,16 +54,18 @@ export default function Preloader({ onComplete }) {
                 t1 = setTimeout(() => setMilestoneStep(1), 400);
                 t2 = setTimeout(() => setMilestoneStep(2), 900);
                 t3 = setTimeout(() => setMilestoneStep(3), 1400);
+                t4 = setTimeout(() => setMilestoneStep(4), 2000);
+                t5 = setTimeout(() => setMilestoneStep(5), 2600);
                 
                 // Start collapsing the content (Chakra logo zooms in and fades)
-                t4 = setTimeout(() => {
+                t6 = setTimeout(() => {
                     setIsCollapsing(true);
-                }, 5200);
+                }, 6000);
  
                 // Wait for collapse transition to complete, then exit the full screen overlay
-                t5 = setTimeout(() => {
+                t7 = setTimeout(() => {
                     setIsExiting(true);
-                }, 6700); // 1500ms after isCollapsing (5200 + 1500 = 6700)
+                }, 7500); // 1500ms after isCollapsing (6000 + 1500 = 7500)
             }
         };
  
@@ -76,6 +78,8 @@ export default function Preloader({ onComplete }) {
             clearTimeout(t3);
             clearTimeout(t4);
             clearTimeout(t5);
+            clearTimeout(t6);
+            clearTimeout(t7);
         };
     }, []);
 
@@ -222,6 +226,43 @@ export default function Preloader({ onComplete }) {
                     <div className={`preloader-milestone ${milestoneStep >= 3 ? 'show' : ''}`}>
                         <span className="milestone-bullet"></span>
                         <span><strong className="milestone-highlight">Madurai's 1st</strong> Rotary Club</span>
+                    </div>
+                </div>
+
+                {/* 4. Taglines */}
+                <div className="preloader-taglines" style={{
+                    marginTop: '25px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '10px',
+                    transition: 'all 0.6s cubic-bezier(0.76, 0, 0.24, 1)',
+                    opacity: isCollapsing ? 0 : 1,
+                    transform: isCollapsing ? 'scale(0.9) translateY(-15px)' : 'none'
+                }}>
+                    <div className={`preloader-tagline ${milestoneStep >= 4 ? 'show' : ''}`} style={{
+                        fontSize: '1.2rem',
+                        fontWeight: '800',
+                        color: 'var(--secondary)',
+                        opacity: milestoneStep >= 4 ? 1 : 0,
+                        transform: milestoneStep >= 4 ? 'translateY(0)' : 'translateY(15px)',
+                        transition: 'all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                        textAlign: 'center',
+                        lineHeight: '1.4'
+                    }}>
+                        85+ Years of Leadership, Fellowship & Service
+                    </div>
+                    <div className={`preloader-tagline ${milestoneStep >= 5 ? 'show' : ''}`} style={{
+                        fontSize: '1.05rem',
+                        fontWeight: '700',
+                        color: 'var(--primary)',
+                        opacity: milestoneStep >= 5 ? 1 : 0,
+                        transform: milestoneStep >= 5 ? 'translateY(0)' : 'translateY(15px)',
+                        transition: 'all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                        textAlign: 'center',
+                        lineHeight: '1.4'
+                    }}>
+                        A Role Model for Rotary Clubs Across Madurai
                     </div>
                 </div>
             </div>
