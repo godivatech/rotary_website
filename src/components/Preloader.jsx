@@ -58,12 +58,12 @@ export default function Preloader({ onComplete }) {
                 // Start collapsing the content (Chakra logo zooms in and fades)
                 t4 = setTimeout(() => {
                     setIsCollapsing(true);
-                }, 3200);
+                }, 5200);
  
                 // Wait for collapse transition to complete, then exit the full screen overlay
                 t5 = setTimeout(() => {
                     setIsExiting(true);
-                }, 4700); // 1500ms after isCollapsing (3200 + 1500 = 4700)
+                }, 6700); // 1500ms after isCollapsing (5200 + 1500 = 6700)
             }
         };
  
@@ -98,20 +98,20 @@ export default function Preloader({ onComplete }) {
 
         const particles = [];
         const colors = [
-            'rgba(255, 184, 0, 0.12)', // soft gold
-            'rgba(0, 61, 165, 0.08)',  // soft primary blue
-            'rgba(15, 23, 42, 0.05)',   // soft slate
-            'rgba(255, 184, 0, 0.22)', // glowing gold small
-            'rgba(255, 255, 255, 0.8)'  // bright white dust
+            'rgba(255, 184, 0, 0.25)', // soft gold (increased from 0.12)
+            'rgba(0, 61, 165, 0.16)',  // soft primary blue (increased from 0.08)
+            'rgba(15, 23, 42, 0.10)',   // soft slate (increased from 0.05)
+            'rgba(255, 184, 0, 0.38)', // glowing gold small (increased from 0.22)
+            'rgba(255, 255, 255, 0.95)'  // bright white dust (increased from 0.8)
         ];
 
-        for (let i = 0; i < 70; i++) {
+        for (let i = 0; i < 90; i++) { // increased count from 70 to 90
             particles.push({
                 x: Math.random() * width,
                 y: Math.random() * height,
                 vx: (Math.random() - 0.5) * 0.3,
                 vy: -Math.random() * 0.4 - 0.1, // slowly drift upwards
-                size: Math.random() * 3 + 1,
+                size: Math.random() * 4 + 1.5, // increased size slightly from * 3 + 1
                 color: colors[Math.floor(Math.random() * colors.length)]
             });
         }
