@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 export default function Preloader({ onComplete }) {
-    const [year, setYear] = useState(1938);
+    const [year, setYear] = useState('1938');
+    const [subtitle, setSubtitle] = useState('Since 1938');
     const [showSince, setShowSince] = useState(false);
     const [milestoneStep, setMilestoneStep] = useState(0);
     const [isCollapsing, setIsCollapsing] = useState(false);
@@ -47,7 +48,8 @@ export default function Preloader({ onComplete }) {
             if (progress < duration) {
                 animationFrameId = requestAnimationFrame(animate);
             } else {
-                setYear(endYear);
+                setYear("1938 - 2026");
+                setSubtitle("88 Years of Service & Fellowship");
                 setShowSince(true);
                 
                 // Stagger milestone reveals after counting finishes
@@ -200,13 +202,13 @@ export default function Preloader({ onComplete }) {
                 </div>
                 
                 <div className={`preloader-subtitle ${showSince ? 'show' : ''}`} style={{ marginBottom: '25px' }}>
-                    {"Since 1938".split('').map((char, index) => (
+                    {subtitle.split('').map((char, index) => (
                         <span 
                             key={index} 
                             className="preloader-char" 
                             style={{ 
-                                animationDelay: `${index * 0.08}s`,
-                                marginRight: char === ' ' ? '10px' : '0px'
+                                animationDelay: `${index * 0.03}s`,
+                                marginRight: char === ' ' ? '8px' : '0px'
                             }}
                         >
                             {char}
