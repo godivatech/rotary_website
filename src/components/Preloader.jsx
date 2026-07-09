@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 export default function Preloader({ onComplete }) {
     const [year, setYear] = useState(1938);
     const [showSince, setShowSince] = useState(false);
     const [milestoneStep, setMilestoneStep] = useState(0);
+    const [isCollapsing, setIsCollapsing] = useState(false);
     const [isExiting, setIsExiting] = useState(false);
+    const canvasRef = useRef(null);
 
+    // 1. Year Counter & Milestones Animation
     useEffect(() => {
         // Prevent scroll on mount
         document.body.style.overflow = 'hidden';
@@ -15,7 +18,7 @@ export default function Preloader({ onComplete }) {
         const duration = 1800; // 1.8 seconds counting duration
         let startTime = null;
         let animationFrameId;
-        let t1, t2, t3, t4;
+        let t1, t2, t3, t4, t5;
 
         const animate = (timestamp) => {
             if (!startTime) startTime = timestamp;
@@ -39,10 +42,15 @@ export default function Preloader({ onComplete }) {
                 t2 = setTimeout(() => setMilestoneStep(2), 1200);
                 t3 = setTimeout(() => setMilestoneStep(3), 1800);
                 
-                // Wait for the full reveal to be read, then exit
+                // Start collapsing the content (Chakra logo shrinks & spins away)
                 t4 = setTimeout(() => {
-                    setIsExiting(true);
+                    setIsCollapsing(true);
                 }, 3800);
+
+                // Wait for collapse transition to complete, then exit the full screen overlay
+                t5 = setTimeout(() => {
+                    setIsExiting(true);
+                }, 4500); // 700ms after isCollapsing
             }
         };
 
@@ -54,6 +62,81 @@ export default function Preloader({ onComplete }) {
             clearTimeout(t2);
             clearTimeout(t3);
             clearTimeout(t4);
+            clearTimeout(t5);
+        };
+    }, []);
+
+    // 2. Lightweight Ambient Particle System
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        
+        let animationId;
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        const handleResize = () => {
+            if (!canvas) return;
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        };
+        window.addEventListener('resize', handleResize);
+
+        const particles = [];
+        const colors = [
+            'rgba(255, 184, 0, 0.12)', // soft gold
+            'rgba(0, 61, 165, 0.08)',  // soft primary blue
+            'rgba(15, 23, 42, 0.05)',   // soft slate
+            'rgba(255, 184, 0, 0.22)', // glowing gold small
+            'rgba(255, 255, 255, 0.8)'  // bright white dust
+        ];
+
+        for (let i = 0; i < 70; i++) {
+            particles.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                vx: (Math.random() - 0.5) * 0.3,
+                vy: -Math.random() * 0.4 - 0.1, // slowly drift upwards
+                size: Math.random() * 3 + 1,
+                color: colors[Math.floor(Math.random() * colors.length)]
+            });
+        }
+
+        const draw = () => {
+            ctx.clearRect(0, 0, width, height);
+            
+            // Render particles
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                // Loop particles when they drift offscreen
+                if (p.y < -10) {
+                    p.y = height + 10;
+                    p.x = Math.random() * width;
+                }
+                if (p.x < -10 || p.x > width + 10) {
+                    p.x = Math.random() * width;
+                }
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.shadowBlur = p.size > 2 ? 8 : 0;
+                ctx.shadowColor = p.color;
+                ctx.fill();
+            });
+            
+            ctx.shadowBlur = 0; // reset
+            animationId = requestAnimationFrame(draw);
+        };
+
+        draw();
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+            cancelAnimationFrame(animationId);
         };
     }, []);
 
@@ -61,7 +144,7 @@ export default function Preloader({ onComplete }) {
         // Prevent event bubbling from children's transitions
         if (e.target !== e.currentTarget) return;
 
-        // Trigger onComplete when the main overlay finishing animating
+        // Trigger onComplete when the main overlay finishes animating
         if (e.propertyName === 'opacity' || e.propertyName === 'transform') {
             document.body.style.overflow = '';
             onComplete();
@@ -73,12 +156,27 @@ export default function Preloader({ onComplete }) {
             className={`preloader-overlay ${isExiting ? 'exit-active' : ''}`}
             onTransitionEnd={handleTransitionEnd}
         >
-            <div className="preloader-content">
-                <img 
-                    src="/images/Logo%20chakra.png" 
-                    alt="Rotary Chakra Wheel" 
-                    className="preloader-chakra"
-                />
+            <canvas 
+                ref={canvasRef} 
+                style={{ 
+                    position: 'absolute', 
+                    top: 0, 
+                    left: 0, 
+                    width: '100%', 
+                    height: '100%', 
+                    pointerEvents: 'none', 
+                    zIndex: 0 
+                }} 
+            />
+            
+            <div className={`preloader-content ${isCollapsing ? 'collapse-active' : ''}`} style={{ position: 'relative', zIndex: 1 }}>
+                <div className="preloader-chakra-wrapper">
+                    <img 
+                        src="/images/Logo%20chakra.png" 
+                        alt="Rotary Chakra Wheel" 
+                        className="preloader-chakra"
+                    />
+                </div>
                 
                 <div className="preloader-year">
                     {year}
