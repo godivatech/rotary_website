@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Search, Calendar, Award, Users, Image as ImageIcon } from 'lucide-react';
+import { Search, Calendar, Award, Users, Image as ImageIcon, Briefcase } from 'lucide-react';
 
 const getCloudinaryUrl = (localPath) => {
     if (!localPath) return '';
@@ -34,10 +34,29 @@ export default function Members() {
             sessionStorage.removeItem('members_active_tab');
             return saved;
         }
-        return 'presidents';
+        return 'current';
     });
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedDecade, setSelectedDecade] = useState('All');
+
+    const currentMembers = [
+        { name: "Rtn. R. Andrew Ananth", business: "Godiva Tech", img: "/images/current memebers/Rtn.R. Andrew Ananth.jpg" },
+        { name: "Rtn. UV Kathirvel", business: "Aji Homes", img: "/images/current memebers/UV KATHIRVEL.jpeg" },
+        { name: "Rtn. B. Muthukumaran", business: "BR Systems", img: "/images/current memebers/B. Muthukumaran.jpg" },
+        { name: "Er. A.F. Antony Prem Kumar", business: "Johana Industry", img: "/images/current memebers/Er.A.F.Antony Prem Kumar.jpg" },
+        { name: "Rtn. C. Sasikumar", business: "Rogul tours and travels", img: "/images/current memebers/c.sasikumar.jpg" },
+        { name: "Er. T.K. Sivakumar", business: "Sapthagiri Builders", img: "/images/current memebers/Er. T.K. SIVAKUMAR.jpg" },
+        { name: "Rtn. S. Ramkumar", business: "S.R. Lakshmi and Company Madurai", img: "/images/current memebers/S.Ramkumar.jpg" },
+        { name: "Rtn. Krishnan Sethuraman", business: "Sastha Soil Testing Services Building Materials Testing services", img: "/images/current memebers/Krishnan Sethuraman.jpg" },
+        { name: "Rtn. Ravichandran V A", business: "Ravichandran & Co", img: "/images/current memebers/Ravichandran V A.jpg" }
+    ];
+
+    const filteredCurrentMembers = useMemo(() => {
+        return currentMembers.filter(member => {
+            return member.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                   member.business.toLowerCase().includes(searchTerm.toLowerCase());
+        });
+    }, [searchTerm]);
 
     const seniorMembers = [
         { name: "Rtn. PP. PHF. A.C. Essa", designation: "Rotary Member since 1966", img: "/images/senior members/Rtn. PP. PHF. A.C. Essa - Rotary Member from 1966.jpeg" },
@@ -248,19 +267,42 @@ export default function Members() {
                     boxShadow: 'var(--shadow-lg)',
                     border: '1.5px solid var(--border-color)',
                     display: 'flex',
+                    flexWrap: 'wrap',
                     justifyContent: 'center',
-                    maxWidth: '600px',
+                    maxWidth: '900px',
                     margin: '0 auto',
                     gap: '8px'
                 }}>
                     <button 
-                        onClick={() => { setActiveTab('presidents'); setSelectedDecade('All'); setSearchTerm(''); }}
+                        onClick={() => { setActiveTab('current'); setSearchTerm(''); }}
                         style={{
-                            flex: 1,
-                            padding: '12px 24px',
+                            flex: '1 1 auto',
+                            padding: '12px 20px',
                             border: 'none',
                             borderRadius: '14px',
-                            fontSize: '1rem',
+                            fontSize: '0.95rem',
+                            fontWeight: '700',
+                            cursor: 'pointer',
+                            transition: 'all 0.3s ease',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: '8px',
+                            backgroundColor: activeTab === 'current' ? 'var(--primary)' : 'transparent',
+                            color: activeTab === 'current' ? 'white' : 'var(--secondary)'
+                        }}
+                    >
+                        <Users size={18} />
+                        Current Members
+                    </button>
+                    <button 
+                        onClick={() => { setActiveTab('presidents'); setSelectedDecade('All'); setSearchTerm(''); }}
+                        style={{
+                            flex: '1 1 auto',
+                            padding: '12px 20px',
+                            border: 'none',
+                            borderRadius: '14px',
+                            fontSize: '0.95rem',
                             fontWeight: '700',
                             cursor: 'pointer',
                             transition: 'all 0.3s ease',
@@ -278,11 +320,11 @@ export default function Members() {
                     <button 
                         onClick={() => { setActiveTab('charter'); setSearchTerm(''); }}
                         style={{
-                            flex: 1,
-                            padding: '12px 24px',
+                            flex: '1 1 auto',
+                            padding: '12px 20px',
                             border: 'none',
                             borderRadius: '14px',
-                            fontSize: '1rem',
+                            fontSize: '0.95rem',
                             fontWeight: '700',
                             cursor: 'pointer',
                             transition: 'all 0.3s ease',
@@ -300,11 +342,11 @@ export default function Members() {
                     <button 
                         onClick={() => { setActiveTab('jubilee'); setSearchTerm(''); }}
                         style={{
-                            flex: 1,
-                            padding: '12px 24px',
+                            flex: '1 1 auto',
+                            padding: '12px 20px',
                             border: 'none',
                             borderRadius: '14px',
-                            fontSize: '1rem',
+                            fontSize: '0.95rem',
                             fontWeight: '700',
                             cursor: 'pointer',
                             transition: 'all 0.3s ease',
@@ -322,11 +364,11 @@ export default function Members() {
                     <button 
                         onClick={() => { setActiveTab('senior'); setSearchTerm(''); }}
                         style={{
-                            flex: 1,
-                            padding: '12px 24px',
+                            flex: '1 1 auto',
+                            padding: '12px 20px',
                             border: 'none',
                             borderRadius: '14px',
-                            fontSize: '1rem',
+                            fontSize: '0.95rem',
                             fontWeight: '700',
                             cursor: 'pointer',
                             transition: 'all 0.3s ease',
@@ -344,7 +386,46 @@ export default function Members() {
                 </div>
             </section>
 
-            {/* Filter Bar (Only for Presidents) */}
+            {/* Filter Bar (Only for Current Members) */}
+            {activeTab === 'current' && (
+                <section className="container" style={{ marginTop: '40px' }}>
+                    <div style={{
+                        backgroundColor: 'white',
+                        padding: '20px 24px',
+                        borderRadius: '20px',
+                        border: '1.5px solid var(--border-color)',
+                        boxShadow: 'var(--shadow-sm)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        flexWrap: 'wrap',
+                        gap: '16px'
+                    }}>
+                        <div style={{ position: 'relative', flexGrow: 1, maxWidth: '400px' }}>
+                            <Search size={18} style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
+                            <input 
+                                type="text" 
+                                placeholder="Search member by name or business..."
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                style={{
+                                    width: '100%',
+                                    padding: '12px 12px 12px 46px',
+                                    borderRadius: '30px',
+                                    border: '1.5px solid var(--border-color)',
+                                    outline: 'none',
+                                    fontSize: '0.92rem'
+                                }}
+                            />
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted)', fontSize: '0.9rem', fontWeight: '600' }}>
+                            <Users size={16} style={{ color: 'var(--primary)' }} />
+                            <span>Total: {currentMembers.length} Active Members</span>
+                        </div>
+                    </div>
+                </section>
+            )}
+
             {activeTab === 'presidents' && (
                 <section className="container" style={{ marginTop: '40px' }}>
                     <div style={{
@@ -410,6 +491,90 @@ export default function Members() {
 
             {/* Display Grids */}
             <section className="container" style={{ marginTop: '40px' }}>
+                {/* 0. Current Members Grid */}
+                {activeTab === 'current' && (
+                    <>
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '30px' }}>
+                            {filteredCurrentMembers.map((member, idx) => (
+                                <div key={idx} className="tilt-card" style={{
+                                    backgroundColor: 'white',
+                                    borderRadius: '24px',
+                                    border: '1.5px solid var(--border-color)',
+                                    overflow: 'hidden',
+                                    boxShadow: 'var(--shadow-sm)',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    padding: '30px 20px',
+                                    textAlign: 'center',
+                                    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                                    position: 'relative'
+                                }}>
+                                    <div style={{ 
+                                        width: '140px', 
+                                        height: '140px', 
+                                        borderRadius: '50%', 
+                                        overflow: 'hidden', 
+                                        border: '4px solid var(--primary-light)',
+                                        backgroundColor: '#F8FAFC',
+                                        marginBottom: '20px',
+                                        position: 'relative',
+                                        boxShadow: '0 4px 10px rgba(0, 0, 0, 0.05)'
+                                    }}>
+                                        <img 
+                                            src={getCloudinaryUrl(member.img)} 
+                                            alt={member.name}
+                                            onError={(e) => handleImageError(e, member.name, member.img)}
+                                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                        />
+                                    </div>
+                                    <h3 style={{ 
+                                        fontSize: '1.15rem', 
+                                        fontWeight: '800', 
+                                        color: 'var(--secondary)', 
+                                        margin: '0 0 12px 0', 
+                                        lineHeight: '1.3' 
+                                    }}>
+                                        {member.name}
+                                    </h3>
+                                    
+                                    <div style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        gap: '6px',
+                                        backgroundColor: '#F8FAFC',
+                                        border: '1px solid #E2E8F0',
+                                        padding: '8px 14px',
+                                        borderRadius: '12px',
+                                        width: '100%',
+                                        marginTop: 'auto'
+                                    }}>
+                                        <Briefcase size={14} style={{ color: 'var(--primary)', flexShrink: 0 }} />
+                                        <span style={{ 
+                                            fontSize: '0.82rem', 
+                                            fontWeight: '700', 
+                                            color: '#475569',
+                                            lineHeight: '1.3',
+                                            textAlign: 'center',
+                                            wordBreak: 'break-word'
+                                        }}>
+                                            {member.business}
+                                        </span>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        {filteredCurrentMembers.length === 0 && (
+                            <div style={{ textAlign: 'center', padding: '60px 0', color: 'var(--text-muted)' }}>
+                                <Users size={48} style={{ opacity: 0.3, marginBottom: '16px' }} />
+                                <p>No members found matching your search.</p>
+                            </div>
+                        )}
+                    </>
+                )}
+
                 {/* 1. Presidents Grid */}
                 {activeTab === 'presidents' && (
                     <>
