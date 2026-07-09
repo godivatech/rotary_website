@@ -22,6 +22,7 @@ export default function Navbar({ currentPage, setCurrentPage }) {
         { id: 'home', label: 'Home' },
         { id: 'services', label: 'Areas of Focus' },
         { id: 'projects', label: 'Our Projects' },
+        { id: 'gallery', label: 'Gallery' },
         { id: 'contact', label: 'Contact Us' }
     ];
 

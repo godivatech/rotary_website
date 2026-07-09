@@ -9,11 +9,12 @@ import Projects from './pages/Projects';
 import Contact from './pages/Contact';
 import Genealogy from './pages/Genealogy';
 import Members from './pages/Members';
+import Gallery from './pages/Gallery';
 import Preloader from './components/Preloader';
 
 const getPageFromHash = () => {
   const hash = window.location.hash.replace('#', '');
-  const validPages = ['home', 'about', 'genealogy', 'members', 'services', 'projects', 'contact'];
+  const validPages = ['home', 'about', 'genealogy', 'members', 'services', 'projects', 'gallery', 'contact'];
   return validPages.includes(hash) ? hash : 'home';
 };
 
@@ -246,6 +247,8 @@ export default function App() {
         return <Services />;
       case 'projects':
         return <Projects />;
+      case 'gallery':
+        return <Gallery />;
       case 'contact':
         return <Contact />;
       default:
