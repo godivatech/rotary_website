@@ -9,6 +9,7 @@ import Projects from './pages/Projects';
 import Contact from './pages/Contact';
 import Genealogy from './pages/Genealogy';
 import Members from './pages/Members';
+import Preloader from './components/Preloader';
 
 const getPageFromHash = () => {
   const hash = window.location.hash.replace('#', '');
@@ -20,6 +21,7 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState(getPageFromHash);
   const [transitionState, setTransitionState] = useState(''); // '', 'in', 'out'
   const [pendingPage, setPendingPage] = useState(null);
+  const [isAppLoaded, setIsAppLoaded] = useState(false);
 
   const navigateTo = (pageId) => {
     if (pageId === currentPage || transitionState !== '') return;
@@ -275,6 +277,9 @@ export default function App() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', position: 'relative', overflow: 'hidden' }}>
+      {/* Dynamic Wheel of Time Preloader */}
+      {!isAppLoaded && <Preloader onComplete={() => setIsAppLoaded(true)} />}
+
       {/* Custom Awwwards Cursor Elements */}
       <div className="custom-cursor" />
       <div className="custom-cursor-ring" />
