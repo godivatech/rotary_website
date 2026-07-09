@@ -68,33 +68,37 @@ export default function About() {
 
             {/* Journey Grid */}
             <section className="section section-bg-white" style={{ padding: '80px 0' }}>
-                <div className="container grid-2">
-                    <div className="reveal-up">
-                        <span className="badge">Our Legacy</span>
-                        <h2>Pioneering Rotary service in the Temple City since 1938</h2>
-                        <p style={{ marginBottom: '20px', color: 'var(--text-muted)' }}>Established on December 27, 1938, the Rotary Club of Madurai stands as the first and oldest Rotary club in the city and the second oldest in Tamil Nadu. Our early foundation was laid by British educator and industrialist Sir J.M. Doak as our charter President, with T.S. Krishna of the TVS Group serving as our charter Secretary, alongside leaders like P.T. Rajan.</p>
-                        <p style={{ marginBottom: '20px', color: 'var(--text-muted)' }}>Over the decades, our platform has had the privilege of hosting and working with distinguished figures including Nobel laureate Dr. C.V. Raman, space pioneer Dr. Vikram Sarabhai, former Indian President V.V. Giri, and legendary Chief Minister K. Kamaraj.</p>
-                        <p style={{ marginBottom: '32px', color: 'var(--text-muted)' }}>We are proud of our history of landmark contributions, such as installing essential borewells at the Government Rajaji Hospital to solve water shortage crises, and donating Braille printing machinery to the Indian Association for the Blind (IAB) to transform literacy rates for visually impaired students.</p>
+                <div className="container">
+                    <div className="grid-2" style={{ marginBottom: '48px', alignItems: 'center' }}>
+                        <div className="reveal-up">
+                            <span className="badge">Our Legacy</span>
+                            <h2>Pioneering Rotary service in the Temple City since 1938</h2>
+                            <p style={{ marginBottom: '20px', color: 'var(--text-muted)' }}>Established on December 27, 1938, the Rotary Club of Madurai stands as the first and oldest Rotary club in the city and the second oldest in Tamil Nadu. Our early foundation was laid by British educator and industrialist Sir J.M. Doak as our charter President, with T.S. Krishna of the TVS Group serving as our charter Secretary, alongside leaders like P.T. Rajan.</p>
+                            <p style={{ marginBottom: '20px', color: 'var(--text-muted)' }}>Over the decades, our platform has had the privilege of hosting and working with distinguished figures including Nobel laureate Dr. C.V. Raman, space pioneer Dr. Vikram Sarabhai, former Indian President V.V. Giri, and legendary Chief Minister K. Kamaraj.</p>
+                            <p style={{ marginBottom: '0', color: 'var(--text-muted)' }}>We are proud of our history of landmark contributions, such as installing essential borewells at the Government Rajaji Hospital to solve water shortage crises, and donating Braille printing machinery to the Indian Association for the Blind (IAB) to transform literacy rates for visually impaired students.</p>
+                        </div>
 
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
-                            <div style={{ backgroundColor: '#F8FAFC', padding: '24px', borderRadius: '12px', borderLeft: '4px solid var(--primary)' }}>
-                                <h4 style={{ marginBottom: '8px', fontSize: '1.1rem' }}>Our Mission</h4>
-                                <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>To provide service to others, promote integrity, and advance world understanding, goodwill, and peace through our fellowship of business and professional leaders.</p>
-                            </div>
-                            <div style={{ backgroundColor: '#F8FAFC', padding: '24px', borderRadius: '12px', borderLeft: '4px solid var(--primary)' }}>
-                                <h4 style={{ marginBottom: '8px', fontSize: '1.1rem' }}>Our Vision</h4>
-                                <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>To be the leading catalyst for sustainable development in Madurai, creating self-sufficient community structures in education, healthcare, and afforestation.</p>
+                        <div className="reveal-up" style={{ transitionDelay: '0.2s', width: '100%' }}>
+                            <div className="mouse-parallax" data-parallax-speed="-12">
+                                <img
+                                    src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?q=80&w=600"
+                                    alt="Rotary fellowship meeting and projects"
+                                    style={{ borderRadius: '20px', boxShadow: 'var(--shadow-lg)', width: '100%', display: 'block' }}
+                                />
                             </div>
                         </div>
                     </div>
 
-                    <div className="reveal-up" style={{ transitionDelay: '0.2s', width: '100%' }}>
-                        <div className="mouse-parallax" data-parallax-speed="-12">
-                            <img
-                                src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?q=80&w=600"
-                                alt="Rotary fellowship meeting and projects"
-                                style={{ borderRadius: '20px', boxShadow: 'var(--shadow-lg)', width: '100%', display: 'block' }}
-                            />
+                    <div className="reveal-up" style={{ transitionDelay: '0.3s' }}>
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '30px' }}>
+                            <div style={{ backgroundColor: '#F8FAFC', padding: '32px', borderRadius: '16px', borderLeft: '6px solid var(--primary)', boxShadow: '0 4px 20px rgba(0,0,0,0.02)' }}>
+                                <h4 style={{ marginBottom: '12px', fontSize: '1.2rem', color: 'var(--secondary)', fontWeight: '700' }}>Our Mission</h4>
+                                <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>To provide service to others, promote integrity, and advance world understanding, goodwill, and peace through our fellowship of business and professional leaders.</p>
+                            </div>
+                            <div style={{ backgroundColor: '#F8FAFC', padding: '32px', borderRadius: '16px', borderLeft: '6px solid var(--primary)', boxShadow: '0 4px 20px rgba(0,0,0,0.02)' }}>
+                                <h4 style={{ marginBottom: '12px', fontSize: '1.2rem', color: 'var(--secondary)', fontWeight: '700' }}>Our Vision</h4>
+                                <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>To be the leading catalyst for sustainable development in Madurai, creating self-sufficient community structures in education, healthcare, and afforestation.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
