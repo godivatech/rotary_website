@@ -57,17 +57,16 @@ export default function Preloader({ onComplete }) {
                 t2 = setTimeout(() => setMilestoneStep(2), 900);
                 t3 = setTimeout(() => setMilestoneStep(3), 1400);
                 t4 = setTimeout(() => setMilestoneStep(4), 2000);
-                t5 = setTimeout(() => setMilestoneStep(5), 2600);
                 
                 // Start collapsing the content (Chakra logo zooms in and fades)
                 t6 = setTimeout(() => {
                     setIsCollapsing(true);
-                }, 6000);
+                }, 5200);
  
                 // Wait for collapse transition to complete, then exit the full screen overlay
                 t7 = setTimeout(() => {
                     setIsExiting(true);
-                }, 7500); // 1500ms after isCollapsing (6000 + 1500 = 7500)
+                }, 6700); // 1500ms after isCollapsing (5200 + 1500 = 6700)
             }
         };
  
@@ -79,7 +78,6 @@ export default function Preloader({ onComplete }) {
             clearTimeout(t2);
             clearTimeout(t3);
             clearTimeout(t4);
-            clearTimeout(t5);
             clearTimeout(t6);
             clearTimeout(t7);
         };
@@ -230,8 +228,6 @@ export default function Preloader({ onComplete }) {
                         <span><strong className="milestone-highlight">Madurai's 1st</strong> Rotary Club</span>
                     </div>
                 </div>
-
-                {/* 4. Taglines */}
                 <div className="preloader-taglines" style={{
                     marginTop: '25px',
                     display: 'flex',
@@ -243,23 +239,11 @@ export default function Preloader({ onComplete }) {
                     transform: isCollapsing ? 'scale(0.9) translateY(-15px)' : 'none'
                 }}>
                     <div className={`preloader-tagline ${milestoneStep >= 4 ? 'show' : ''}`} style={{
-                        fontSize: '1.5rem',
-                        fontWeight: '800',
-                        color: 'var(--secondary)',
-                        opacity: milestoneStep >= 4 ? 1 : 0,
-                        transform: milestoneStep >= 4 ? 'translateY(0)' : 'translateY(15px)',
-                        transition: 'all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                        textAlign: 'center',
-                        lineHeight: '1.4'
-                    }}>
-                        85+ Years of Leadership, Fellowship & Service
-                    </div>
-                    <div className={`preloader-tagline ${milestoneStep >= 5 ? 'show' : ''}`} style={{
                         fontSize: '1.3rem',
                         fontWeight: '700',
                         color: 'var(--primary)',
-                        opacity: milestoneStep >= 5 ? 1 : 0,
-                        transform: milestoneStep >= 5 ? 'translateY(0)' : 'translateY(15px)',
+                        opacity: milestoneStep >= 4 ? 1 : 0,
+                        transform: milestoneStep >= 4 ? 'translateY(0)' : 'translateY(15px)',
                         transition: 'all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1)',
                         textAlign: 'center',
                         lineHeight: '1.4'
