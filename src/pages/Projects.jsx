@@ -5,52 +5,52 @@ export default function Projects() {
 
     const filters = [
         { id: 'all', label: 'All Projects' },
-        { id: 'forests', label: 'Miyawaki Forests' },
-        { id: 'healthcare', label: 'Healthcare Camps' },
-        { id: 'education', label: 'Education Support' },
-        { id: 'community', label: 'Community Development' }
+        { id: '2025-26', label: 'RY 2025 - 2026' },
+        { id: '2024-25', label: 'RY 2024 - 2025' },
+        { id: '2023-24', label: 'RY 2023 - 2024' },
+        { id: '2022-23', label: 'RY 2022 - 2023' }
     ];
 
     const projectList = [
         {
             title: "Kappalur SIDCO Miyawaki Forest",
-            category: "forests",
-            categoryLabel: "Miyawaki Forests",
+            category: "2025-26",
+            categoryLabel: "RY 2025 - 2026",
             desc: "Planted 50,000 native saplings in partnership with local corporate groups, creating a thriving green lung space in the industrial belt.",
             image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=600"
         },
         {
             title: "Government Rajaji Hospital Borewell",
-            category: "healthcare",
-            categoryLabel: "Healthcare Camps",
+            category: "2024-25",
+            categoryLabel: "RY 2024 - 2025",
             desc: "Funded and installed deep-bore water wells inside the Government Rajaji Hospital premises, ensuring reliable water supply for thousands of patients.",
             image: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?q=80&w=600"
         },
         {
             title: "Usilampatti Dialysis Equipment Support",
-            category: "healthcare",
-            categoryLabel: "Healthcare Camps",
+            category: "2024-25",
+            categoryLabel: "RY 2024 - 2025",
             desc: "Collaborated with SBI Mutual Fund to donate state-of-the-art dialysis machines to the Usilampatti Government Hospital, extending affordable kidney care.",
             image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=600"
         },
         {
             title: "IAB Braille Printing Press Project",
-            category: "education",
-            categoryLabel: "Education Support",
+            category: "2023-24",
+            categoryLabel: "RY 2023 - 2024",
             desc: "Donated heavy-duty Braille printing machinery to the Indian Association for the Blind (IAB), enabling rapid printing of textbooks for visually impaired students.",
             image: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=600"
         },
         {
             title: "Kadamba Ecological Seedling Drive",
-            category: "forests",
-            categoryLabel: "Miyawaki Forests",
+            category: "2025-26",
+            categoryLabel: "RY 2025 - 2026",
             desc: "Distributed thousands of Kadamba saplings (the historical tree of Madurai) to temples, parks, and colleges to promote regional ecological heritage.",
             image: "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=600"
         },
         {
             title: "Milch Cow Livelihood Support",
-            category: "community",
-            categoryLabel: "Community Development",
+            category: "2022-23",
+            categoryLabel: "RY 2022 - 2023",
             desc: "Sourced and gifted dairy milch cows to underprivileged rural women around Madurai, establishing a self-sustaining daily livelihood source.",
             image: "https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?q=80&w=600"
         }
