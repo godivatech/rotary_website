@@ -1504,9 +1504,10 @@ a:active,
     font-size: 0.8rem;
     color: var(--text-muted);
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     margin-bottom: 6px;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .grant-card-val {

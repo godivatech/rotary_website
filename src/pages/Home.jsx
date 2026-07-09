@@ -12,9 +12,9 @@ const AnimatedSentence = ({ text, boldWordCount, delayOffset = 0, isItalic = fal
                         key={wIdx} 
                         style={{ 
                             display: 'inline-block',
-                            marginRight: '6px',
-                            fontWeight: isBold ? '700' : 'normal',
-                            color: isItalic ? '#FFB800' : (isBold ? 'var(--secondary)' : 'inherit'),
+                            marginRight: '8px',
+                            fontWeight: (isBold || isItalic) ? '700' : 'normal',
+                            color: isItalic ? 'var(--primary)' : (isBold ? 'var(--secondary)' : 'inherit'),
                             fontStyle: isItalic ? 'italic' : 'normal'
                         }}
                     >
