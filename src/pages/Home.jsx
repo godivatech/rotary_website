@@ -14,22 +14,28 @@ export default function Home({ setCurrentPage }) {
 
     const heroSlides = [
         {
-            badge: "Service Above Self since 1938",
-            title: "Pioneering fellowship and community service",
-            desc: "As the first and oldest Rotary club in Madurai (District 3000), we have worked for over 89 years to establish dense Miyawaki forests, organize free healthcare clinics, and support local government school classrooms.",
-            image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?q=80&w=600"
+            badge: "SERVICE ABOVE SELF",
+            title: "Fellowship that inspires service",
+            desc: "Bringing leaders and communities together to create lasting change through fellowship, integrity, and service.",
+            image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?q=80&w=600",
+            primaryBtn: { text: "Join Our Club", isLink: true, action: "#join" },
+            secondaryBtn: { text: "Discover Our Story", isLink: false, action: "about" }
         },
         {
-            badge: "Miyawaki Afforestation Drive",
-            title: "Creating dense urban green lungs",
-            desc: "We have planted over 50,000 native saplings in Kappalur SIDCO and Vandiyur Lake areas to restore local ecology, improve groundwater levels, and create self-sustaining miniature forests.",
-            image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=600"
+            badge: "PEOPLE OF ACTION",
+            title: "Turning compassion into action",
+            desc: "From healthcare and education to the environment and community development, we take action where it matters most.",
+            image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=600",
+            primaryBtn: { text: "Our Projects", isLink: false, action: "projects" },
+            secondaryBtn: { text: "Get Involved", isLink: true, action: "#join" }
         },
         {
-            badge: "Healthcare and Diagnostics",
-            title: "Extending medical aid where it matters",
-            desc: "From donating advanced dialysis machinery to local government hospitals to organizing free pediatric screening camps, we provide vital healthcare access to underprivileged communities.",
-            image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=600"
+            badge: "DOING GOOD IN THE WORLD",
+            title: "Creating lasting change together",
+            desc: "United with Rotary clubs worldwide, we advance peace, fight disease, support education, and build stronger communities.",
+            image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=600",
+            primaryBtn: { text: "Explore Our Impact", isLink: false, action: "services" },
+            secondaryBtn: { text: "About Rotary", isLink: false, action: "about" }
         }
     ];
 
@@ -153,14 +159,36 @@ export default function Home({ setCurrentPage }) {
                                     <h1 style={{ color: 'white', marginTop: '16px' }}>{slide.title}</h1>
                                     <p style={{ color: 'rgba(255, 255, 255, 0.85)' }}>{slide.desc}</p>
                                     <div className="hero-buttons">
-                                        <a href="#join" className="btn btn-primary">Join Our Club</a>
-                                        <button 
-                                            onClick={() => { setCurrentPage('about'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} 
-                                            className="btn btn-outline"
-                                            style={{ borderColor: 'white', color: 'white' }}
-                                        >
-                                            Our History
-                                        </button>
+                                        {slide.primaryBtn.isLink ? (
+                                            <a href={slide.primaryBtn.action} className="btn btn-primary">
+                                                {slide.primaryBtn.text}
+                                            </a>
+                                        ) : (
+                                            <button 
+                                                onClick={() => { setCurrentPage(slide.primaryBtn.action); window.scrollTo({ top: 0, behavior: 'smooth' }); }} 
+                                                className="btn btn-primary"
+                                            >
+                                                {slide.primaryBtn.text}
+                                            </button>
+                                        )}
+
+                                        {slide.secondaryBtn.isLink ? (
+                                            <a 
+                                                href={slide.secondaryBtn.action} 
+                                                className="btn btn-outline"
+                                                style={{ borderColor: 'white', color: 'white' }}
+                                            >
+                                                {slide.secondaryBtn.text}
+                                            </a>
+                                        ) : (
+                                            <button 
+                                                onClick={() => { setCurrentPage(slide.secondaryBtn.action); window.scrollTo({ top: 0, behavior: 'smooth' }); }} 
+                                                className="btn btn-outline"
+                                                style={{ borderColor: 'white', color: 'white' }}
+                                            >
+                                                {slide.secondaryBtn.text}
+                                            </button>
+                                        )}
                                     </div>
                                 </div>
                             </div>
