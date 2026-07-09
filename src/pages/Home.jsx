@@ -1,6 +1,41 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Play, CheckCircle2, ShieldCheck, Heart, Sparkles } from 'lucide-react';
 
+const AnimatedSentence = ({ text, boldWordCount, delayOffset = 0, isItalic = false, trigger = false }) => {
+    const words = text.split(' ');
+    return (
+        <span style={{ display: 'inline-block' }}>
+            {words.map((word, wIdx) => {
+                const isBold = wIdx < boldWordCount;
+                return (
+                    <span 
+                        key={wIdx} 
+                        style={{ 
+                            display: 'inline-block',
+                            marginRight: '6px',
+                            fontWeight: isBold ? '700' : 'normal',
+                            color: isItalic ? '#FFB800' : (isBold ? 'var(--secondary)' : 'inherit'),
+                            fontStyle: isItalic ? 'italic' : 'normal'
+                        }}
+                    >
+                        {word.split('').map((char, cIdx) => (
+                            <span
+                                key={cIdx}
+                                className={`legacy-char ${trigger ? 'animate-char' : ''}`}
+                                style={{
+                                    animationDelay: `${delayOffset + (wIdx * 0.08) + (cIdx * 0.02)}s`
+                                }}
+                            >
+                                {char}
+                            </span>
+                        ))}
+                    </span>
+                );
+            })}
+        </span>
+    );
+};
+
 export default function Home({ setCurrentPage }) {
     const [membershipForm, setMembershipForm] = useState({
         name: '',
@@ -44,6 +79,24 @@ export default function Home({ setCurrentPage }) {
             setCurrentSlide(prev => (prev + 1) % heroSlides.length);
         }, 6000);
         return () => clearInterval(timer);
+    }, []);
+
+    const legacySectionRef = useRef(null);
+    const [legacyVisible, setLegacyVisible] = useState(false);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                setLegacyVisible(true);
+                observer.unobserve(entry.target);
+            }
+        }, { threshold: 0.1 });
+
+        if (legacySectionRef.current) {
+            observer.observe(legacySectionRef.current);
+        }
+
+        return () => observer.disconnect();
     }, []);
 
     const parallaxBgRef = useRef(null);
@@ -227,6 +280,128 @@ export default function Home({ setCurrentPage }) {
                 </div>
             </section>
 
+            {/* Quick Legacy & Impact Overview Section */}
+            <section className="legacy-quick-view">
+                <div className="container">
+                    <div className="legacy-grid">
+                        
+                        {/* Left Column: Historical Milestones */}
+                        <div className="legacy-left" ref={legacySectionRef}>
+                            <h3>Since 1938</h3>
+                            <h2>
+                                <AnimatedSentence 
+                                    text="A Legacy of Service" 
+                                    boldWordCount={4} 
+                                    delayOffset={0} 
+                                    trigger={legacyVisible}
+                                />
+                            </h2>
+                            <div className="legacy-points">
+                                <div className="legacy-point-item">
+                                    <span className="legacy-point-dot"></span>
+                                    <span className="legacy-point-text">
+                                        <AnimatedSentence 
+                                            text="India's 3rd Rotary Club" 
+                                            boldWordCount={2} 
+                                            delayOffset={0.2} 
+                                            trigger={legacyVisible}
+                                        />
+                                    </span>
+                                </div>
+                                <div className="legacy-point-item">
+                                    <span className="legacy-point-dot"></span>
+                                    <span className="legacy-point-text">
+                                        <AnimatedSentence 
+                                            text="Tamil Nadu's 2nd Rotary Club" 
+                                            boldWordCount={3} 
+                                            delayOffset={0.4} 
+                                            trigger={legacyVisible}
+                                        />
+                                    </span>
+                                </div>
+                                <div className="legacy-point-item">
+                                    <span className="legacy-point-dot"></span>
+                                    <span className="legacy-point-text">
+                                        <AnimatedSentence 
+                                            text="Madurai's 1st Rotary Club" 
+                                            boldWordCount={2} 
+                                            delayOffset={0.6} 
+                                            trigger={legacyVisible}
+                                        />
+                                    </span>
+                                </div>
+                                <div className="legacy-point-item">
+                                    <span className="legacy-point-dot"></span>
+                                    <span className="legacy-point-text">
+                                        <AnimatedSentence 
+                                            text="85+ Years of Leadership, Fellowship & Service" 
+                                            boldWordCount={2} 
+                                            delayOffset={0.8} 
+                                            trigger={legacyVisible}
+                                        />
+                                    </span>
+                                </div>
+                                <div className="legacy-point-item">
+                                    <span className="legacy-point-dot"></span>
+                                    <span className="legacy-point-text">
+                                        <AnimatedSentence 
+                                            text="A Role Model for Rotary Clubs Across Madurai" 
+                                            boldWordCount={3} 
+                                            delayOffset={1.0} 
+                                            trigger={legacyVisible}
+                                        />
+                                    </span>
+                                </div>
+                                <div className="legacy-point-item">
+                                    <span className="legacy-point-dot" style={{ backgroundColor: 'var(--primary)' }}></span>
+                                    <span className="legacy-point-text">
+                                        <AnimatedSentence 
+                                            text="The Legacy Continues..." 
+                                            boldWordCount={0} 
+                                            delayOffset={1.2} 
+                                            isItalic={true}
+                                            trigger={legacyVisible}
+                                        />
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Right Column: Foundation & Grant Metrics */}
+                        <div className="legacy-right">
+                            <div className="legacy-right-card">
+                                <div className="grant-main-stat">
+                                    <div className="grant-main-label">All-Time Giving to The Rotary Foundation</div>
+                                    <div className="grant-main-val">$375,284 USD</div>
+                                </div>
+
+                                <div className="grant-grid">
+                                    <div className="grant-card-item">
+                                        <div className="grant-card-title">Global Grants</div>
+                                        <div className="grant-card-val">$915,237 USD</div>
+                                        <div className="grant-card-sub">11 Projects Completed</div>
+                                    </div>
+                                    <div className="grant-card-item">
+                                        <div className="grant-card-title">Matching Grants</div>
+                                        <div className="grant-card-val">$550,000 USD</div>
+                                        <div className="grant-card-sub">22 Projects Completed</div>
+                                    </div>
+                                </div>
+
+                                <div className="donors-section">
+                                    <div className="donors-title">Major Donors</div>
+                                    <div className="donors-list">
+                                        <span className="donor-badge">Level 3: 1 Member</span>
+                                        <span className="donor-badge">Level 2: 1 Member</span>
+                                        <span className="donor-badge">Level 1: 11 Members</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
 
             {/* Intro / Quote Section */}
             <section className="intro section-padding section-bg-light" style={{ position: 'relative', overflow: 'hidden' }}>
