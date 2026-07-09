@@ -133,8 +133,7 @@ export default function Members() {
         { term: "2023 - 2024", name: "J.M. Saravanan", img: "/images/RCM president/2023-2024 J.M.Saravanan.jpg" },
         { term: "2024 - 2025", name: "B.R. Baskar", img: "/images/RCM president/2024-2025 B.R.Baskar.jpg" },
         { term: "2024 - 2025", name: "S.K. Rajaprabhu", img: "/images/RCM president/2024-2025 S.K.Rajaprabhu.jpeg" },
-        { term: "2025 - 2026", name: "M. Balasubramaniyam", img: "/images/RCM president/2025-2026 M.Balasubramaniyam.jpeg" },
-        { term: "2026 - 2027", name: "Mukesh J Jain", img: "/images/RCM president/2026-2027 Mukesh J Jain.jpeg" }
+        { term: "2025 - 2026", name: "M. Balasubramaniyam", img: "/images/RCM president/2025-2026 M.Balasubramaniyam.jpeg" }
     ];
 
     const jubileePhotos = [
