@@ -21,57 +21,57 @@ export default function Preloader({ onComplete }) {
         let startTime = null;
         let animationFrameId;
         let t1, t2, t3, t4, t5, t6, t7;
- 
+
         const animate = (timestamp) => {
             if (!startTime) startTime = timestamp;
             const elapsed = timestamp - startTime;
-            
+
             if (elapsed < startDelay) {
                 // Keep showing 1938 during initial pause
                 setYear(startYear);
                 animationFrameId = requestAnimationFrame(animate);
                 return;
             }
-            
+
             const progress = elapsed - startDelay;
             const percentage = Math.min(progress / duration, 1);
-            
+
             // easeInOutQuad formula: slower start and end to make the years readable
-            const easedPercentage = percentage < 0.5 
-                ? 2 * percentage * percentage 
+            const easedPercentage = percentage < 0.5
+                ? 2 * percentage * percentage
                 : 1 - Math.pow(-2 * percentage + 2, 2) / 2;
-                
+
             const currentYear = Math.floor(startYear + (endYear - startYear) * easedPercentage);
-            
+
             setYear(currentYear);
- 
+
             if (progress < duration) {
                 animationFrameId = requestAnimationFrame(animate);
             } else {
                 setYear("1938 - 2026");
-                setSubtitle("88 Years of Service & Fellowship");
+                setSubtitle("89 Years of Service & Fellowship");
                 setShowSince(true);
-                
+
                 // Stagger milestone reveals after counting finishes
                 t1 = setTimeout(() => setMilestoneStep(1), 400);
                 t2 = setTimeout(() => setMilestoneStep(2), 900);
                 t3 = setTimeout(() => setMilestoneStep(3), 1400);
                 t4 = setTimeout(() => setMilestoneStep(4), 2000);
-                
+
                 // Start collapsing the content (Chakra logo zooms in and fades)
                 t6 = setTimeout(() => {
                     setIsCollapsing(true);
                 }, 5200);
- 
+
                 // Wait for collapse transition to complete, then exit the full screen overlay
                 t7 = setTimeout(() => {
                     setIsExiting(true);
                 }, 6700); // 1500ms after isCollapsing (5200 + 1500 = 6700)
             }
         };
- 
+
         animationFrameId = requestAnimationFrame(animate);
- 
+
         return () => {
             cancelAnimationFrame(animationFrameId);
             clearTimeout(t1);
@@ -88,7 +88,7 @@ export default function Preloader({ onComplete }) {
         const canvas = canvasRef.current;
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
-        
+
         let animationId;
         let width = canvas.width = window.innerWidth;
         let height = canvas.height = window.innerHeight;
@@ -122,7 +122,7 @@ export default function Preloader({ onComplete }) {
 
         const draw = () => {
             ctx.clearRect(0, 0, width, height);
-            
+
             // Render particles
             particles.forEach(p => {
                 p.x += p.vx;
@@ -144,7 +144,7 @@ export default function Preloader({ onComplete }) {
                 ctx.shadowColor = p.color;
                 ctx.fill();
             });
-            
+
             ctx.shadowBlur = 0; // reset
             animationId = requestAnimationFrame(draw);
         };
@@ -169,42 +169,42 @@ export default function Preloader({ onComplete }) {
     };
 
     return (
-        <div 
+        <div
             className={`preloader-overlay ${isExiting ? 'exit-active' : ''}`}
             onTransitionEnd={handleTransitionEnd}
         >
-            <canvas 
-                ref={canvasRef} 
-                style={{ 
-                    position: 'absolute', 
-                    top: 0, 
-                    left: 0, 
-                    width: '100%', 
-                    height: '100%', 
-                    pointerEvents: 'none', 
-                    zIndex: 0 
-                }} 
+            <canvas
+                ref={canvasRef}
+                style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    pointerEvents: 'none',
+                    zIndex: 0
+                }}
             />
-            
+
             <div className={`preloader-content ${isCollapsing ? 'collapse-active' : ''}`} style={{ position: 'relative', zIndex: 1 }}>
                 <div className="preloader-chakra-wrapper">
-                    <img 
-                        src="/images/Logo%20chakra.png" 
-                        alt="Rotary Chakra Wheel" 
+                    <img
+                        src="/images/Logo%20chakra.png"
+                        alt="Rotary Chakra Wheel"
                         className="preloader-chakra"
                     />
                 </div>
-                
+
                 <div className="preloader-year">
                     {year}
                 </div>
-                
+
                 <div className={`preloader-subtitle ${showSince ? 'show' : ''}`} style={{ marginBottom: '25px' }}>
                     {subtitle.split('').map((char, index) => (
-                        <span 
-                            key={index} 
-                            className="preloader-char" 
-                            style={{ 
+                        <span
+                            key={index}
+                            className="preloader-char"
+                            style={{
                                 animationDelay: `${index * 0.03}s`,
                                 marginRight: char === ' ' ? '8px' : '0px'
                             }}
