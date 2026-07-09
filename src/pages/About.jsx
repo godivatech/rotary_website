@@ -460,25 +460,25 @@ export default function About() {
                 <div className="container">
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '40px', textAlign: 'center' }}>
                         <div className="reveal-up" style={{ transitionDelay: '0s' }}>
-                            <h3 style={{ fontSize: '3.6rem', color: 'var(--primary)', fontWeight: '800', marginBottom: '6px' }}>
+                            <h3 style={{ fontSize: '3.6rem', color: '#FFB800', fontWeight: '800', marginBottom: '6px' }}>
                                 <Counter target={1250} suffix="+" />
                             </h3>
                             <p style={{ color: 'rgba(255,255,255,0.7)', fontWeight: '600' }}>Projects Completed</p>
                         </div>
                         <div className="reveal-up" style={{ transitionDelay: '0.1s' }}>
-                            <h3 style={{ fontSize: '3.6rem', color: 'var(--primary)', fontWeight: '800', marginBottom: '6px' }}>
+                            <h3 style={{ fontSize: '3.6rem', color: '#FFB800', fontWeight: '800', marginBottom: '6px' }}>
                                 <Counter target={50000} suffix="+" />
                             </h3>
                             <p style={{ color: 'rgba(255,255,255,0.7)', fontWeight: '600' }}>Trees Planted</p>
                         </div>
                         <div className="reveal-up" style={{ transitionDelay: '0.2s' }}>
-                            <h3 style={{ fontSize: '3.6rem', color: 'var(--primary)', fontWeight: '800', marginBottom: '6px' }}>
+                            <h3 style={{ fontSize: '3.6rem', color: '#FFB800', fontWeight: '800', marginBottom: '6px' }}>
                                 <Counter target={85} suffix="+" />
                             </h3>
                             <p style={{ color: 'rgba(255,255,255,0.7)', fontWeight: '600' }}>Active Members</p>
                         </div>
                         <div className="reveal-up" style={{ transitionDelay: '0.3s' }}>
-                            <h3 style={{ fontSize: '3.6rem', color: 'var(--primary)', fontWeight: '800', marginBottom: '6px' }}>
+                            <h3 style={{ fontSize: '3.6rem', color: '#FFB800', fontWeight: '800', marginBottom: '6px' }}>
                                 <Counter target={89} suffix="+" />
                             </h3>
                             <p style={{ color: 'rgba(255,255,255,0.7)', fontWeight: '600' }}>Years of Legacy</p>
@@ -492,7 +492,7 @@ export default function About() {
                 <div className="container">
                     <div className="reveal-up" style={{ textAlign: 'center', marginBottom: '50px' }}>
                         <span className="badge">Club Governance</span>
-                        <h2>Meet Our <span className="shiny-text">Office Bearers</span></h2>
+                        <h2>Meet Our <span className="shiny-text">Board Members</span></h2>
                         <p style={{ maxWidth: '600px', margin: '15px auto 0 auto', color: 'var(--text-muted)' }}>
                             The leadership team steering our fellowship and community development initiatives for the current Rotary year.
                         </p>
