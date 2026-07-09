@@ -229,8 +229,19 @@ export default function Home({ setCurrentPage }) {
 
 
             {/* Intro / Quote Section */}
-            <section className="intro section-padding section-bg-light">
-                <div className="container intro-grid">
+            <section className="intro section-padding section-bg-light" style={{ position: 'relative', overflow: 'hidden' }}>
+                <img 
+                    src="/images/Logo%20chakra.png" 
+                    alt="Chakra watermark" 
+                    className="chakra-watermark" 
+                    style={{ 
+                        right: '-150px', 
+                        bottom: '-150px', 
+                        width: '450px', 
+                        height: '450px'
+                    }} 
+                />
+                <div className="container intro-grid" style={{ position: 'relative', zIndex: 1 }}>
                     <div className="intro-image reveal-scale mouse-parallax" data-parallax-speed="10">
                         <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=600" alt="Children supported by Rotary education project" style={{ borderRadius: '20px' }} />
                     </div>
@@ -404,8 +415,19 @@ export default function Home({ setCurrentPage }) {
             </section>
 
             {/* Membership Inquiry Section */}
-            <section id="join" className="section-padding bg-light">
-                <div className="container donate-section-grid">
+            <section id="join" className="section-padding bg-light" style={{ position: 'relative', overflow: 'hidden' }}>
+                <img 
+                    src="/images/Logo%20chakra.png" 
+                    alt="Chakra watermark" 
+                    className="chakra-watermark" 
+                    style={{ 
+                        left: '-150px', 
+                        bottom: '-150px', 
+                        width: '500px', 
+                        height: '500px'
+                    }} 
+                />
+                <div className="container donate-section-grid" style={{ position: 'relative', zIndex: 1 }}>
                     <div className="donate-info reveal-up">
                         <span className="badge">Become a Rotarian</span>
                         <h2>Join the global network of <span className="shiny-text">community leaders</span></h2>

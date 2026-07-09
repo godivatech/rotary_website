@@ -67,8 +67,19 @@ export default function About() {
             </section>
 
             {/* Journey Grid */}
-            <section className="section section-bg-white" style={{ padding: '80px 0' }}>
-                <div className="container">
+            <section className="section section-bg-white" style={{ padding: '80px 0', position: 'relative', overflow: 'hidden' }}>
+                <img 
+                    src="/images/Logo%20chakra.png" 
+                    alt="Chakra watermark" 
+                    className="chakra-watermark" 
+                    style={{ 
+                        left: '-150px', 
+                        top: '10%', 
+                        width: '500px', 
+                        height: '500px' 
+                    }} 
+                />
+                <div className="container" style={{ position: 'relative', zIndex: 1 }}>
                     <div className="grid-2" style={{ marginBottom: '48px', alignItems: 'center' }}>
                         <div className="reveal-up">
                             <span className="badge">Our Legacy</span>
@@ -229,8 +240,21 @@ export default function About() {
                         minHeight: '400px',
                         display: 'grid',
                         gridTemplateColumns: '1fr',
-                        gap: '40px'
+                        gap: '40px',
+                        position: 'relative',
+                        overflow: 'hidden'
                     }}>
+                        <img 
+                            src="/images/Logo%20chakra.png" 
+                            alt="Chakra watermark" 
+                            className="chakra-watermark" 
+                            style={{ 
+                                right: '-120px', 
+                                bottom: '-120px', 
+                                width: '450px', 
+                                height: '450px' 
+                            }} 
+                        />
                         {activeTab === 'birth' && (
                             <div className="grid-2 animate-fade-in" style={{ alignItems: 'start', gap: '40px' }}>
                                 <div>
