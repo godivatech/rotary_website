@@ -72,7 +72,9 @@ export default function Contact() {
                                 </div>
                                 <div>
                                     <h4 style={{ fontSize: '1.1rem', marginBottom: '4px' }}>Email Address</h4>
-                                    <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>rotaryclubofmadurai1938@gmail.com</p>
+                                    <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>
+                                        <a href="mailto:rotaryclubofmaduraiofficial@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>rotaryclubofmaduraiofficial@gmail.com</a>
+                                    </p>
                                 </div>
                             </div>
 

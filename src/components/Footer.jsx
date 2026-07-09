@@ -46,7 +46,7 @@ export default function Footer({ setCurrentPage }) {
                         Upholding the motto "Service Above Self" since 1938. The first and oldest Rotary club in Madurai, dedicated to sustainable community development.
                     </p>
                     <div style={{ fontSize: '0.9rem' }}>
-                        <p>Email: <span style={{ color: 'white' }}>rotaryclubofmadurai1938@gmail.com</span></p>
+                        <p>Email: <span style={{ color: 'white' }}><a href="mailto:rotaryclubofmaduraiofficial@gmail.com" style={{ color: 'white', textDecoration: 'none' }} onMouseEnter={(e) => e.target.style.textDecoration = 'underline'} onMouseLeave={(e) => e.target.style.textDecoration = 'none'}>rotaryclubofmaduraiofficial@gmail.com</a></span></p>
                         <p>Phone: <span style={{ color: 'white' }}>+91 95853 99000</span></p>
                     </div>
                 </div>
@@ -132,7 +132,7 @@ export default function Footer({ setCurrentPage }) {
                 gap: '16px',
                 fontSize: '0.9rem'
             }}>
-                <p>&copy; {new Date().getFullYear()} Rotary Club of Madurai. All rights reserved. | <strong>Designed and Developed by <a href="https://godivatech.com" target="_blank" rel="noopener noreferrer" style={{ color: 'white', textDecoration: 'none' }}>godivatech</a></strong></p>
+                <p>&copy; {new Date().getFullYear()} Rotary Club of Madurai. All rights reserved. | <strong>Designed and Developed by <a href="https://godivatech.com" target="_blank" rel="noopener noreferrer" style={{ color: '#FFB800', fontWeight: '800', textDecoration: 'none', transition: 'all 0.2s', borderBottom: '1px solid rgba(255,184,0,0.3)', paddingBottom: '2px' }} onMouseEnter={(e) => { e.target.style.color = '#FFFFFF'; e.target.style.borderBottomColor = '#FFFFFF'; }} onMouseLeave={(e) => { e.target.style.color = '#FFB800'; e.target.style.borderBottomColor = 'rgba(255,184,0,0.3)'; }}>godivatech</a></strong></p>
                 <div style={{ display: 'flex', gap: '20px' }}>
                     <a href="#privacy" style={{ color: 'rgba(255,255,255,0.5)' }}>Privacy Policy</a>
                     <a href="#terms" style={{ color: 'rgba(255,255,255,0.5)' }}>Terms of Service</a>

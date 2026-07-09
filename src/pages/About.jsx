@@ -92,12 +92,12 @@ export default function About() {
                     <div className="reveal-up" style={{ transitionDelay: '0.3s' }}>
                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '30px' }}>
                             <div style={{ backgroundColor: '#F8FAFC', padding: '32px', borderRadius: '16px', borderLeft: '6px solid var(--primary)', boxShadow: '0 4px 20px rgba(0,0,0,0.02)' }}>
-                                <h4 style={{ marginBottom: '12px', fontSize: '1.2rem', color: 'var(--secondary)', fontWeight: '700' }}>Our Mission</h4>
-                                <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>To provide service to others, promote integrity, and advance world understanding, goodwill, and peace through our fellowship of business and professional leaders.</p>
+                                <h4 style={{ marginBottom: '12px', fontSize: '1.25rem', color: 'var(--secondary)', fontWeight: '700' }}>Our Mission</h4>
+                                <p style={{ fontSize: '1.05rem', color: 'var(--text-muted)', lineHeight: '1.65' }}>To provide service to others, promote integrity, and advance world understanding, goodwill, and peace through our fellowship of business and professional leaders.</p>
                             </div>
                             <div style={{ backgroundColor: '#F8FAFC', padding: '32px', borderRadius: '16px', borderLeft: '6px solid var(--primary)', boxShadow: '0 4px 20px rgba(0,0,0,0.02)' }}>
-                                <h4 style={{ marginBottom: '12px', fontSize: '1.2rem', color: 'var(--secondary)', fontWeight: '700' }}>Our Vision</h4>
-                                <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>To be the leading catalyst for sustainable development in Madurai, creating self-sufficient community structures in education, healthcare, and afforestation.</p>
+                                <h4 style={{ marginBottom: '12px', fontSize: '1.25rem', color: 'var(--secondary)', fontWeight: '700' }}>Our Vision</h4>
+                                <p style={{ fontSize: '1.05rem', color: 'var(--text-muted)', lineHeight: '1.65' }}>To be the leading catalyst for sustainable development in Madurai, creating self-sufficient community structures in education, healthcare, and afforestation.</p>
                             </div>
                         </div>
                     </div>

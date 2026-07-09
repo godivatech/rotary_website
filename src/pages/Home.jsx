@@ -515,8 +515,8 @@ export default function Home({ setCurrentPage }) {
                             <div style={{ fontWeight: '800', fontSize: '1.6rem', marginBottom: '8px', fontFamily: 'var(--font-heading)' }}>
                                 <span style={{ color: '#4285F4' }}>G</span><span style={{ color: '#EA4335' }}>o</span><span style={{ color: '#FBBC05' }}>o</span><span style={{ color: '#4285F4' }}>g</span><span style={{ color: '#34A853' }}>l</span><span style={{ color: '#EA4335' }}>e</span>
                             </div>
-                            <div className="stars">★★★★★</div>
-                            <div className="badge-rating" style={{ fontSize: '2.5rem', fontWeight: 800 }}>5.0/5</div>
+                            <div className="stars">★★★★☆</div>
+                            <div className="badge-rating" style={{ fontSize: '2.5rem', fontWeight: 800 }}>4.1/5</div>
                             <div className="badge-desc">Trusted by local partners, institutions, and the Madurai community for integrity and transparency.</div>
                         </div>
                     </div>
