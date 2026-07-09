@@ -874,13 +874,78 @@ export default function Home({ setCurrentPage }) {
             <section id="faqs" className="section-padding">
                 <div className="container faq-section-grid">
                     <div className="review-badge-container reveal-scale">
-                        <div className="google-review-badge">
-                            <div style={{ fontWeight: '800', fontSize: '1.6rem', marginBottom: '8px', fontFamily: 'var(--font-heading)' }}>
-                                <span style={{ color: '#4285F4' }}>G</span><span style={{ color: '#EA4335' }}>o</span><span style={{ color: '#FBBC05' }}>o</span><span style={{ color: '#4285F4' }}>g</span><span style={{ color: '#34A853' }}>l</span><span style={{ color: '#EA4335' }}>e</span>
+                        <div className="club-prestigious-card" style={{
+                            background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)',
+                            color: 'white',
+                            borderRadius: '24px',
+                            padding: '35px 30px',
+                            position: 'relative',
+                            overflow: 'hidden',
+                            border: '1.5px solid rgba(255, 255, 255, 0.08)',
+                            boxShadow: 'var(--shadow-lg)'
+                        }}>
+                            {/* Decorative Watermark */}
+                            <img 
+                                src="/images/Logo%20chakra.png" 
+                                alt="Watermark" 
+                                style={{
+                                    position: 'absolute',
+                                    right: '-60px',
+                                    bottom: '-60px',
+                                    width: '200px',
+                                    height: '200px',
+                                    opacity: 0.05,
+                                    pointerEvents: 'none'
+                                }}
+                            />
+                            
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '25px' }}>
+                                <img 
+                                    src="/images/Logo%20chakra.png" 
+                                    alt="Rotary Wheel" 
+                                    style={{ width: '45px', height: '45px', objectFit: 'contain', filter: 'brightness(0) invert(1) sepia(100%) saturate(1000%) hue-rotate(30deg)' }} 
+                                />
+                                <div>
+                                    <div style={{ fontSize: '0.75rem', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '1.5px', color: '#FBBF24' }}>
+                                        Rotary International
+                                    </div>
+                                    <div style={{ fontSize: '1.1rem', fontWeight: '800', fontFamily: 'var(--font-heading)' }}>
+                                        Club ID: 4880
+                                    </div>
+                                </div>
                             </div>
-                            <div className="stars">★★★★☆</div>
-                            <div className="badge-rating" style={{ fontSize: '2.5rem', fontWeight: 800 }}>4.1/5</div>
-                            <div className="badge-desc">Trusted by local partners, institutions, and the Madurai community for integrity and transparency.</div>
+                            
+                            <div style={{
+                                fontStyle: 'italic',
+                                fontSize: '1.05rem',
+                                lineHeight: '1.6',
+                                color: '#E2E8F0',
+                                marginBottom: '25px',
+                                position: 'relative',
+                                paddingLeft: '15px',
+                                borderLeft: '3px solid #FBBF24',
+                                fontFamily: 'Georgia, serif'
+                            }}>
+                                "Whatever Rotary may mean to us, to the world it will be known by the results it achieves."
+                                <span style={{ display: 'block', fontSize: '0.8rem', fontStyle: 'normal', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px', marginTop: '10px', color: '#94A3B8' }}>
+                                    — Paul P. Harris, Founder
+                                </span>
+                            </div>
+
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', borderTop: '1px solid rgba(255, 255, 255, 0.1)', paddingTop: '20px' }}>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.88rem' }}>
+                                    <span style={{ color: '#94A3B8' }}>Chartered</span>
+                                    <strong style={{ color: '#F8FAFC' }}>December 27, 1938</strong>
+                                </div>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.88rem' }}>
+                                    <span style={{ color: '#94A3B8' }}>RI District</span>
+                                    <strong style={{ color: '#F8FAFC' }}>District 3000</strong>
+                                </div>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.88rem' }}>
+                                    <span style={{ color: '#94A3B8' }}>Motto</span>
+                                    <strong style={{ color: '#FBBF24' }}>Service Above Self</strong>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
