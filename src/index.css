@@ -858,13 +858,15 @@ a:active,
     transform: translate(-50%, -50%);
     pointer-events: none;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 24px;
 }
 
 .transition-wheel {
-    width: 130px;
-    height: 130px;
+    width: 180px;
+    height: 180px;
     object-fit: contain;
     filter: brightness(0) invert(1); /* white/silver chakra wheel */
 }
@@ -895,6 +897,47 @@ a:active,
     }
     100% {
         transform: rotate(720deg) scale(0);
+        opacity: 0;
+    }
+}
+
+.transition-text {
+    font-size: 1.48rem;
+    font-weight: 800;
+    color: #E2B659; /* premium gold */
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    white-space: nowrap;
+    text-align: center;
+    font-family: 'Outfit', sans-serif;
+}
+
+.transition-overlay.slide-in .transition-text {
+    animation: transition-text-enter 0.7s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+.transition-overlay.slide-out .transition-text {
+    animation: transition-text-exit 0.7s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+@keyframes transition-text-enter {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes transition-text-exit {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-20px);
         opacity: 0;
     }
 }

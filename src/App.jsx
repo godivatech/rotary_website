@@ -275,6 +275,9 @@ export default function App() {
               alt="Transition Wheel" 
               className="transition-wheel" 
             />
+            <div className="transition-text">
+              Rotary Club of Madurai
+            </div>
           </div>
         )}
       </div>
