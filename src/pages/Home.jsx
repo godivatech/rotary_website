@@ -447,6 +447,26 @@ export default function Home({ setCurrentPage }) {
                                         <div className="grant-card-val">$550,000 USD</div>
                                         <div className="grant-card-sub">22 Projects Completed</div>
                                     </div>
+                                    <div className="grant-card-item">
+                                        <div className="grant-card-header">
+                                            <div className="grant-icon-wrapper sub-icon">
+                                                <CheckCircle2 size={16} />
+                                            </div>
+                                            <div className="grant-card-title">Club Projects</div>
+                                        </div>
+                                        <div className="grant-card-val">4,500+</div>
+                                        <div className="grant-card-sub">Projects Completed</div>
+                                    </div>
+                                    <div className="grant-card-item">
+                                        <div className="grant-card-header">
+                                            <div className="grant-icon-wrapper sub-icon">
+                                                <Award size={16} />
+                                            </div>
+                                            <div className="grant-card-title">District Projects</div>
+                                        </div>
+                                        <div className="grant-card-val">3,000+</div>
+                                        <div className="grant-card-sub">Projects Completed</div>
+                                    </div>
                                 </div>
 
                                 <div className="donors-section">
