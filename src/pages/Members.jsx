@@ -643,6 +643,22 @@ export default function Members() {
                                             Current President
                                         </span>
                                     )}
+                                    {pres.name === "Karthik" && (
+                                        <span style={{
+                                            fontSize: '0.72rem',
+                                            fontWeight: '800',
+                                            color: '#3B82F6',
+                                            backgroundColor: '#DBEAFE',
+                                            padding: '2px 8px',
+                                            borderRadius: '12px',
+                                            marginTop: '6px',
+                                            display: 'inline-block',
+                                            textTransform: 'uppercase',
+                                            letterSpacing: '0.5px'
+                                        }}>
+                                            Upcoming President
+                                        </span>
+                                    )}
                                 </div>
                             ))}
                         </div>
