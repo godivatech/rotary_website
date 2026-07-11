@@ -199,7 +199,7 @@ export default function Preloader({ onComplete }) {
                     {year}
                 </div>
 
-                <div className={`preloader-subtitle ${showSince ? 'show' : ''}`} style={{ marginBottom: '25px' }}>
+                <div className={`preloader-subtitle ${showSince ? 'show' : ''}`} style={{ marginBottom: '16px' }}>
                     {subtitle.split('').map((char, index) => (
                         <span
                             key={index}
@@ -229,7 +229,7 @@ export default function Preloader({ onComplete }) {
                     </div>
                 </div>
                 <div className="preloader-taglines" style={{
-                    marginTop: '25px',
+                    marginTop: '16px',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',

@@ -1357,13 +1357,13 @@ a:active,
 
 /* --- Preloader Milestones --- */
 .preloader-milestones {
-    margin-top: 25px;
+    margin-top: 16px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 24px;
+    gap: 20px;
     width: 100%;
     transition: transform 0.6s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.5s ease;
 }
@@ -2042,5 +2042,33 @@ a:active,
     }
     .floating-meeting-banner.slide-in {
         transform: translateY(0);
+    }
+}
+
+/* Height-based Media Query for LED Walls & Short Viewports */
+@media (max-height: 780px) {
+    .preloader-chakra {
+        width: 190px !important;
+        height: 190px !important;
+        margin-bottom: 12px !important;
+    }
+    .preloader-year {
+        font-size: 2.8rem !important;
+        height: 2.8rem !important;
+    }
+    .preloader-subtitle {
+        margin-top: 10px !important;
+        margin-bottom: 12px !important;
+        font-size: 1rem !important;
+    }
+    .preloader-milestones {
+        margin-top: 12px !important;
+        gap: 12px !important;
+    }
+    .preloader-milestone {
+        font-size: 1rem !important;
+    }
+    .preloader-taglines {
+        margin-top: 12px !important;
     }
 }
