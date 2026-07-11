@@ -162,13 +162,14 @@ export default function Members() {
         { term: "2017 - 2018", name: "T.K. Sivakumar", img: "/images/RCM president/2017-2018 T.K.Sivakumar.JPG" },
         { term: "2018 - 2019", name: "J.S. Hariram", img: "/images/RCM president/2018-2019 J.S. Hariram.jpg" },
         { term: "2019 - 2020", name: "Rajan Chedda", img: "/images/RCM president/2019-2020 -Rajan Chedda.jpg" },
-        { term: "2021 - 2022", name: "A.F. Antony Premkumar", img: "/images/RCM president/2021-2022 A.F.Antony Premkumar.jpg" },
-        { term: "2022 - 2023", name: "K.K. Chandran", img: "/images/RCM president/2022-2023 K.K.Chandran.jpg" },
-        { term: "2023 - 2024", name: "J.M. Saravanan", img: "/images/RCM president/2023-2024 J.M.Saravanan.jpg" },
-        { term: "2024 - 2025", name: "B.R. Baskar", img: "/images/RCM president/2024-2025 B.R.Baskar.jpg" },
+        { term: "2020 - 2021", name: "A.F. Antony Premkumar", img: "/images/RCM president/2021-2022 A.F.Antony Premkumar.jpg" },
+        { term: "2021 - 2022", name: "K.K. Chandran", img: "/images/RCM president/2022-2023 K.K.Chandran.jpg" },
+        { term: "2022 - 2023", name: "J.M. Saravanan", img: "/images/RCM president/2023-2024 J.M.Saravanan.jpg" },
+        { term: "2023 - 2024", name: "B.R. Baskar", img: "/images/RCM president/2024-2025 B.R.Baskar.jpg" },
         { term: "2024 - 2025", name: "S.K. Rajaprabhu", img: "/images/RCM president/2024-2025 S.K.Rajaprabhu.jpeg" },
         { term: "2025 - 2026", name: "M. Balasubramaniyam", img: "/images/RCM president/2025-2026 M.Balasubramaniyam.jpeg" },
-        { term: "2026 - 2027", name: "Mukesh Jain", img: "/images/Board memebers/Mukesh Jain.jpeg" }
+        { term: "2026 - 2027", name: "Mukesh Jain", img: "/images/Board memebers/Mukesh Jain.jpeg" },
+        { term: "2027 - 2028", name: "Karthik", img: "/images/Board memebers/Karthik.jpeg" }
     ];
 
     const jubileePhotos = [
