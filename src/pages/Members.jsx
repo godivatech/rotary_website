@@ -48,7 +48,8 @@ export default function Members() {
         { name: "Rtn. C. Sasikumar", business: "Rogul tours and travels", img: "/images/current memebers/c.sasikumar.jpg" },
         { name: "Rtn. S. Ramkumar", business: "S.R. Lakshmi and Company Madurai", img: "/images/current memebers/S.Ramkumar.jpg" },
         { name: "Rtn. Krishnan Sethuraman", business: "Sastha Soil Testing Services Building Materials Testing services", img: "/images/current memebers/Krishnan Sethuraman.jpg" },
-        { name: "Rtn. Ravichandran V A", business: "Ravichandran & Co", img: "/images/current memebers/Ravichandran V A.jpg" }
+        { name: "Rtn. Ravichandran V A", business: "Ravichandran & Co", img: "/images/current memebers/Ravichandran V A.jpg" },
+        { name: "Rtn. Kumar Gunasekaran", business: "Newton Power Control (UPS, Inverter, Solar power plants, solar streetlights, solar waterheaters, Solar Agri pumps, RO System)", img: "/images/current memebers/Kumar gunasekaran.jpeg" }
     ];
 
     const filteredCurrentMembers = useMemo(() => {
