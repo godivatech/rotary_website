@@ -8,9 +8,9 @@ const AnimatedSentence = ({ text, boldWordCount, delayOffset = 0, isItalic = fal
             {words.map((word, wIdx) => {
                 const isBold = wIdx < boldWordCount;
                 return (
-                    <span 
-                        key={wIdx} 
-                        style={{ 
+                    <span
+                        key={wIdx}
+                        style={{
                             display: 'inline-block',
                             marginRight: '8px',
                             fontWeight: isItalic ? '900' : (isBold ? '800' : 'normal'),
@@ -76,7 +76,7 @@ const sponsoredClubs = [
 const currentBoard = [
     { name: "Rtn. Mukesh Jain", designation: "Club President", img: "/images/Board memebers/Mukesh Jain.jpeg" },
     { name: "Rtn. Karthik", designation: "Club Secretary", img: "/images/Board memebers/Karthik.jpeg" },
-    { name: "Rtn. Raja Prabu", designation: "Club Treasurer", img: "/images/Board memebers/Raja Prabu.jpeg" }
+    { name: "Rtn. Raja Prabhu", designation: "Club Treasurer", img: "/images/Board memebers/Raja Prabu.jpeg" }
 ];
 
 export default function Home({ setCurrentPage }) {
@@ -163,10 +163,10 @@ export default function Home({ setCurrentPage }) {
             const totalRange = viewHeight + parentHeight;
             const currentPosition = viewHeight - rect.top;
             const progress = Math.max(0, Math.min(1, currentPosition / totalRange));
-            
+
             const maxTranslate = 180; // offset in px
             const translateVal = (0.5 - progress) * 2 * maxTranslate;
-            
+
             bgEl.style.transform = `translate3d(0, ${translateVal}px, 0)`;
         };
 
@@ -227,12 +227,12 @@ export default function Home({ setCurrentPage }) {
             <section className="hero">
                 <div className="hero-slides-container">
                     {heroSlides.map((slide, idx) => (
-                        <div 
-                            key={idx} 
+                        <div
+                            key={idx}
                             className={`hero-slide ${currentSlide === idx ? 'active' : ''}`}
                         >
                             {/* Slide Background Image with Premium Dark Overlay */}
-                            <div 
+                            <div
                                 style={{
                                     position: 'absolute',
                                     top: 0,
@@ -245,7 +245,7 @@ export default function Home({ setCurrentPage }) {
                                     zIndex: 1
                                 }}
                             />
-                            
+
                             {/* Slide Content aligned to main container grid */}
                             <div className="container" style={{ position: 'relative', zIndex: 2, width: '100%' }}>
                                 <div className="hero-content" style={{ maxWidth: '650px' }}>
@@ -260,8 +260,8 @@ export default function Home({ setCurrentPage }) {
                                                 {slide.primaryBtn.text}
                                             </a>
                                         ) : (
-                                            <button 
-                                                onClick={() => { setCurrentPage(slide.primaryBtn.action); window.scrollTo({ top: 0, behavior: 'smooth' }); }} 
+                                            <button
+                                                onClick={() => { setCurrentPage(slide.primaryBtn.action); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                                                 className="btn btn-primary"
                                             >
                                                 {slide.primaryBtn.text}
@@ -269,16 +269,16 @@ export default function Home({ setCurrentPage }) {
                                         )}
 
                                         {slide.secondaryBtn.isLink ? (
-                                            <a 
-                                                href={slide.secondaryBtn.action} 
+                                            <a
+                                                href={slide.secondaryBtn.action}
                                                 className="btn btn-outline"
                                                 style={{ borderColor: 'white', color: 'white' }}
                                             >
                                                 {slide.secondaryBtn.text}
                                             </a>
                                         ) : (
-                                            <button 
-                                                onClick={() => { setCurrentPage(slide.secondaryBtn.action); window.scrollTo({ top: 0, behavior: 'smooth' }); }} 
+                                            <button
+                                                onClick={() => { setCurrentPage(slide.secondaryBtn.action); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                                                 className="btn btn-outline"
                                                 style={{ borderColor: 'white', color: 'white' }}
                                             >
@@ -327,7 +327,7 @@ export default function Home({ setCurrentPage }) {
             <section className="legacy-quick-view">
                 <div className="container">
                     <div className="legacy-grid">
-                        
+
                         {/* Left Column: Historical Milestones */}
                         <div className="legacy-left" ref={legacySectionRef}>
                             <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -335,10 +335,10 @@ export default function Home({ setCurrentPage }) {
                                 Since 1938
                             </h3>
                             <h2>
-                                <AnimatedSentence 
-                                    text="A Legacy of Service" 
-                                    boldWordCount={4} 
-                                    delayOffset={0} 
+                                <AnimatedSentence
+                                    text="A Legacy of Service"
+                                    boldWordCount={4}
+                                    delayOffset={0}
                                     trigger={legacyVisible}
                                 />
                             </h2>
@@ -346,10 +346,10 @@ export default function Home({ setCurrentPage }) {
                                 <div className="legacy-point-item">
                                     <span className="legacy-point-dot"></span>
                                     <span className="legacy-point-text">
-                                        <AnimatedSentence 
-                                            text="India's 3rd Rotary Club" 
-                                            boldWordCount={2} 
-                                            delayOffset={0.2} 
+                                        <AnimatedSentence
+                                            text="India's 3rd Rotary Club"
+                                            boldWordCount={2}
+                                            delayOffset={0.2}
                                             trigger={legacyVisible}
                                         />
                                     </span>
@@ -357,10 +357,10 @@ export default function Home({ setCurrentPage }) {
                                 <div className="legacy-point-item">
                                     <span className="legacy-point-dot"></span>
                                     <span className="legacy-point-text">
-                                        <AnimatedSentence 
-                                            text="Tamil Nadu's 2nd Rotary Club" 
-                                            boldWordCount={3} 
-                                            delayOffset={0.4} 
+                                        <AnimatedSentence
+                                            text="Tamil Nadu's 2nd Rotary Club"
+                                            boldWordCount={3}
+                                            delayOffset={0.4}
                                             trigger={legacyVisible}
                                         />
                                     </span>
@@ -368,10 +368,10 @@ export default function Home({ setCurrentPage }) {
                                 <div className="legacy-point-item">
                                     <span className="legacy-point-dot"></span>
                                     <span className="legacy-point-text">
-                                        <AnimatedSentence 
-                                            text="RID 3000's First Club" 
-                                            boldWordCount={3} 
-                                            delayOffset={0.6} 
+                                        <AnimatedSentence
+                                            text="RID 3000's First Club"
+                                            boldWordCount={3}
+                                            delayOffset={0.6}
                                             trigger={legacyVisible}
                                         />
                                     </span>
@@ -379,10 +379,10 @@ export default function Home({ setCurrentPage }) {
                                 <div className="legacy-point-item">
                                     <span className="legacy-point-dot"></span>
                                     <span className="legacy-point-text">
-                                        <AnimatedSentence 
-                                            text="85+ Years of Leadership, Fellowship & Service" 
-                                            boldWordCount={2} 
-                                            delayOffset={0.8} 
+                                        <AnimatedSentence
+                                            text="85+ Years of Leadership, Fellowship & Service"
+                                            boldWordCount={2}
+                                            delayOffset={0.8}
                                             trigger={legacyVisible}
                                         />
                                     </span>
@@ -390,10 +390,10 @@ export default function Home({ setCurrentPage }) {
                                 <div className="legacy-point-item">
                                     <span className="legacy-point-dot"></span>
                                     <span className="legacy-point-text">
-                                        <AnimatedSentence 
-                                            text="A Role Model for Rotary Clubs Across Madurai" 
-                                            boldWordCount={3} 
-                                            delayOffset={1.0} 
+                                        <AnimatedSentence
+                                            text="A Role Model for Rotary Clubs Across Madurai"
+                                            boldWordCount={3}
+                                            delayOffset={1.0}
                                             trigger={legacyVisible}
                                         />
                                     </span>
@@ -401,10 +401,10 @@ export default function Home({ setCurrentPage }) {
                                 <div className="legacy-point-item">
                                     <span className="legacy-point-dot" style={{ backgroundColor: 'var(--primary)' }}></span>
                                     <span className="legacy-point-text legacy-blink-active">
-                                        <AnimatedSentence 
-                                            text="The Legacy Continues..." 
-                                            boldWordCount={0} 
-                                            delayOffset={1.2} 
+                                        <AnimatedSentence
+                                            text="The Legacy Continues..."
+                                            boldWordCount={0}
+                                            delayOffset={1.2}
                                             isItalic={true}
                                             trigger={legacyVisible}
                                         />
@@ -500,9 +500,9 @@ export default function Home({ setCurrentPage }) {
                         {charterPioneers.map((pioneer, idx) => (
                             <div className="charter-pioneer-card" key={idx}>
                                 <div className="charter-pioneer-img-wrap">
-                                    <img 
-                                        src={getCloudinaryUrl(pioneer.img)} 
-                                        alt={pioneer.name} 
+                                    <img
+                                        src={getCloudinaryUrl(pioneer.img)}
+                                        alt={pioneer.name}
                                         className="charter-pioneer-img"
                                         onError={(e) => {
                                             e.target.src = '/images/placeholder.jpg';
@@ -518,7 +518,7 @@ export default function Home({ setCurrentPage }) {
                     </div>
 
                     <div style={{ marginTop: '40px', textAlign: 'center' }}>
-                        <button 
+                        <button
                             className="btn btn-primary"
                             onClick={() => {
                                 sessionStorage.setItem('members_active_tab', 'charter');
@@ -546,9 +546,9 @@ export default function Home({ setCurrentPage }) {
                         {currentBoard.map((member, idx) => (
                             <div className="board-member-card" key={idx}>
                                 <div className="board-member-img-wrap">
-                                    <img 
-                                        src={getCloudinaryUrl(member.img)} 
-                                        alt={member.name} 
+                                    <img
+                                        src={getCloudinaryUrl(member.img)}
+                                        alt={member.name}
                                         className="board-member-img"
                                         onError={(e) => {
                                             if (e.target.src.includes('res.cloudinary.com')) {
@@ -571,16 +571,16 @@ export default function Home({ setCurrentPage }) {
 
             {/* Intro / Quote Section */}
             <section className="intro section-padding section-bg-light" style={{ position: 'relative', overflow: 'hidden' }}>
-                <img 
-                    src="/images/Logo%20chakra.png" 
-                    alt="Chakra watermark" 
-                    className="chakra-watermark" 
-                    style={{ 
-                        right: '-150px', 
-                        bottom: '-150px', 
-                        width: '450px', 
+                <img
+                    src="/images/Logo%20chakra.png"
+                    alt="Chakra watermark"
+                    className="chakra-watermark"
+                    style={{
+                        right: '-150px',
+                        bottom: '-150px',
+                        width: '450px',
                         height: '450px'
-                    }} 
+                    }}
                 />
                 <div className="container intro-grid" style={{ position: 'relative', zIndex: 1 }}>
                     <div className="intro-image reveal-scale mouse-parallax" data-parallax-speed="10">
@@ -727,9 +727,9 @@ export default function Home({ setCurrentPage }) {
 
             {/* Video Ripple Section */}
             <section className="video-section">
-                <div 
+                <div
                     ref={parallaxBgRef}
-                    className="video-parallax-bg" 
+                    className="video-parallax-bg"
                     style={{
                         position: 'absolute',
                         top: '-40%',
@@ -743,40 +743,40 @@ export default function Home({ setCurrentPage }) {
                         willChange: 'transform'
                     }}
                 />
-                <div className="video-content reveal-up" style={{ 
-                    position: 'relative', 
+                <div className="video-content reveal-up" style={{
+                    position: 'relative',
                     zIndex: 2,
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
                     padding: '40px 20px'
                 }}>
-                    <img 
-                        src="/images/89.png" 
-                        alt="89 Years of Legacy" 
-                        style={{ 
-                            maxHeight: '450px', 
-                            maxWidth: '100%', 
+                    <img
+                        src="/images/89.png"
+                        alt="89 Years of Legacy"
+                        style={{
+                            maxHeight: '450px',
+                            maxWidth: '100%',
                             height: 'auto',
                             objectFit: 'contain',
                             filter: 'drop-shadow(0 15px 35px rgba(0,0,0,0.45))'
-                        }} 
+                        }}
                     />
                 </div>
             </section>
 
             {/* Membership Inquiry Section */}
             <section id="join" className="section-padding bg-light" style={{ position: 'relative', overflow: 'hidden' }}>
-                <img 
-                    src="/images/Logo%20chakra.png" 
-                    alt="Chakra watermark" 
-                    className="chakra-watermark" 
-                    style={{ 
-                        left: '-150px', 
-                        bottom: '-150px', 
-                        width: '500px', 
+                <img
+                    src="/images/Logo%20chakra.png"
+                    alt="Chakra watermark"
+                    className="chakra-watermark"
+                    style={{
+                        left: '-150px',
+                        bottom: '-150px',
+                        width: '500px',
                         height: '500px'
-                    }} 
+                    }}
                 />
                 <div className="container donate-section-grid" style={{ position: 'relative', zIndex: 1 }}>
                     <div className="donate-info reveal-up">
@@ -811,66 +811,66 @@ export default function Home({ setCurrentPage }) {
                         <form onSubmit={handleMembershipSubmit}>
                             <div className="form-group" style={{ marginBottom: '16px' }}>
                                 <label className="form-label" htmlFor="fullname" style={{ display: 'block', marginBottom: '6px', fontWeight: 600, fontSize: '0.9rem' }}>Full Name</label>
-                                <input 
-                                    type="text" 
-                                    id="fullname" 
-                                    className="form-control" 
-                                    placeholder="Enter your full name" 
+                                <input
+                                    type="text"
+                                    id="fullname"
+                                    className="form-control"
+                                    placeholder="Enter your full name"
                                     value={membershipForm.name}
                                     onChange={(e) => setMembershipForm({ ...membershipForm, name: e.target.value })}
-                                    required 
+                                    required
                                     style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1.5px solid var(--border-color)', outline: 'none' }}
                                 />
                             </div>
                             <div className="form-group" style={{ marginBottom: '16px' }}>
                                 <label className="form-label" htmlFor="email" style={{ display: 'block', marginBottom: '6px', fontWeight: 600, fontSize: '0.9rem' }}>Email Address</label>
-                                <input 
-                                    type="email" 
-                                    id="email" 
-                                    className="form-control" 
-                                    placeholder="Enter your email address" 
+                                <input
+                                    type="email"
+                                    id="email"
+                                    className="form-control"
+                                    placeholder="Enter your email address"
                                     value={membershipForm.email}
                                     onChange={(e) => setMembershipForm({ ...membershipForm, email: e.target.value })}
-                                    required 
+                                    required
                                     style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1.5px solid var(--border-color)', outline: 'none' }}
                                 />
                             </div>
                             <div className="form-group" style={{ marginBottom: '16px' }}>
                                 <label className="form-label" htmlFor="phone" style={{ display: 'block', marginBottom: '6px', fontWeight: 600, fontSize: '0.9rem' }}>Phone Number</label>
-                                <input 
-                                    type="tel" 
-                                    id="phone" 
-                                    className="form-control" 
-                                    placeholder="Enter your phone number" 
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    className="form-control"
+                                    placeholder="Enter your phone number"
                                     value={membershipForm.phone}
                                     onChange={(e) => setMembershipForm({ ...membershipForm, phone: e.target.value })}
-                                    required 
+                                    required
                                     style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1.5px solid var(--border-color)', outline: 'none' }}
                                 />
                             </div>
                             <div className="form-group" style={{ marginBottom: '16px' }}>
                                 <label className="form-label" htmlFor="profession" style={{ display: 'block', marginBottom: '6px', fontWeight: 600, fontSize: '0.9rem' }}>Profession / Classification</label>
-                                <input 
-                                    type="text" 
-                                    id="profession" 
-                                    className="form-control" 
-                                    placeholder="Enter your profession or classification" 
+                                <input
+                                    type="text"
+                                    id="profession"
+                                    className="form-control"
+                                    placeholder="Enter your profession or classification"
                                     value={membershipForm.profession}
                                     onChange={(e) => setMembershipForm({ ...membershipForm, profession: e.target.value })}
-                                    required 
+                                    required
                                     style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1.5px solid var(--border-color)', outline: 'none' }}
                                 />
                             </div>
                             <div className="form-group" style={{ marginBottom: '24px' }}>
                                 <label className="form-label" htmlFor="message" style={{ display: 'block', marginBottom: '6px', fontWeight: 600, fontSize: '0.9rem' }}>Briefly describe why you want to join Rotary</label>
-                                <textarea 
-                                    id="message" 
-                                    className="form-control" 
+                                <textarea
+                                    id="message"
+                                    className="form-control"
                                     rows="3"
-                                    placeholder="Enter why you want to join Rotary and your background..." 
+                                    placeholder="Enter why you want to join Rotary and your background..."
                                     value={membershipForm.message}
                                     onChange={(e) => setMembershipForm({ ...membershipForm, message: e.target.value })}
-                                    required 
+                                    required
                                     style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1.5px solid var(--border-color)', outline: 'none', resize: 'vertical', fontFamily: 'inherit' }}
                                 />
                             </div>
@@ -895,9 +895,9 @@ export default function Home({ setCurrentPage }) {
                             boxShadow: 'var(--shadow-lg)'
                         }}>
                             {/* Decorative Watermark */}
-                            <img 
-                                src="/images/Logo%20chakra.png" 
-                                alt="Watermark" 
+                            <img
+                                src="/images/Logo%20chakra.png"
+                                alt="Watermark"
                                 style={{
                                     position: 'absolute',
                                     right: '-60px',
@@ -908,12 +908,12 @@ export default function Home({ setCurrentPage }) {
                                     pointerEvents: 'none'
                                 }}
                             />
-                            
+
                             <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '25px' }}>
-                                <img 
-                                    src="/images/Logo%20chakra.png" 
-                                    alt="Rotary Wheel" 
-                                    style={{ width: '45px', height: '45px', objectFit: 'contain', filter: 'brightness(0) invert(1) sepia(100%) saturate(1000%) hue-rotate(30deg)' }} 
+                                <img
+                                    src="/images/Logo%20chakra.png"
+                                    alt="Rotary Wheel"
+                                    style={{ width: '45px', height: '45px', objectFit: 'contain', filter: 'brightness(0) invert(1) sepia(100%) saturate(1000%) hue-rotate(30deg)' }}
                                 />
                                 <div>
                                     <div style={{ fontSize: '1rem', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '1.5px', color: '#FBBF24' }}>
@@ -921,7 +921,7 @@ export default function Home({ setCurrentPage }) {
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div style={{
                                 fontStyle: 'italic',
                                 fontSize: '1.05rem',
