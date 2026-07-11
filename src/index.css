@@ -1084,7 +1084,7 @@ a:active,
     width: 340px;
     height: 340px;
     object-fit: contain;
-    animation: preloader-spin 7s linear infinite;
+    animation: preloader-spin 4.5s linear infinite;
     filter: drop-shadow(0 8px 20px rgba(0, 61, 165, 0.12));
     margin-bottom: 35px;
 }
@@ -1249,7 +1249,7 @@ a:active,
     opacity: 0.07; /* subtle watermark, visible but unobtrusive */
     z-index: 0;
     max-width: none;
-    animation: spin-slow 160s linear infinite;
+    animation: spin-slow 100s linear infinite;
 }
 
 .dark-section .chakra-watermark {
