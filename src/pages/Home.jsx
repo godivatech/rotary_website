@@ -74,9 +74,9 @@ const sponsoredClubs = [
 ];
 
 const currentBoard = [
-    { name: "Rtn. Mukesh", designation: "Club President", img: "/images/Board memebers/Mukesh Jain.jpeg" },
+    { name: "Rtn. Mukesh Jain", designation: "Club President", img: "/images/Board memebers/Mukesh Jain.jpeg" },
     { name: "Rtn. Karthik", designation: "Club Secretary", img: "/images/Board memebers/Karthik.jpeg" },
-    { name: "Rtn. Rajaguru", designation: "Club Treasurer", img: "/images/Board memebers/Raja Prabu.jpeg" }
+    { name: "Rtn. Raja Prabu", designation: "Club Treasurer", img: "/images/Board memebers/Raja Prabu.jpeg" }
 ];
 
 export default function Home({ setCurrentPage }) {
