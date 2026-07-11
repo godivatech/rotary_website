@@ -40,12 +40,12 @@ export default function Members() {
     const [selectedDecade, setSelectedDecade] = useState('All');
 
     const currentMembers = [
+        { name: "Er. A.F. Antony Prem Kumar", business: "Johana Industry", img: "/images/current memebers/Er.A.F.Antony Prem Kumar.jpg" },
+        { name: "Er. T.K. Sivakumar", business: "Sapthagiri Builders", img: "/images/current memebers/Er. T.K. SIVAKUMAR.jpg" },
         { name: "Rtn. R. Andrew Ananth", business: "Godiva Tech", img: "/images/current memebers/Rtn.R. Andrew Ananth.jpg" },
         { name: "Rtn. UV Kathirvel", business: "Aji Homes", img: "/images/current memebers/UV KATHIRVEL.jpeg" },
         { name: "Rtn. B. Muthukumaran", business: "BR Systems", img: "/images/current memebers/B. Muthukumaran.jpg" },
-        { name: "Er. A.F. Antony Prem Kumar", business: "Johana Industry", img: "/images/current memebers/Er.A.F.Antony Prem Kumar.jpg" },
         { name: "Rtn. C. Sasikumar", business: "Rogul tours and travels", img: "/images/current memebers/c.sasikumar.jpg" },
-        { name: "Er. T.K. Sivakumar", business: "Sapthagiri Builders", img: "/images/current memebers/Er. T.K. SIVAKUMAR.jpg" },
         { name: "Rtn. S. Ramkumar", business: "S.R. Lakshmi and Company Madurai", img: "/images/current memebers/S.Ramkumar.jpg" },
         { name: "Rtn. Krishnan Sethuraman", business: "Sastha Soil Testing Services Building Materials Testing services", img: "/images/current memebers/Krishnan Sethuraman.jpg" },
         { name: "Rtn. Ravichandran V A", business: "Ravichandran & Co", img: "/images/current memebers/Ravichandran V A.jpg" }
