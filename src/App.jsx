@@ -11,6 +11,7 @@ import Genealogy from './pages/Genealogy';
 import Members from './pages/Members';
 import Gallery from './pages/Gallery';
 import Preloader from './components/Preloader';
+import MeetingBanner from './components/MeetingBanner';
 
 const getPageFromHash = () => {
   const hash = window.location.hash.replace('#', '');
@@ -275,6 +276,9 @@ export default function App() {
       </main>
 
       <Footer setCurrentPage={navigateTo} />
+
+      {/* Floating meeting announcement banner */}
+      {isAppLoaded && <MeetingBanner onNavigate={navigateTo} />}
     </div>
   );
 }

@@ -1889,4 +1889,58 @@ a:active,
     color: var(--secondary);
     margin: 0;
     letter-spacing: -0.3px;
+}
+
+/* --- Floating Meeting Banner --- */
+@keyframes bell-ring {
+    0%, 100% { transform: rotate(0deg); }
+    10% { transform: rotate(15deg); }
+    20% { transform: rotate(-10deg); }
+    30% { transform: rotate(8deg); }
+    40% { transform: rotate(-6deg); }
+    50% { transform: rotate(4deg); }
+    60% { transform: rotate(-3deg); }
+    70% { transform: rotate(2deg); }
+    80% { transform: rotate(-1deg); }
+    90% { transform: rotate(0deg); }
+}
+
+.meeting-bell-icon {
+    animation: bell-ring 2.5s ease infinite;
+    transform-origin: top center;
+    display: inline-block;
+}
+
+.floating-meeting-banner {
+    position: fixed;
+    bottom: 24px;
+    right: -400px;
+    width: 340px;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
+    border: 1.5px solid var(--border-color);
+    padding: 20px;
+    z-index: 9999;
+    transition: right 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s ease;
+}
+
+.floating-meeting-banner.slide-in {
+    right: 24px;
+}
+
+@media (max-width: 480px) {
+    .floating-meeting-banner {
+        width: calc(100% - 32px);
+        left: 16px;
+        bottom: 16px;
+        right: auto;
+        transform: translateY(200px);
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .floating-meeting-banner.slide-in {
+        transform: translateY(0);
+    }
 }
