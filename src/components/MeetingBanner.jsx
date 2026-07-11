@@ -84,13 +84,13 @@ export default function MeetingBanner({ onNavigate }) {
                     lineHeight: '1.35',
                     letterSpacing: '-0.3px'
                 }}>
-                    Weekly Thursday Meeting
+                    Weekly Meeting
                 </h4>
                 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted)', fontSize: '0.88rem' }}>
                         <Calendar size={14} style={{ color: 'var(--primary)', flexShrink: 0 }} />
-                        <span style={{ fontWeight: '600' }}>Today (Every Thursday)</span>
+                        <span style={{ fontWeight: '600' }}>Today (Every Tuesday)</span>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted)', fontSize: '0.88rem' }}>
                         <Clock size={14} style={{ color: 'var(--primary)', flexShrink: 0 }} />
