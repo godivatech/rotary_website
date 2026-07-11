@@ -604,7 +604,7 @@ export default function Home({ setCurrentPage }) {
                 />
                 <div className="container intro-grid" style={{ position: 'relative', zIndex: 1 }}>
                     <div className="intro-image reveal-scale mouse-parallax" data-parallax-speed="10">
-                        <img src="/images/section images/1.png" alt="Children supported by Rotary education project" style={{ borderRadius: '20px' }} />
+                        <img src="/images/section images/2.png" alt="Children supported by Rotary education project" style={{ borderRadius: '20px' }} />
                     </div>
                     <div className="intro-content reveal-up" style={{ transitionDelay: '0.2s' }}>
                         <span className="badge">Who We Are</span>
