@@ -5,6 +5,22 @@ export default function MeetingBanner({ onNavigate }) {
     const [isVisible, setIsVisible] = useState(false);
     const [isDismissed, setIsDismissed] = useState(false);
 
+    const getNextTuesdayString = () => {
+        const today = new Date();
+        const dayOfWeek = today.getDay();
+        const daysUntilTuesday = (2 - dayOfWeek + 7) % 7;
+        
+        if (daysUntilTuesday === 0) {
+            return "Today (Every Tuesday)";
+        }
+        
+        const nextTuesday = new Date(today);
+        nextTuesday.setDate(today.getDate() + daysUntilTuesday);
+        
+        const options = { month: 'short', day: 'numeric' };
+        return `${nextTuesday.toLocaleDateString('en-US', options)} (Next Tuesday)`;
+    };
+
     useEffect(() => {
         if (isDismissed) return;
 
@@ -90,7 +106,7 @@ export default function MeetingBanner({ onNavigate }) {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted)', fontSize: '0.88rem' }}>
                         <Calendar size={14} style={{ color: 'var(--primary)', flexShrink: 0 }} />
-                        <span style={{ fontWeight: '600' }}>Today (Every Tuesday)</span>
+                        <span style={{ fontWeight: '600' }}>{getNextTuesdayString()}</span>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted)', fontSize: '0.88rem' }}>
                         <Clock size={14} style={{ color: 'var(--primary)', flexShrink: 0 }} />
