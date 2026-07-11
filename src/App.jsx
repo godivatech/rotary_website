@@ -46,7 +46,10 @@ export default function App() {
     setTransitionState('in');
   };
 
-  const handleAnimationEnd = () => {
+  const handleAnimationEnd = (e) => {
+    // Prevent animationend events bubbling up from child animations (wheel, text) from triggering state change
+    if (e.target !== e.currentTarget) return;
+
     if (transitionState === 'in') {
       flushSync(() => {
         setCurrentPage(pendingPage);

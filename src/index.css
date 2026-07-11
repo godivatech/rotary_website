@@ -847,6 +847,7 @@ a:active,
     100% {
         transform: translateY(-100%);
         border-bottom-left-radius: 60vw 12vh;
+        border-bottom-right-radius: 60vw 12vh;
     }
 }
 
