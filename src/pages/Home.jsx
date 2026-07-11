@@ -369,8 +369,8 @@ export default function Home({ setCurrentPage }) {
                                     <span className="legacy-point-dot"></span>
                                     <span className="legacy-point-text">
                                         <AnimatedSentence 
-                                            text="Madurai's 1st Rotary Club" 
-                                            boldWordCount={2} 
+                                            text="RID 3000's First Club" 
+                                            boldWordCount={3} 
                                             delayOffset={0.6} 
                                             trigger={legacyVisible}
                                         />

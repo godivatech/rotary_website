@@ -225,7 +225,7 @@ export default function Preloader({ onComplete }) {
                     </div>
                     <div className={`preloader-milestone ${milestoneStep >= 3 ? 'show' : ''}`}>
                         <span className="milestone-bullet"></span>
-                        <span><strong className="milestone-highlight">Madurai's 1st</strong> Rotary Club</span>
+                        <span><strong className="milestone-highlight">RID 3000's First</strong> Club</span>
                     </div>
                 </div>
                 <div className="preloader-taglines" style={{

@@ -511,39 +511,6 @@ export default function About() {
                 </div>
             </section>
 
-            {/* Club Leadership Section */}
-            <section className="section section-bg-white" style={{ padding: '80px 0' }}>
-                <div className="container">
-                    <div className="reveal-up" style={{ textAlign: 'center', marginBottom: '50px' }}>
-                        <span className="badge">Club Governance</span>
-                        <h2>Meet Our <span className="shiny-text">Board Members</span></h2>
-                        <p style={{ maxWidth: '600px', margin: '15px auto 0 auto', color: 'var(--text-muted)' }}>
-                            The leadership team steering our fellowship and community development initiatives for the current Rotary year.
-                        </p>
-                    </div>
-
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '30px', justifyContent: 'center' }}>
-                        {[
-                            { name: "Rtn. Mukesh", role: "Club President", image: "/images/Board memebers/Mukesh Jain.jpeg" },
-                            { name: "Rtn. Karthik", role: "Club Secretary", image: "/images/Board memebers/Karthik.jpeg" },
-                            { name: "Rtn. Rajaguru", role: "Club Treasurer", image: "/images/Board memebers/Raja Prabu.jpeg" }
-                        ].map((leader, idx) => (
-                            <div key={idx} className="tilt-card reveal-up" style={{
-                                transitionDelay: `${idx * 0.1}s`,
-                                backgroundColor: 'white',
-                                border: '1.5px solid var(--border-color)',
-                                borderRadius: '16px',
-                                padding: '24px',
-                                textAlign: 'center',
-                            }}>
-                                <img src={leader.image} alt={leader.name} style={{ width: '90px', height: '90px', borderRadius: '50%', objectFit: 'cover', marginBottom: '16px', border: '3px solid var(--primary-light)' }} />
-                                <h4 style={{ fontSize: '1.05rem', marginBottom: '6px', color: 'var(--secondary)' }}>{leader.name}</h4>
-                                <p style={{ fontSize: '0.85rem', color: 'var(--primary)', fontWeight: '600' }}>{leader.role}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
 
             {/* Testimonials Slider 
             <section id="testimonials" className="section section-bg-light" style={{ padding: '80px 0' }}>
