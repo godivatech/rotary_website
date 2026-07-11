@@ -115,6 +115,51 @@ export default function About() {
                 </div>
             </section>
 
+            {/* Stats section */}
+            <section style={{ backgroundColor: 'var(--bg-white)', padding: '80px 0', borderTop: '1px solid var(--border-color)' }}>
+                <div className="container">
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '30px', textAlign: 'center' }}>
+                        {[
+                            { target: 1250, suffix: "+", label: "Projects Completed", delay: "0s" },
+                            { target: 50000, suffix: "+", label: "Trees Planted", delay: "0.1s" },
+                            { target: 85, suffix: "+", label: "Active Members", delay: "0.2s" },
+                            { target: 89, suffix: "+", label: "Years of Legacy", delay: "0.3s" }
+                        ].map((stat, idx) => (
+                            <div 
+                                key={idx} 
+                                className="reveal-up" 
+                                style={{ 
+                                    transitionDelay: stat.delay,
+                                    padding: '35px 24px',
+                                    borderRadius: '16px',
+                                    backgroundColor: '#F8FAFC',
+                                    border: '1.5px solid var(--border-color)',
+                                    boxShadow: 'var(--shadow-sm)',
+                                    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+                                }}
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.style.transform = 'translateY(-5px)';
+                                    e.currentTarget.style.boxShadow = 'var(--shadow-md)';
+                                    e.currentTarget.style.borderColor = 'var(--primary)';
+                                    e.currentTarget.style.backgroundColor = '#FFFFFF';
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.style.transform = 'none';
+                                    e.currentTarget.style.boxShadow = 'var(--shadow-sm)';
+                                    e.currentTarget.style.borderColor = 'var(--border-color)';
+                                    e.currentTarget.style.backgroundColor = '#F8FAFC';
+                                }}
+                            >
+                                <h3 style={{ fontSize: '3.4rem', color: 'var(--primary)', fontWeight: '800', marginBottom: '6px' }}>
+                                    <Counter target={stat.target} suffix={stat.suffix} />
+                                </h3>
+                                <p style={{ color: 'var(--text-muted)', fontWeight: '700', fontSize: '0.95rem' }}>{stat.label}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
             {/* The Four-Way Test Section */}
             <section className="section section-bg-white" style={{ borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)' }}>
                 <div className="container">
@@ -479,37 +524,7 @@ export default function About() {
                 </div>
             </section>
 
-            {/* Stats section */}
-            <section style={{ backgroundColor: '#0F172A', color: 'white', padding: '80px 0' }}>
-                <div className="container">
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '40px', textAlign: 'center' }}>
-                        <div className="reveal-up" style={{ transitionDelay: '0s' }}>
-                            <h3 style={{ fontSize: '3.6rem', color: '#FFB800', fontWeight: '800', marginBottom: '6px' }}>
-                                <Counter target={1250} suffix="+" />
-                            </h3>
-                            <p style={{ color: 'rgba(255,255,255,0.7)', fontWeight: '600' }}>Projects Completed</p>
-                        </div>
-                        <div className="reveal-up" style={{ transitionDelay: '0.1s' }}>
-                            <h3 style={{ fontSize: '3.6rem', color: '#FFB800', fontWeight: '800', marginBottom: '6px' }}>
-                                <Counter target={50000} suffix="+" />
-                            </h3>
-                            <p style={{ color: 'rgba(255,255,255,0.7)', fontWeight: '600' }}>Trees Planted</p>
-                        </div>
-                        <div className="reveal-up" style={{ transitionDelay: '0.2s' }}>
-                            <h3 style={{ fontSize: '3.6rem', color: '#FFB800', fontWeight: '800', marginBottom: '6px' }}>
-                                <Counter target={85} suffix="+" />
-                            </h3>
-                            <p style={{ color: 'rgba(255,255,255,0.7)', fontWeight: '600' }}>Active Members</p>
-                        </div>
-                        <div className="reveal-up" style={{ transitionDelay: '0.3s' }}>
-                            <h3 style={{ fontSize: '3.6rem', color: '#FFB800', fontWeight: '800', marginBottom: '6px' }}>
-                                <Counter target={89} suffix="+" />
-                            </h3>
-                            <p style={{ color: 'rgba(255,255,255,0.7)', fontWeight: '600' }}>Years of Legacy</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+
 
 
             {/* Testimonials Slider 
