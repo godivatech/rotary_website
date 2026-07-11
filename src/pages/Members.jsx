@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
-import { Search, Calendar, Award, Users, Image as ImageIcon, Briefcase } from 'lucide-react';
+import { Search, Calendar, Award, Users, Image as ImageIcon, Briefcase, ZoomIn, X } from 'lucide-react';
 
-const getCloudinaryUrl = (localPath) => {
+const getCloudinaryUrl = (localPath, isHighRes = false) => {
     if (!localPath) return '';
     let cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME || 'doeodacsg';
     // Strip quotes from the cloud name if they were preserved by the bundler/parser
@@ -22,7 +22,7 @@ const getCloudinaryUrl = (localPath) => {
     const encodedPublicId = publicId.split('/').map(part => encodeURIComponent(part)).join('/');
     
     const isJubilee = localPath.includes('Jubilee') || localPath.includes('jubilee');
-    const transform = isJubilee ? 'q_auto,f_auto' : 'w_300,c_limit,q_auto,f_auto';
+    const transform = (isJubilee || isHighRes) ? 'q_auto,f_auto' : 'w_300,c_limit,q_auto,f_auto';
     
     return `https://res.cloudinary.com/${cloudName}/image/upload/${transform}/${encodedPublicId}${ext}`;
 };
@@ -38,6 +38,7 @@ export default function Members() {
     });
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedDecade, setSelectedDecade] = useState('All');
+    const [lightbox, setLightbox] = useState({ isOpen: false, img: '', localPath: '', title: '', term: '' });
 
     const currentMembers = [
         { name: "Er. A.F. Antony Prem Kumar", business: "Johana Industry", img: "/images/current memebers/Er.A.F.Antony Prem Kumar.jpg" },
@@ -513,17 +514,27 @@ export default function Members() {
                                     transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
                                     position: 'relative'
                                 }}>
-                                    <div style={{ 
-                                        width: '140px', 
-                                        height: '140px', 
-                                        borderRadius: '50%', 
-                                        overflow: 'hidden', 
-                                        border: '4px solid var(--primary-light)',
-                                        backgroundColor: '#F8FAFC',
-                                        marginBottom: '20px',
-                                        position: 'relative',
-                                        boxShadow: '0 4px 10px rgba(0, 0, 0, 0.05)'
-                                    }}>
+                                    <div 
+                                        style={{ 
+                                            width: '140px', 
+                                            height: '140px', 
+                                            borderRadius: '50%', 
+                                            overflow: 'hidden',
+                                            position: 'relative',
+                                            border: '4px solid var(--primary-light)',
+                                            backgroundColor: '#F8FAFC',
+                                            marginBottom: '20px',
+                                            boxShadow: '0 4px 10px rgba(0, 0, 0, 0.05)',
+                                            cursor: 'pointer'
+                                        }}
+                                        onClick={() => setLightbox({ 
+                                            isOpen: true, 
+                                            img: getCloudinaryUrl(member.img, true), 
+                                            localPath: member.img,
+                                            title: member.name, 
+                                            term: member.business 
+                                        })}
+                                    >
                                         <img 
                                             src={getCloudinaryUrl(member.img)} 
                                             alt={member.name}
@@ -596,16 +607,26 @@ export default function Members() {
                                     textAlign: 'center',
                                     transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
                                 }}>
-                                    <div style={{ 
-                                        width: '130px', 
-                                        height: '130px', 
-                                        borderRadius: '50%', 
-                                        overflow: 'hidden', 
-                                        border: '4px solid var(--primary-light)',
-                                        backgroundColor: '#F8FAFC',
-                                        marginBottom: '16px',
-                                        position: 'relative'
-                                    }}>
+                                    <div 
+                                        style={{ 
+                                            width: '130px', 
+                                            height: '130px', 
+                                            borderRadius: '50%', 
+                                            overflow: 'hidden',
+                                            position: 'relative',
+                                            border: '4px solid var(--primary-light)',
+                                            backgroundColor: '#F8FAFC',
+                                            marginBottom: '16px',
+                                            cursor: 'pointer'
+                                        }}
+                                        onClick={() => setLightbox({ 
+                                            isOpen: true, 
+                                            img: getCloudinaryUrl(pres.img, true), 
+                                            localPath: pres.img,
+                                            title: pres.name, 
+                                            term: `President: ${pres.term}` 
+                                        })}
+                                    >
                                         <img 
                                             src={getCloudinaryUrl(pres.img)} 
                                             alt={pres.name}
@@ -697,8 +718,17 @@ export default function Members() {
                                     border: '4px solid var(--primary-light)',
                                     backgroundColor: '#F8FAFC',
                                     marginBottom: '16px',
-                                    position: 'relative'
-                                }}>
+                                    position: 'relative',
+                                    cursor: 'pointer'
+                                }}
+                                onClick={() => setLightbox({ 
+                                    isOpen: true, 
+                                    img: getCloudinaryUrl(charter.img, true), 
+                                    localPath: charter.img,
+                                    title: charter.name, 
+                                    term: charter.designation 
+                                })}
+                                >
                                     <img 
                                         src={getCloudinaryUrl(charter.img)} 
                                         alt={charter.name}
@@ -739,7 +769,21 @@ export default function Members() {
                             }}
                             className="tilt-card"
                             >
-                                <div style={{ height: '240px', overflow: 'hidden', backgroundColor: '#0F172A', position: 'relative' }}>
+                                <div style={{ 
+                                    height: '240px', 
+                                    overflow: 'hidden', 
+                                    backgroundColor: '#0F172A', 
+                                    position: 'relative',
+                                    cursor: 'pointer'
+                                }}
+                                onClick={() => setLightbox({ 
+                                    isOpen: true, 
+                                    img: getCloudinaryUrl(jub.img, true), 
+                                    localPath: jub.img,
+                                    title: jub.title, 
+                                    term: `Jubilee Celebration (${jub.year})` 
+                                })}
+                                >
                                     <img 
                                         src={getCloudinaryUrl(jub.img)} 
                                         alt={jub.title}
@@ -761,7 +805,8 @@ export default function Members() {
                                         fontWeight: '700',
                                         fontSize: '0.85rem',
                                         padding: '4px 14px',
-                                        borderRadius: '20px'
+                                        borderRadius: '20px',
+                                        zIndex: 2
                                     }}>
                                         Year {jub.year}
                                     </span>
@@ -804,8 +849,17 @@ export default function Members() {
                                     border: '4px solid var(--primary-light)',
                                     backgroundColor: '#F8FAFC',
                                     marginBottom: '16px',
-                                    position: 'relative'
-                                }}>
+                                    position: 'relative',
+                                    cursor: 'pointer'
+                                }}
+                                onClick={() => setLightbox({ 
+                                    isOpen: true, 
+                                    img: getCloudinaryUrl(member.img, true), 
+                                    localPath: member.img,
+                                    title: member.name, 
+                                    term: member.designation 
+                                })}
+                                >
                                     <img 
                                         src={getCloudinaryUrl(member.img)} 
                                         alt={member.name}
@@ -832,6 +886,106 @@ export default function Members() {
                     </div>
                 )}
             </section>
+
+            {/* Lightbox Modal */}
+            {lightbox.isOpen && (
+                <div 
+                    style={{
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        backgroundColor: 'rgba(15, 23, 42, 0.95)',
+                        backdropFilter: 'blur(8px)',
+                        zIndex: 99999,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        padding: '20px',
+                        animation: 'fadeIn 0.25s ease-out'
+                    }}
+                    onClick={() => setLightbox({ isOpen: false, img: '', localPath: '', title: '', term: '' })}
+                >
+                    {/* Close button */}
+                    <button 
+                        style={{
+                            position: 'absolute',
+                            top: '24px',
+                            right: '24px',
+                            background: 'rgba(255, 255, 255, 0.1)',
+                            border: 'none',
+                            color: 'white',
+                            cursor: 'pointer',
+                            padding: '12px',
+                            borderRadius: '50%',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            transition: 'all 0.2s',
+                            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)'
+                        }}
+                        onClick={() => setLightbox({ isOpen: false, img: '', localPath: '', title: '', term: '' })}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+                            e.currentTarget.style.transform = 'scale(1.1)';
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                            e.currentTarget.style.transform = 'scale(1)';
+                        }}
+                    >
+                        <X size={24} />
+                    </button>
+
+                    {/* Image & Title container */}
+                    <div 
+                        style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            maxWidth: '90%',
+                            maxHeight: '85vh',
+                            animation: 'scaleUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)'
+                        }}
+                        onClick={(e) => e.stopPropagation()} // Prevent closing when clicking the image/details
+                    >
+                        <img 
+                            src={lightbox.img} 
+                            alt={lightbox.title}
+                            onError={(e) => {
+                                if (e.target.src.includes('res.cloudinary.com') && lightbox.localPath) {
+                                    e.target.src = lightbox.localPath;
+                                }
+                            }}
+                            style={{
+                                maxWidth: '100%',
+                                maxHeight: '70vh',
+                                objectFit: 'contain',
+                                borderRadius: '16px',
+                                boxShadow: '0 20px 50px rgba(0, 0, 0, 0.4)',
+                                border: '3px solid rgba(255, 255, 255, 0.1)'
+                            }}
+                        />
+                        
+                        <div style={{
+                            marginTop: '20px',
+                            textAlign: 'center',
+                            color: 'white'
+                        }}>
+                            <h2 style={{ fontSize: '1.6rem', fontWeight: '800', margin: '0 0 4px 0' }}>
+                                {lightbox.title}
+                            </h2>
+                            {lightbox.term && (
+                                <p style={{ fontSize: '1.05rem', color: 'rgba(255, 255, 255, 0.7)', margin: 0 }}>
+                                    {lightbox.term}
+                                </p>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
