@@ -61,12 +61,12 @@ export default function Preloader({ onComplete }) {
                 // Start collapsing the content (Chakra logo zooms in and fades)
                 t6 = setTimeout(() => {
                     setIsCollapsing(true);
-                }, 9000); // 7 seconds after the last milestone/tagline finishes showing (2000 + 7000 = 9000)
+                }, 12000); // 10 seconds after the last milestone/tagline finishes showing (2000 + 10000 = 12000)
 
                 // Wait for collapse transition to complete, then exit the full screen overlay
                 t7 = setTimeout(() => {
                     setIsExiting(true);
-                }, 10500); // 1500ms after isCollapsing (9000 + 1500 = 10500)
+                }, 13500); // 1500ms after isCollapsing (12000 + 1500 = 13500)
             }
         };
 
