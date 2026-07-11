@@ -626,6 +626,22 @@ export default function Members() {
                                     <h3 style={{ fontSize: '1.05rem', fontWeight: '700', color: 'var(--secondary)', margin: 0, lineHeight: '1.3' }}>
                                         {pres.name}
                                     </h3>
+                                    {pres.name === "Mukesh Jain" && (
+                                        <span style={{
+                                            fontSize: '0.72rem',
+                                            fontWeight: '800',
+                                            color: '#10B981',
+                                            backgroundColor: '#D1FAE5',
+                                            padding: '2px 8px',
+                                            borderRadius: '12px',
+                                            marginTop: '6px',
+                                            display: 'inline-block',
+                                            textTransform: 'uppercase',
+                                            letterSpacing: '0.5px'
+                                        }}>
+                                            Current President
+                                        </span>
+                                    )}
                                 </div>
                             ))}
                         </div>
