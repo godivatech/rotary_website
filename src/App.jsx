@@ -267,7 +267,17 @@ export default function App() {
       <div 
         className={`transition-overlay ${transitionState === 'in' ? 'slide-in' : transitionState === 'out' ? 'slide-out' : ''}`} 
         onAnimationEnd={handleAnimationEnd} 
-      />
+      >
+        {(transitionState === 'in' || transitionState === 'out') && (
+          <div className="transition-wheel-container">
+            <img 
+              src="/images/Logo%20chakra.png" 
+              alt="Transition Wheel" 
+              className="transition-wheel" 
+            />
+          </div>
+        )}
+      </div>
 
       <Navbar currentPage={currentPage} setCurrentPage={navigateTo} />
 

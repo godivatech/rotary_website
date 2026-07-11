@@ -847,7 +847,55 @@ a:active,
     100% {
         transform: translateY(-100%);
         border-bottom-left-radius: 60vw 12vh;
-        border-bottom-right-radius: 60vw 12vh;
+    }
+}
+
+/* --- Transition Wheel Overlay Animation --- */
+.transition-wheel-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.transition-wheel {
+    width: 130px;
+    height: 130px;
+    object-fit: contain;
+    filter: brightness(0) invert(1); /* white/silver chakra wheel */
+}
+
+.transition-overlay.slide-in .transition-wheel {
+    animation: transition-wheel-enter 0.7s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+.transition-overlay.slide-out .transition-wheel {
+    animation: transition-wheel-exit 0.7s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+@keyframes transition-wheel-enter {
+    0% {
+        transform: rotate(0deg) scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+        opacity: 0.9;
+    }
+}
+
+@keyframes transition-wheel-exit {
+    0% {
+        transform: rotate(360deg) scale(1);
+        opacity: 0.9;
+    }
+    100% {
+        transform: rotate(720deg) scale(0);
+        opacity: 0;
     }
 }
 
