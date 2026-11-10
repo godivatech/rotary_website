@@ -251,17 +251,18 @@ export default function Gallery() {
                     <span style={{ 
                         fontSize: '0.85rem', 
                         fontWeight: '800', 
-                        color: 'var(--primary-light)', 
+                        color: '#93C5FD', 
                         textTransform: 'uppercase', 
                         letterSpacing: '2px',
-                        backgroundColor: 'rgba(59, 130, 246, 0.15)',
-                        padding: '6px 16px',
+                        backgroundColor: 'rgba(59, 130, 246, 0.25)',
+                        border: '1px solid rgba(147, 197, 253, 0.35)',
+                        padding: '6px 18px',
                         borderRadius: '30px',
                         display: 'inline-flex',
                         alignItems: 'center',
-                        gap: '6px'
+                        gap: '8px'
                     }}>
-                        <Sparkles size={14} /> Visual Archives
+                        <Sparkles size={14} color="#93C5FD" /> Visual Archives
                     </span>
                     <h1 style={{ fontSize: '2.8rem', fontWeight: '800', margin: '18px 0 12px 0', color: 'white' }}>
                         Our Event Gallery
@@ -926,11 +927,12 @@ export default function Gallery() {
                         <div style={{
                             display: 'inline-block',
                             backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                            padding: '4px 14px',
+                            border: '1px solid rgba(255, 255, 255, 0.2)',
+                            padding: '6px 16px',
                             borderRadius: '20px',
                             fontSize: '0.85rem',
                             fontWeight: '700',
-                            color: 'var(--primary-light)'
+                            color: '#93C5FD'
                         }}>
                             Photo {lightbox.photoIndex + 1} of {lightbox.event.photos.length}
                         </div>
