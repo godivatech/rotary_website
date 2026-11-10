@@ -12,6 +12,14 @@ import {
     Sparkles
 } from 'lucide-react';
 
+const cleanBaseName = (fileName) => {
+    return fileName
+        .replace(/\.[a-zA-Z0-9.]+$/, '')
+        .replace(/[^a-zA-Z0-9_-]/g, '_')
+        .replace(/_+/g, '_')
+        .replace(/^_|_$/g, '');
+};
+
 const getCloudinaryUrl = (localPath) => {
     if (!localPath) return '';
     let cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME || 'doeodacsg';
@@ -22,8 +30,22 @@ const getCloudinaryUrl = (localPath) => {
     // Dedicated clean path for Diwali Celebration 2026
     if (localPath.includes('Diwali celebration 2026')) {
         const fileName = localPath.split('/').pop();
-        const cleanBaseName = fileName.replace(/\.(jpg|jpeg|png)\.(jpg|jpeg|png)$/i, '').replace(/\.(jpg|jpeg|png)$/i, '');
-        return `https://res.cloudinary.com/${cloudName}/image/upload/${transform}/websites/rotary-website/gallery/Diwali_celebration_2026/${cleanBaseName}.jpg`;
+        const base = fileName.replace(/\.(jpg|jpeg|png)\.(jpg|jpeg|png)$/i, '').replace(/\.(jpg|jpeg|png)$/i, '');
+        return `https://res.cloudinary.com/${cloudName}/image/upload/${transform}/websites/rotary-website/gallery/Diwali_celebration_2026/${base}.jpg`;
+    }
+
+    // 89th Installation Ceremony
+    if (localPath.includes('rotary club 89th installation')) {
+        const fileName = localPath.split('/').pop();
+        const base = cleanBaseName(fileName);
+        return `https://res.cloudinary.com/${cloudName}/image/upload/${transform}/websites/rotary-website/gallery/89th_installation/${base}.jpg`;
+    }
+
+    // Toilet Inauguration
+    if (localPath.includes('ROTARY CLUB toilet inaguration')) {
+        const fileName = localPath.split('/').pop();
+        const base = cleanBaseName(fileName);
+        return `https://res.cloudinary.com/${cloudName}/image/upload/${transform}/websites/rotary-website/gallery/toilet_inauguration/${base}.jpg`;
     }
     
     // Standard path for other gallery items
@@ -38,6 +60,45 @@ const getCloudinaryUrl = (localPath) => {
     
     return `https://res.cloudinary.com/${cloudName}/image/upload/${transform}/${encodedPublicId}${ext}`;
 };
+
+// All 28 photos from 89th Installation Ceremony
+const installationPhotos = [
+    "/images/rotary club 89th installation/Cam 1 Photos _211_.jpeg",
+    "/images/rotary club 89th installation/Cam 1 Photos _233_.jpeg",
+    "/images/rotary club 89th installation/Cam 1 Photos _250_.jpeg",
+    "/images/rotary club 89th installation/Cam 1 Photos _256_.jpeg",
+    "/images/rotary club 89th installation/Cam 1 Photos _265_.jpeg",
+    "/images/rotary club 89th installation/Cam 1 Photos _268_.jpeg",
+    "/images/rotary club 89th installation/Cam 1 Photos _273_.jpeg",
+    "/images/rotary club 89th installation/Cam 1 Photos _284_.jpeg",
+    "/images/rotary club 89th installation/Cam 1 Photos _287_.jpeg",
+    "/images/rotary club 89th installation/Cam 1 Photos _339_.jpeg",
+    "/images/rotary club 89th installation/Cam 1 Photos _358_.jpeg",
+    "/images/rotary club 89th installation/Cam 1 Photos _366_.jpeg",
+    "/images/rotary club 89th installation/Cam 1 Photos _377_.jpeg",
+    "/images/rotary club 89th installation/Cam 1 Photos _418_.jpeg",
+    "/images/rotary club 89th installation/Cam 1 Photos _454_.jpeg",
+    "/images/rotary club 89th installation/Cam 1 Photos _477_.jpeg",
+    "/images/rotary club 89th installation/Cam 1 Photos _565_.jpeg",
+    "/images/rotary club 89th installation/Cam 1 Photos _588_.jpeg",
+    "/images/rotary club 89th installation/Cam 1 Photos _674_.jpeg",
+    "/images/rotary club 89th installation/Cam 1 Photos _676_.jpeg",
+    "/images/rotary club 89th installation/Cam 1 Photos _679_.jpeg",
+    "/images/rotary club 89th installation/Cam 1 Photos _686_.jpeg",
+    "/images/rotary club 89th installation/Cam 1 Photos _703_.jpeg",
+    "/images/rotary club 89th installation/gft1.jpeg",
+    "/images/rotary club 89th installation/gft2.jpeg",
+    "/images/rotary club 89th installation/gft3.jpeg",
+    "/images/rotary club 89th installation/GOVERNER.jpeg",
+    "/images/rotary club 89th installation/hero 1.jpeg"
+];
+
+// All 3 photos from Toilet Block Inauguration
+const toiletPhotos = [
+    "/images/ROTARY CLUB toilet inaguration/Cam 1 Photos _644_.jpeg",
+    "/images/ROTARY CLUB toilet inaguration/Cam 1 Photos _651_.jpeg",
+    "/images/ROTARY CLUB toilet inaguration/Cam 1 Photos _655_.jpeg"
+];
 
 // All 33 photos from Diwali Celebration 2026
 const diwaliPhotos = [
@@ -79,6 +140,15 @@ const diwaliPhotos = [
 // Organized Event Data
 const galleryEvents = [
     {
+        id: "89th-installation-ceremony",
+        title: "89th Installation Ceremony",
+        date: "July 2026",
+        year: "2025 - 2026",
+        category: "Leadership & Fellowship",
+        description: "Official installation of the 89th President, Board of Directors, and committee leaders, ushering in a year of impactful service and Rotary fellowship.",
+        photos: installationPhotos
+    },
+    {
         id: "diwali-celebration-2026",
         title: "Diwali Celebration 2026",
         date: "October 2026",
@@ -86,6 +156,15 @@ const galleryEvents = [
         category: "Fellowship & Family",
         description: "A grand festival of lights celebration bringing together Rotarians and their families for an evening of joy, traditional festivities, cultural performances, and fellowship.",
         photos: diwaliPhotos
+    },
+    {
+        id: "toilet-block-inauguration",
+        title: "Community Sanitation & Toilet Block Inauguration",
+        date: "August 2026",
+        year: "2025 - 2026",
+        category: "Community Service",
+        description: "Construction and official handover of modern sanitation facilities and dedicated toilet blocks, promoting hygiene, health, and dignified access for the school and local community.",
+        photos: toiletPhotos
     },
     {
         id: "blood-donation-camp",
@@ -156,7 +235,7 @@ export default function Gallery() {
         photoIndex: 0
     });
 
-    const categories = ["All", "Fellowship & Family", "Community Service", "Youth Service", "Environment"];
+    const categories = ["All", "Leadership & Fellowship", "Fellowship & Family", "Community Service", "Youth Service", "Environment"];
     const years = ["All", "2025 - 2026"];
 
     // Filter events
