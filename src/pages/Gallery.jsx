@@ -1,15 +1,19 @@
 import React, { useState, useMemo } from 'react';
-import { 
-    X, 
-    ChevronLeft, 
-    ChevronRight, 
-    Calendar, 
-    Tag, 
-    Images, 
-    Search, 
-    ChevronDown, 
-    ChevronUp,
-    Sparkles
+import {
+    X,
+    ChevronLeft,
+    ChevronRight,
+    Calendar,
+    Tag,
+    Images,
+    Search,
+    Sparkles,
+    ZoomIn,
+    ZoomOut,
+    RotateCcw,
+    ArrowLeft,
+    ArrowRight,
+    Eye
 } from 'lucide-react';
 
 const cleanBaseName = (fileName) => {
@@ -24,9 +28,9 @@ const getCloudinaryUrl = (localPath) => {
     if (!localPath) return '';
     let cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME || 'doeodacsg';
     cloudName = cloudName.replace(/['"]/g, '');
-    
+
     const transform = 'w_1000,c_limit,q_auto,f_auto';
-    
+
     // Dedicated clean path for Diwali Celebration 2026
     if (localPath.includes('Diwali celebration 2026')) {
         const fileName = localPath.split('/').pop();
@@ -47,17 +51,17 @@ const getCloudinaryUrl = (localPath) => {
         const base = cleanBaseName(fileName);
         return `https://res.cloudinary.com/${cloudName}/image/upload/${transform}/websites/rotary-website/gallery/toilet_inauguration/${base}.jpg`;
     }
-    
+
     // Standard path for other gallery items
     let cleanPath = localPath.startsWith('/') ? localPath.substring(1) : localPath;
     cleanPath = cleanPath.replace(/ /g, '_');
     const extMatch = cleanPath.match(/\.[a-zA-Z0-9]+$/);
     const ext = extMatch ? extMatch[0] : '';
     const cleanPathWithoutExt = cleanPath.replace(/\.[a-zA-Z0-9]+$/, '');
-    
+
     const publicId = `websites/rotary-website/${cleanPathWithoutExt}`;
     const encodedPublicId = publicId.split('/').map(part => encodeURIComponent(part)).join('/');
-    
+
     return `https://res.cloudinary.com/${cloudName}/image/upload/${transform}/${encodedPublicId}${ext}`;
 };
 
@@ -107,6 +111,12 @@ const diwaliPhotos = [
     "/images/Diwali celebration 2026/VJY00748.jpg.jpeg",
     "/images/Diwali celebration 2026/VJY00755.jpg.jpeg",
     "/images/Diwali celebration 2026/VJY00757.jpg.jpeg",
+    "/images/Diwali celebration 2026/VJY00790.jpg.jpeg",
+    "/images/Diwali celebration 2026/VJY00793.jpg.jpeg",
+    "/images/Diwali celebration 2026/VJY00827.jpg.jpeg",
+    "/images/Diwali celebration 2026/VJY00829.jpg.jpeg",
+    "/images/Diwali celebration 2026/VJY00839.jpg.jpeg",
+    "/images/Diwali celebration 2026/VJY00867.jpg.jpeg",
     "/images/Diwali celebration 2026/VJY00871.jpg.jpeg",
     "/images/Diwali celebration 2026/VJY00883.jpg.jpeg",
     "/images/Diwali celebration 2026/VJY00907.jpg.jpeg",
@@ -137,7 +147,53 @@ const diwaliPhotos = [
     "/images/Diwali celebration 2026/VJY01579.jpg.jpeg"
 ];
 
-// Organized Event Data
+// Single-photo events grouped together into the Club Initiatives album
+const initiativesPhotos = [
+    {
+        title: "Blood Donation Camp",
+        category: "Community Service",
+        date: "July 2026",
+        src: "/images/gallery/BLOOD DONATION CAMP.jpeg",
+        description: "Organized a mega voluntary blood donation drive in partnership with local healthcare authorities to support critical community needs."
+    },
+    {
+        title: "Tree Plantation Drive at KLNCE",
+        category: "Environment",
+        date: "June 2026",
+        src: "/images/gallery/Tree plantation at KLNCE.jpeg",
+        description: "Green initiative aimed at afforestation, ecological balance, and environmental sustainability on campus grounds."
+    },
+    {
+        title: "Stag Meeting at Kodaikanal",
+        category: "Fellowship & Family",
+        date: "May 2026",
+        src: "/images/gallery/Stag meeting at Kodaikanal.jpeg",
+        description: "Annual fellowship weekend retreat fostering stronger camaraderie, team bonding, and strategic project planning."
+    },
+    {
+        title: "Vetrikku Vazi - Plus 2 Career Guidance",
+        category: "Youth Service",
+        date: "April 2026",
+        src: "/images/gallery/VETRIKKU VAZI - PLUS 2 STUDENTS TRAINING.jpeg",
+        description: "Empowering higher secondary students with comprehensive career guidance, competitive exam readiness, and future skills development."
+    },
+    {
+        title: "Narcotics Awareness Program",
+        category: "Youth Service",
+        date: "March 2026",
+        src: "/images/gallery/NARCOTIS AWA.jpeg",
+        description: "Educating school and college students on substance abuse hazards and promoting healthy, drug-free lifestyle habits."
+    },
+    {
+        title: "Value Your Spouse Program",
+        category: "Fellowship & Family",
+        date: "February 2026",
+        src: "/images/gallery/VALUE YOUR SPOUSE.jpeg",
+        description: "A special family fellowship evening celebrating and honoring Rotary spouses for their constant dedication and community support."
+    }
+];
+
+// Organized Event Data: 4 high-impact albums
 const galleryEvents = [
     {
         id: "89th-installation-ceremony",
@@ -145,6 +201,7 @@ const galleryEvents = [
         date: "July 2026",
         year: "2025 - 2026",
         category: "Leadership & Fellowship",
+        coverPhoto: "/images/rotary club 89th installation/hero 1.jpeg",
         description: "Official installation of the 89th President, Board of Directors, and committee leaders, ushering in a year of impactful service and Rotary fellowship.",
         photos: installationPhotos
     },
@@ -154,6 +211,7 @@ const galleryEvents = [
         date: "October 2026",
         year: "2025 - 2026",
         category: "Fellowship & Family",
+        coverPhoto: "/images/Diwali celebration 2026/VJY00537.jpg.jpeg",
         description: "A grand festival of lights celebration bringing together Rotarians and their families for an evening of joy, traditional festivities, cultural performances, and fellowship.",
         photos: diwaliPhotos
     },
@@ -163,108 +221,143 @@ const galleryEvents = [
         date: "August 2026",
         year: "2025 - 2026",
         category: "Community Service",
+        coverPhoto: "/images/ROTARY CLUB toilet inaguration/Cam 1 Photos _644_.jpeg",
         description: "Construction and official handover of modern sanitation facilities and dedicated toilet blocks, promoting hygiene, health, and dignified access for the school and local community.",
         photos: toiletPhotos
     },
     {
-        id: "blood-donation-camp",
-        title: "Blood Donation Camp",
-        date: "July 2026",
+        id: "club-initiatives-community-drives",
+        title: "Club Initiatives & Community Drives",
+        date: "Rotary Year 2025 - 2026",
         year: "2025 - 2026",
-        category: "Community Service",
-        description: "Organized a mega voluntary blood donation drive in partnership with local healthcare authorities to support critical community needs.",
-        photos: ["/images/gallery/BLOOD DONATION CAMP.jpeg"]
-    },
-    {
-        id: "tree-plantation-klnce",
-        title: "Tree Plantation Drive at KLNCE",
-        date: "June 2026",
-        year: "2025 - 2026",
-        category: "Environment",
-        description: "Green initiative aimed at afforestation, ecological balance, and environmental sustainability on campus grounds.",
-        photos: ["/images/gallery/Tree plantation at KLNCE.jpeg"]
-    },
-    {
-        id: "kodaikanal-stag-meeting",
-        title: "Stag Meeting at Kodaikanal",
-        date: "May 2026",
-        year: "2025 - 2026",
-        category: "Fellowship & Family",
-        description: "Annual fellowship weekend retreat fostering stronger camaraderie, team bonding, and strategic project planning.",
-        photos: ["/images/gallery/Stag meeting at Kodaikanal.jpeg"]
-    },
-    {
-        id: "vetrikku-vazi-students-training",
-        title: "Vetrikku Vazi - Plus 2 Students Career Guidance",
-        date: "April 2026",
-        year: "2025 - 2026",
-        category: "Youth Service",
-        description: "Empowering higher secondary students with comprehensive career guidance, competitive exam readiness, and future skills development.",
-        photos: ["/images/gallery/VETRIKKU VAZI - PLUS 2 STUDENTS TRAINING.jpeg"]
-    },
-    {
-        id: "narcotics-awareness-program",
-        title: "Narcotics Awareness Program",
-        date: "March 2026",
-        year: "2025 - 2026",
-        category: "Youth Service",
-        description: "Educating school and college students on substance abuse hazards and promoting healthy, drug-free lifestyle habits.",
-        photos: ["/images/gallery/NARCOTIS AWA.jpeg"]
-    },
-    {
-        id: "value-your-spouse",
-        title: "Value Your Spouse Program",
-        date: "February 2026",
-        year: "2025 - 2026",
-        category: "Fellowship & Family",
-        description: "A special family fellowship evening celebrating and honoring Rotary spouses for their constant dedication and community support.",
-        photos: ["/images/gallery/VALUE YOUR SPOUSE.jpeg"]
+        category: "Community & Youth Service",
+        coverPhoto: "/images/gallery/Tree plantation at KLNCE.jpeg",
+        description: "A curated collection of impactful club projects, community health camps, youth leadership workshops, environmental drives, and fellowship programs.",
+        photos: initiativesPhotos
     }
 ];
 
+// Helper functions to handle string or object photos seamlessly
+const getPhotoPath = (photo) => (typeof photo === 'object' ? photo.src : photo);
+const getPhotoTitle = (event, photoIndex) => {
+    if (!event || !event.photos) return '';
+    const photo = event.photos[photoIndex];
+    if (typeof photo === 'object' && photo.title) return photo.title;
+    return event.title;
+};
+const getPhotoCategory = (event, photoIndex) => {
+    if (!event || !event.photos) return '';
+    const photo = event.photos[photoIndex];
+    if (typeof photo === 'object' && photo.category) return photo.category;
+    return event.category;
+};
+const getPhotoDate = (event, photoIndex) => {
+    if (!event || !event.photos) return '';
+    const photo = event.photos[photoIndex];
+    if (typeof photo === 'object' && photo.date) return photo.date;
+    return event.date;
+};
+
 export default function Gallery() {
-    const [selectedCategory, setSelectedCategory] = useState("All");
     const [selectedYear, setSelectedYear] = useState("All");
     const [searchQuery, setSearchQuery] = useState("");
-    const [expandedEvents, setExpandedEvents] = useState({});
 
-    // Lightbox State: holds the active event object and photo index
+    // Active album drill-down view (pure state so it doesn't conflict with App's global page routing)
+    const [activeEventId, setActiveEventId] = useState(null);
+
+    const openAlbum = (eventId) => {
+        setActiveEventId(eventId);
+        setTimeout(() => {
+            const el = document.getElementById('gallery-content-area');
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                window.scrollTo({ top: 320, behavior: 'smooth' });
+            }
+        }, 50);
+    };
+
+    const backToAlbums = () => {
+        setActiveEventId(null);
+        setTimeout(() => {
+            const el = document.getElementById('gallery-content-area');
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                window.scrollTo({ top: 250, behavior: 'smooth' });
+            }
+        }, 50);
+    };
+
+    const activeEvent = useMemo(() => {
+        return galleryEvents.find(e => e.id === activeEventId) || null;
+    }, [activeEventId]);
+
+    // Lightbox State & Zoom controls
     const [lightbox, setLightbox] = useState({
         isOpen: false,
         event: null,
         photoIndex: 0
     });
+    const [zoomLevel, setZoomLevel] = useState(1);
+    const [pan, setPan] = useState({ x: 0, y: 0 });
+    const [isDragging, setIsDragging] = useState(false);
+    const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
 
-    const categories = ["All", "Leadership & Fellowship", "Fellowship & Family", "Community Service", "Youth Service", "Environment"];
     const years = ["All", "2025 - 2026"];
 
-    // Filter events
+    // Filter events for the 3-grid overview
     const filteredEvents = useMemo(() => {
         return galleryEvents.filter(ev => {
-            const matchesCategory = selectedCategory === "All" || ev.category === selectedCategory;
             const matchesYear = selectedYear === "All" || ev.year === selectedYear;
-            const matchesSearch = searchQuery === "" || 
-                ev.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                ev.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                ev.category.toLowerCase().includes(searchQuery.toLowerCase());
-            return matchesCategory && matchesYear && matchesSearch;
+            const searchLower = searchQuery.toLowerCase();
+
+            const matchesDirect = searchQuery === "" ||
+                ev.title.toLowerCase().includes(searchLower) ||
+                ev.description.toLowerCase().includes(searchLower) ||
+                ev.category.toLowerCase().includes(searchLower);
+
+            // Also search inside sub-initiatives
+            const matchesSub = ev.photos.some(p =>
+                typeof p === 'object' && (
+                    p.title.toLowerCase().includes(searchLower) ||
+                    p.category.toLowerCase().includes(searchLower) ||
+                    (p.description && p.description.toLowerCase().includes(searchLower))
+                )
+            );
+
+            return matchesYear && (matchesDirect || matchesSub);
         });
-    }, [selectedCategory, selectedYear, searchQuery]);
+    }, [selectedYear, searchQuery]);
 
-
-
-    const toggleExpand = (eventId) => {
-        setExpandedEvents(prev => ({
-            ...prev,
-            [eventId]: !prev[eventId]
-        }));
+    const handleZoomIn = () => {
+        setZoomLevel(prev => Math.min(3, +(prev + 0.5).toFixed(1)));
     };
 
-    const singlePhotoEvents = useMemo(() => {
-        return filteredEvents.filter(ev => ev.photos.length === 1);
-    }, [filteredEvents]);
+    const handleZoomOut = () => {
+        setZoomLevel(prev => {
+            const next = Math.max(1, +(prev - 0.5).toFixed(1));
+            if (next === 1) setPan({ x: 0, y: 0 });
+            return next;
+        });
+    };
+
+    const handleResetZoom = () => {
+        setZoomLevel(1);
+        setPan({ x: 0, y: 0 });
+    };
+
+    const handleToggleZoom = () => {
+        if (zoomLevel > 1) {
+            handleResetZoom();
+        } else {
+            setZoomLevel(2);
+        }
+    };
 
     const openLightbox = (event, index) => {
+        setZoomLevel(1);
+        setPan({ x: 0, y: 0 });
         setLightbox({
             isOpen: true,
             event: event,
@@ -273,24 +366,9 @@ export default function Gallery() {
         document.body.style.overflow = 'hidden';
     };
 
-    const openInitiativesLightbox = (index) => {
-        setLightbox({
-            isOpen: true,
-            event: {
-                title: singlePhotoEvents[index].title,
-                category: singlePhotoEvents[index].category,
-                date: singlePhotoEvents[index].date,
-                photos: singlePhotoEvents.map(e => e.photos[0]),
-                allTitles: singlePhotoEvents.map(e => e.title),
-                allCategories: singlePhotoEvents.map(e => e.category),
-                allDates: singlePhotoEvents.map(e => e.date)
-            },
-            photoIndex: index
-        });
-        document.body.style.overflow = 'hidden';
-    };
-
     const closeLightbox = () => {
+        setZoomLevel(1);
+        setPan({ x: 0, y: 0 });
         setLightbox({
             isOpen: false,
             event: null,
@@ -302,6 +380,8 @@ export default function Gallery() {
     const navigateLightbox = (direction, e) => {
         if (e) e.stopPropagation();
         if (!lightbox.event) return;
+        setZoomLevel(1);
+        setPan({ x: 0, y: 0 });
         const total = lightbox.event.photos.length;
         let newIndex = lightbox.photoIndex + direction;
         if (newIndex < 0) newIndex = total - 1;
@@ -309,11 +389,53 @@ export default function Gallery() {
         setLightbox(prev => ({ ...prev, photoIndex: newIndex }));
     };
 
+    const handleMouseDown = (e) => {
+        if (zoomLevel <= 1) return;
+        e.preventDefault();
+        setIsDragging(true);
+        setDragStart({ x: e.clientX - pan.x, y: e.clientY - pan.y });
+    };
+
+    const handleMouseMove = (e) => {
+        if (!isDragging || zoomLevel <= 1) return;
+        setPan({ x: e.clientX - dragStart.x, y: e.clientY - dragStart.y });
+    };
+
+    const handleMouseUp = () => {
+        setIsDragging(false);
+    };
+
+    // Keyboard navigation & zoom shortcuts
+    React.useEffect(() => {
+        if (!lightbox.isOpen) return;
+
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape') {
+                if (zoomLevel > 1) {
+                    handleResetZoom();
+                } else {
+                    closeLightbox();
+                }
+            } else if (e.key === 'ArrowRight') {
+                navigateLightbox(1);
+            } else if (e.key === 'ArrowLeft') {
+                navigateLightbox(-1);
+            } else if (e.key === '+' || e.key === '=') {
+                handleZoomIn();
+            } else if (e.key === '-' || e.key === '_') {
+                handleZoomOut();
+            } else if (e.key === '0') {
+                handleResetZoom();
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [lightbox.isOpen, lightbox.event, lightbox.photoIndex, zoomLevel]);
+
     const handleImageError = (e, localPath) => {
         e.target.src = localPath;
     };
-
-
 
     return (
         <div style={{ backgroundColor: 'var(--bg-light)', minHeight: '85vh', paddingBottom: '90px' }}>
@@ -327,16 +449,15 @@ export default function Gallery() {
                 overflow: 'hidden'
             }}>
                 <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-                    <span style={{ 
-                        fontSize: '0.85rem', 
-                        fontWeight: '800', 
-                        color: '#93C5FD', 
-                        textTransform: 'uppercase', 
-                        letterSpacing: '2px',
-                        backgroundColor: 'rgba(59, 130, 246, 0.25)',
-                        border: '1px solid rgba(147, 197, 253, 0.35)',
-                        padding: '6px 18px',
-                        borderRadius: '30px',
+                    <span style={{
+                        fontSize: '0.85rem',
+                        fontWeight: '800',
+                        color: '#93C5FD',
+                        textTransform: 'uppercase',
+                        letterSpacing: '1.5px',
+                        backgroundColor: 'rgba(255,255,255,0.1)',
+                        padding: '6px 16px',
+                        borderRadius: '20px',
                         display: 'inline-flex',
                         alignItems: 'center',
                         gap: '8px'
@@ -347,34 +468,30 @@ export default function Gallery() {
                         Our Event Gallery
                     </h1>
                     <p style={{ maxWidth: '680px', margin: '0 auto', color: 'rgba(255,255,255,0.7)', fontSize: '1.05rem', lineHeight: '1.6' }}>
-                        Browse our active projects, weekly fellowship gatherings, community medical camps, and club celebrations organized by event.
+                        Explore our key community initiatives, celebrations, and youth programs. Select an event album below to view photos.
                     </p>
                 </div>
             </section>
 
-            {/* Filter and Search Bar */}
-            <section className="container" style={{ marginTop: '-25px', position: 'relative', zIndex: 10 }}>
-                <div style={{
-                    backgroundColor: 'white',
-                    borderRadius: '20px',
-                    padding: '20px 24px',
-                    boxShadow: 'var(--shadow-md)',
-                    border: '1.5px solid var(--border-color)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '16px'
-                }}>
+            {/* Filter and Search Bar (Visible on All Albums View) */}
+            {!activeEvent && (
+                <section className="container" style={{ marginTop: '-25px', position: 'relative', zIndex: 10 }}>
                     <div style={{
+                        backgroundColor: 'white',
+                        borderRadius: '20px',
+                        padding: '18px 24px',
+                        boxShadow: 'var(--shadow-md)',
+                        border: '1.5px solid var(--border-color)',
                         display: 'flex',
                         flexWrap: 'wrap',
-                        gap: '14px',
+                        gap: '16px',
                         alignItems: 'center',
                         justifyContent: 'space-between'
                     }}>
                         {/* Search Bar */}
                         <div style={{
                             position: 'relative',
-                            flex: '1 1 280px',
+                            flex: '1 1 300px',
                             minWidth: '240px'
                         }}>
                             <Search size={18} style={{
@@ -384,14 +501,14 @@ export default function Gallery() {
                                 transform: 'translateY(-50%)',
                                 color: '#94A3B8'
                             }} />
-                            <input 
+                            <input
                                 type="text"
-                                placeholder="Search by event name or keyword..."
+                                placeholder="Search by event name, category, or keyword..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 style={{
                                     width: '100%',
-                                    padding: '10px 14px 10px 40px',
+                                    padding: '11px 14px 11px 42px',
                                     borderRadius: '12px',
                                     border: '1.5px solid var(--border-color)',
                                     fontSize: '0.95rem',
@@ -404,567 +521,696 @@ export default function Gallery() {
                             />
                         </div>
 
-                        {/* Year Selector */}
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                            <span style={{ fontSize: '0.85rem', fontWeight: '700', color: '#64748B' }}>
-                                Rotary Year:
+                        {/* Controls Group: Year Selector + Count Badge */}
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flexWrap: 'wrap' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                <span style={{ fontSize: '0.85rem', fontWeight: '700', color: '#64748B' }}>
+                                    Rotary Year:
+                                </span>
+                                <select
+                                    value={selectedYear}
+                                    onChange={(e) => setSelectedYear(e.target.value)}
+                                    style={{
+                                        padding: '9px 14px',
+                                        borderRadius: '10px',
+                                        border: '1.5px solid var(--border-color)',
+                                        fontSize: '0.9rem',
+                                        fontWeight: '700',
+                                        color: 'var(--secondary)',
+                                        backgroundColor: 'white',
+                                        cursor: 'pointer',
+                                        outline: 'none'
+                                    }}
+                                >
+                                    {years.map(y => (
+                                        <option key={y} value={y}>{y === "All" ? "All Rotary Years" : y}</option>
+                                    ))}
+                                </select>
+                            </div>
+
+                            <span style={{
+                                backgroundColor: '#F1F5F9',
+                                color: 'var(--secondary)',
+                                padding: '6px 14px',
+                                borderRadius: '20px',
+                                fontSize: '0.85rem',
+                                fontWeight: '700',
+                                border: '1px solid var(--border-color)'
+                            }}>
+                                {filteredEvents.length} {filteredEvents.length === 1 ? 'Album' : 'Albums'}
                             </span>
-                            <select 
-                                value={selectedYear}
-                                onChange={(e) => setSelectedYear(e.target.value)}
-                                style={{
-                                    padding: '9px 14px',
-                                    borderRadius: '10px',
-                                    border: '1.5px solid var(--border-color)',
-                                    fontSize: '0.9rem',
-                                    fontWeight: '700',
-                                    color: 'var(--secondary)',
-                                    backgroundColor: 'white',
-                                    cursor: 'pointer',
-                                    outline: 'none'
-                                }}
-                            >
-                                {years.map(y => (
-                                    <option key={y} value={y}>{y === "All" ? "All Rotary Years" : y}</option>
-                                ))}
-                            </select>
                         </div>
                     </div>
+                </section>
+            )}
 
-                    {/* Category Filter Pills */}
-                    <div style={{
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        gap: '8px',
-                        alignItems: 'center',
-                        borderTop: '1px solid #F1F5F9',
-                        paddingTop: '14px'
-                    }}>
-                        <span style={{ fontSize: '0.85rem', fontWeight: '700', color: '#64748B', marginRight: '6px' }}>
-                            Category:
-                        </span>
-                        {categories.map(cat => {
-                            const isSelected = selectedCategory === cat;
-                            return (
-                                <button
-                                    key={cat}
-                                    onClick={() => setSelectedCategory(cat)}
-                                    style={{
-                                        border: 'none',
-                                        backgroundColor: isSelected ? 'var(--primary)' : '#F1F5F9',
-                                        color: isSelected ? 'white' : 'var(--text-dark)',
-                                        fontSize: '0.85rem',
-                                        fontWeight: '700',
-                                        padding: '7px 15px',
-                                        borderRadius: '25px',
-                                        cursor: 'pointer',
-                                        transition: 'all 0.2s ease'
-                                    }}
-                                    onMouseEnter={(e) => {
-                                        if (!isSelected) e.target.style.backgroundColor = '#E2E8F0';
-                                    }}
-                                    onMouseLeave={(e) => {
-                                        if (!isSelected) e.target.style.backgroundColor = '#F1F5F9';
-                                    }}
-                                >
-                                    {cat}
-                                </button>
-                            );
-                        })}
+            {/* Main Content Area */}
+            <section id="gallery-content-area" className="container" style={{ marginTop: activeEvent ? '30px' : '40px' }}>
 
-
-                    </div>
-                </div>
-            </section>
-
-            {/* Events Feed Section */}
-            <section className="container" style={{ marginTop: '40px' }}>
-                {filteredEvents.length === 0 ? (
-                    <div style={{
-                        textAlign: 'center',
-                        padding: '60px 20px',
-                        backgroundColor: 'white',
-                        borderRadius: '20px',
-                        border: '1.5px solid var(--border-color)',
-                        color: '#64748B'
-                    }}>
-                        <Images size={48} style={{ opacity: 0.4, marginBottom: '16px' }} />
-                        <h3 style={{ fontSize: '1.3rem', color: 'var(--secondary)', marginBottom: '8px' }}>
-                            No events found matching your filter
-                        </h3>
-                        <p style={{ margin: 0, fontSize: '0.95rem' }}>
-                            Try clearing your search query or switching categories.
-                        </p>
-                    </div>
-                ) : (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '45px' }}>
-                        {/* 1. Multi-Photo Event Albums (Events with multiple photos like Diwali) */}
-                        {filteredEvents.filter(ev => ev.photos.length > 1).map((event) => {
-                            const isExpanded = expandedEvents[event.id];
-                            const previewLimit = 8;
-                            const photosToShow = isExpanded ? event.photos : event.photos.slice(0, previewLimit);
-                            const hasMorePhotos = event.photos.length > previewLimit;
-                            const remainingCount = event.photos.length - previewLimit;
-
-                            return (
-                                <div 
-                                    key={event.id}
-                                    style={{
-                                        backgroundColor: 'white',
-                                        borderRadius: '24px',
-                                        border: '1.5px solid var(--border-color)',
-                                        padding: '28px',
-                                        boxShadow: 'var(--shadow-sm)',
-                                        transition: 'box-shadow 0.3s ease'
-                                    }}
-                                >
-                                    {/* Event Header Information */}
-                                    <div style={{
-                                        display: 'flex',
-                                        flexWrap: 'wrap',
-                                        justifyContent: 'space-between',
-                                        alignItems: 'flex-start',
-                                        gap: '14px',
-                                        borderBottom: '1.5px solid #F1F5F9',
-                                        paddingBottom: '18px',
-                                        marginBottom: '22px'
-                                    }}>
-                                        <div>
-                                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', alignItems: 'center', marginBottom: '8px' }}>
-                                                <span style={{
-                                                    backgroundColor: 'rgba(0, 61, 165, 0.1)',
-                                                    color: 'var(--primary)',
-                                                    fontSize: '0.8rem',
-                                                    fontWeight: '800',
-                                                    padding: '4px 12px',
-                                                    borderRadius: '20px',
-                                                    display: 'inline-flex',
-                                                    alignItems: 'center',
-                                                    gap: '5px'
-                                                }}>
-                                                    <Tag size={12} /> {event.category}
-                                                </span>
-                                                <span style={{
-                                                    color: '#64748B',
-                                                    fontSize: '0.85rem',
-                                                    fontWeight: '600',
-                                                    display: 'inline-flex',
-                                                    alignItems: 'center',
-                                                    gap: '5px'
-                                                }}>
-                                                    <Calendar size={13} /> {event.date}
-                                                </span>
-                                            </div>
-                                            <h2 style={{
-                                                fontSize: '1.6rem',
-                                                fontWeight: '800',
-                                                color: 'var(--secondary)',
-                                                margin: '0 0 6px 0',
-                                                lineHeight: '1.3'
-                                            }}>
-                                                {event.title}
-                                            </h2>
-                                            {event.description && (
-                                                <p style={{
-                                                    color: '#475569',
-                                                    fontSize: '0.95rem',
-                                                    lineHeight: '1.6',
-                                                    margin: '4px 0 0 0',
-                                                    maxWidth: '850px'
-                                                }}>
-                                                    {event.description}
-                                                </p>
-                                            )}
-                                        </div>
-
-                                        {/* Event Photo Count Badge */}
-                                        <div style={{
-                                            backgroundColor: '#F8FAFC',
-                                            border: '1px solid var(--border-color)',
-                                            padding: '8px 16px',
-                                            borderRadius: '12px',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            gap: '8px',
-                                            color: 'var(--secondary)',
-                                            fontWeight: '700',
-                                            fontSize: '0.9rem'
-                                        }}>
-                                            <Images size={16} color="var(--primary)" />
-                                            <span>{event.photos.length} Photos</span>
-                                        </div>
-                                    </div>
-
-                                    {/* Direct Photos Grid */}
-                                    <div style={{
-                                        display: 'grid',
-                                        gridTemplateColumns: 'repeat(auto-fill, minmax(210px, 1fr))',
-                                        gap: '16px'
-                                    }}>
-                                        {photosToShow.map((photoPath, pIdx) => {
-                                            const isLastSlot = !isExpanded && hasMorePhotos && pIdx === previewLimit - 1;
-
-                                            return (
-                                                <div 
-                                                    key={pIdx}
-                                                    onClick={() => openLightbox(event, pIdx)}
-                                                    style={{
-                                                        height: '190px',
-                                                        borderRadius: '16px',
-                                                        overflow: 'hidden',
-                                                        position: 'relative',
-                                                        backgroundColor: '#0F172A',
-                                                        cursor: 'pointer',
-                                                        border: '1.5px solid var(--border-color)',
-                                                        boxShadow: 'var(--shadow-sm)'
-                                                    }}
-                                                >
-                                                    <img 
-                                                        src={getCloudinaryUrl(photoPath)} 
-                                                        alt={`${event.title} photo ${pIdx + 1}`}
-                                                        loading="lazy"
-                                                        onError={(e) => handleImageError(e, photoPath)}
-                                                        style={{
-                                                            width: '100%',
-                                                            height: '100%',
-                                                            objectFit: 'cover',
-                                                            transition: 'transform 0.4s ease'
-                                                        }}
-                                                        onMouseEnter={(e) => e.target.style.transform = 'scale(1.06)'}
-                                                        onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
-                                                    />
-
-                                                    {/* +X More Photos Overlay badge on the last preview slot */}
-                                                    {isLastSlot && (
-                                                        <div 
-                                                            style={{
-                                                                position: 'absolute',
-                                                                inset: 0,
-                                                                backgroundColor: 'rgba(15, 23, 42, 0.85)',
-                                                                display: 'flex',
-                                                                flexDirection: 'column',
-                                                                alignItems: 'center',
-                                                                justifyContent: 'center',
-                                                                color: 'white',
-                                                                backdropFilter: 'blur(3px)',
-                                                                padding: '10px',
-                                                                textAlign: 'center',
-                                                                transition: 'background-color 0.2s'
-                                                            }}
-                                                            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(0, 61, 165, 0.9)'}
-                                                            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(15, 23, 42, 0.85)'}
-                                                        >
-                                                            <span style={{ fontSize: '1.8rem', fontWeight: '800', lineHeight: 1 }}>
-                                                                +{remainingCount + 1}
-                                                            </span>
-                                                            <span style={{ fontSize: '0.85rem', fontWeight: '700', marginTop: '4px' }}>
-                                                                More Photos
-                                                            </span>
-                                                            <span style={{ fontSize: '0.75rem', opacity: 0.8, marginTop: '2px' }}>
-                                                                Click to view all
-                                                            </span>
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            );
-                                        })}
-                                    </div>
-
-                                    {/* Expand/Collapse Toggle Button */}
-                                    {hasMorePhotos && (
-                                        <div style={{ textAlign: 'center', marginTop: '20px' }}>
-                                            <button
-                                                onClick={() => toggleExpand(event.id)}
-                                                style={{
-                                                    background: 'none',
-                                                    border: '1.5px solid var(--border-color)',
-                                                    backgroundColor: '#F8FAFC',
-                                                    color: 'var(--primary)',
-                                                    fontSize: '0.9rem',
-                                                    fontWeight: '700',
-                                                    padding: '9px 20px',
-                                                    borderRadius: '25px',
-                                                    cursor: 'pointer',
-                                                    display: 'inline-flex',
-                                                    alignItems: 'center',
-                                                    gap: '6px',
-                                                    transition: 'all 0.2s ease'
-                                                }}
-                                                onMouseEnter={(e) => {
-                                                    e.currentTarget.style.backgroundColor = 'var(--primary)';
-                                                    e.currentTarget.style.color = 'white';
-                                                    e.currentTarget.style.borderColor = 'var(--primary)';
-                                                }}
-                                                onMouseLeave={(e) => {
-                                                    e.currentTarget.style.backgroundColor = '#F8FAFC';
-                                                    e.currentTarget.style.color = 'var(--primary)';
-                                                    e.currentTarget.style.borderColor = 'var(--border-color)';
-                                                }}
-                                            >
-                                                {isExpanded ? (
-                                                    <>Show Less <ChevronUp size={16} /></>
-                                                ) : (
-                                                    <>View All {event.photos.length} Photos <ChevronDown size={16} /></>
-                                                )}
-                                            </button>
-                                        </div>
-                                    )}
-                                </div>
-                            );
-                        })}
-
-                        {/* 2. Unified Club Initiatives & Highlights Grid (All single-photo events together in one rich grid) */}
-                        {filteredEvents.filter(ev => ev.photos.length === 1).length > 0 && (
-                            <div style={{
-                                backgroundColor: 'white',
-                                borderRadius: '24px',
-                                border: '1.5px solid var(--border-color)',
-                                padding: '28px',
-                                boxShadow: 'var(--shadow-sm)'
-                            }}>
-                                <div style={{
-                                    borderBottom: '1.5px solid #F1F5F9',
-                                    paddingBottom: '16px',
-                                    marginBottom: '24px',
-                                    display: 'flex',
-                                    justifyContent: 'space-between',
+                {/* 1. DRILL-DOWN: INSIDE AN EVENT ALBUM */}
+                {activeEvent ? (
+                    <div className="animate-fade-in">
+                        {/* Top Navigation Row */}
+                        <div style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            flexWrap: 'wrap',
+                            gap: '14px',
+                            marginBottom: '26px'
+                        }}>
+                            <button
+                                onClick={backToAlbums}
+                                style={{
+                                    backgroundColor: 'white',
+                                    border: '1.5px solid var(--border-color)',
+                                    color: 'var(--secondary)',
+                                    padding: '10px 22px',
+                                    borderRadius: '30px',
+                                    fontSize: '0.92rem',
+                                    fontWeight: '700',
+                                    display: 'inline-flex',
                                     alignItems: 'center',
-                                    flexWrap: 'wrap',
-                                    gap: '10px'
-                                }}>
-                                    <div>
-                                        <h2 style={{
-                                            fontSize: '1.5rem',
-                                            fontWeight: '800',
-                                            color: 'var(--secondary)',
-                                            margin: 0
-                                        }}>
-                                            Club Initiatives & Highlights
-                                        </h2>
-                                        <p style={{
-                                            color: '#64748B',
-                                            fontSize: '0.9rem',
-                                            margin: '4px 0 0 0'
-                                        }}>
-                                            Key community service drives, youth leadership, and fellowship gatherings.
-                                        </p>
-                                    </div>
-                                    <span style={{
-                                        backgroundColor: '#F8FAFC',
-                                        color: '#475569',
-                                        border: '1px solid var(--border-color)',
-                                        fontSize: '0.85rem',
-                                        fontWeight: '700',
-                                        padding: '6px 14px',
-                                        borderRadius: '20px'
-                                    }}>
-                                        {filteredEvents.filter(ev => ev.photos.length === 1).length} Initiatives
-                                    </span>
-                                </div>
+                                    gap: '8px',
+                                    cursor: 'pointer',
+                                    boxShadow: 'var(--shadow-sm)',
+                                    transition: 'all 0.25s ease'
+                                }}
+                                className="back-albums-btn"
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.style.backgroundColor = 'var(--primary)';
+                                    e.currentTarget.style.color = 'white';
+                                    e.currentTarget.style.borderColor = 'var(--primary)';
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.style.backgroundColor = 'white';
+                                    e.currentTarget.style.color = 'var(--secondary)';
+                                    e.currentTarget.style.borderColor = 'var(--border-color)';
+                                }}
+                            >
+                                <ArrowLeft size={18} />
+                                <span>Back to All Albums</span>
+                            </button>
 
-                                <div style={{
-                                    display: 'grid',
-                                    gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-                                    gap: '24px'
+                            {/* Breadcrumb Path */}
+                            <div style={{ fontSize: '0.88rem', color: '#64748B', fontWeight: '600' }}>
+                                <span
+                                    onClick={backToAlbums}
+                                    style={{ cursor: 'pointer', color: 'var(--primary)' }}
+                                >
+                                    All Albums
+                                </span>
+                                <span style={{ margin: '0 8px', color: '#94A3B8' }}>/</span>
+                                <span style={{ color: 'var(--secondary)', fontWeight: '700' }}>{activeEvent.title}</span>
+                            </div>
+                        </div>
+
+                        {/* Event Details Card */}
+                        <div style={{
+                            backgroundColor: 'white',
+                            borderRadius: '24px',
+                            border: '1.5px solid var(--border-color)',
+                            padding: '30px 32px',
+                            marginBottom: '32px',
+                            boxShadow: 'var(--shadow-sm)'
+                        }}>
+                            <div style={{
+                                display: 'flex',
+                                flexWrap: 'wrap',
+                                alignItems: 'center',
+                                gap: '10px',
+                                marginBottom: '14px'
+                            }}>
+                                <span style={{
+                                    backgroundColor: 'rgba(0, 61, 165, 0.1)',
+                                    color: 'var(--primary)',
+                                    fontSize: '0.82rem',
+                                    fontWeight: '800',
+                                    padding: '5px 14px',
+                                    borderRadius: '20px',
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    gap: '6px'
                                 }}>
-                                    {singlePhotoEvents.map((event, idx) => {
-                                        const photoPath = event.photos[0];
-                                        return (
-                                            <div 
-                                                key={event.id}
-                                                className="tilt-card"
-                                                onClick={() => openInitiativesLightbox(idx)}
+                                    <Tag size={13} /> {activeEvent.category}
+                                </span>
+                                <span style={{
+                                    color: '#64748B',
+                                    fontSize: '0.88rem',
+                                    fontWeight: '700',
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    gap: '6px'
+                                }}>
+                                    <Calendar size={14} /> {activeEvent.date}
+                                </span>
+                            </div>
+
+                            <h1 style={{
+                                fontSize: '2.2rem',
+                                fontWeight: '800',
+                                color: 'var(--secondary)',
+                                margin: '0 0 12px 0',
+                                lineHeight: '1.25'
+                            }}>
+                                {activeEvent.title}
+                            </h1>
+
+                            {activeEvent.description && (
+                                <p style={{
+                                    color: '#475569',
+                                    fontSize: '1.02rem',
+                                    lineHeight: '1.65',
+                                    margin: 0,
+                                    maxWidth: '920px'
+                                }}>
+                                    {activeEvent.description}
+                                </p>
+                            )}
+                        </div>
+
+                        {/* All Photos Grid Inside Event Album */}
+                        <div style={{
+                            display: 'grid',
+                            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+                            gap: '24px'
+                        }}>
+                            {activeEvent.photos.map((item, pIdx) => {
+                                const photoPath = getPhotoPath(item);
+                                const photoTitle = getPhotoTitle(activeEvent, pIdx);
+                                const photoCategory = getPhotoCategory(activeEvent, pIdx);
+                                const photoDate = getPhotoDate(activeEvent, pIdx);
+                                const isInitiativeItem = typeof item === 'object';
+
+                                return (
+                                    <div
+                                        key={pIdx}
+                                        onClick={() => openLightbox(activeEvent, pIdx)}
+                                        style={{
+                                            borderRadius: '18px',
+                                            overflow: 'hidden',
+                                            backgroundColor: 'white',
+                                            cursor: 'pointer',
+                                            border: '1.5px solid var(--border-color)',
+                                            boxShadow: 'var(--shadow-sm)',
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            transition: 'all 0.3s ease'
+                                        }}
+                                        className="album-photo-item"
+                                    >
+                                        <div style={{
+                                            height: isInitiativeItem ? '200px' : '220px',
+                                            position: 'relative',
+                                            overflow: 'hidden',
+                                            backgroundColor: '#0F172A'
+                                        }}>
+                                            <img
+                                                src={getCloudinaryUrl(photoPath)}
+                                                alt={photoTitle}
+                                                loading="lazy"
+                                                onError={(e) => handleImageError(e, photoPath)}
                                                 style={{
-                                                    backgroundColor: '#FAFAFA',
-                                                    borderRadius: '18px',
-                                                    border: '1.5px solid var(--border-color)',
-                                                    overflow: 'hidden',
-                                                    cursor: 'pointer',
-                                                    transition: 'all 0.3s ease',
+                                                    width: '100%',
+                                                    height: '100%',
+                                                    objectFit: 'cover',
+                                                    transition: 'transform 0.4s ease'
+                                                }}
+                                                className="album-photo-img"
+                                            />
+                                            {/* Hover Overlay with View icon */}
+                                            <div
+                                                className="photo-hover-overlay"
+                                                style={{
+                                                    position: 'absolute',
+                                                    inset: 0,
+                                                    backgroundColor: 'rgba(0, 61, 165, 0.45)',
                                                     display: 'flex',
-                                                    flexDirection: 'column'
+                                                    flexDirection: 'column',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    color: 'white',
+                                                    opacity: 0,
+                                                    transition: 'opacity 0.25s ease',
+                                                    backdropFilter: 'blur(2px)'
                                                 }}
                                             >
                                                 <div style={{
-                                                    height: '210px',
-                                                    overflow: 'hidden',
-                                                    position: 'relative',
-                                                    backgroundColor: '#0F172A'
+                                                    width: '46px',
+                                                    height: '46px',
+                                                    borderRadius: '50%',
+                                                    backgroundColor: 'rgba(255, 255, 255, 0.25)',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    marginBottom: '8px',
+                                                    border: '1.5px solid white'
                                                 }}>
-                                                    <img 
-                                                        src={getCloudinaryUrl(photoPath)} 
-                                                        alt={event.title}
-                                                        loading="lazy"
-                                                        onError={(e) => handleImageError(e, photoPath)}
-                                                        style={{
-                                                            width: '100%',
-                                                            height: '100%',
-                                                            objectFit: 'cover',
-                                                            transition: 'transform 0.5s ease'
-                                                        }}
-                                                        onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
-                                                        onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
-                                                    />
+                                                    <Eye size={22} color="white" />
+                                                </div>
+                                                <span style={{ fontSize: '0.85rem', fontWeight: '700' }}>
+                                                    View Photo
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        {/* For initiatives: show clean title and category badge card */}
+                                        {isInitiativeItem && (
+                                            <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', flex: 1, backgroundColor: 'white' }}>
+                                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', gap: '6px' }}>
                                                     <span style={{
-                                                        position: 'absolute',
-                                                        bottom: '12px',
-                                                        left: '12px',
-                                                        backgroundColor: 'rgba(15, 23, 42, 0.8)',
-                                                        color: 'white',
-                                                        fontSize: '0.75rem',
-                                                        fontWeight: '700',
-                                                        padding: '4px 12px',
-                                                        borderRadius: '20px',
-                                                        backdropFilter: 'blur(4px)'
+                                                        backgroundColor: 'rgba(0, 61, 165, 0.08)',
+                                                        color: 'var(--primary)',
+                                                        fontSize: '0.72rem',
+                                                        fontWeight: '800',
+                                                        padding: '3px 10px',
+                                                        borderRadius: '12px'
                                                     }}>
-                                                        {event.category}
+                                                        {photoCategory}
+                                                    </span>
+                                                    <span style={{ fontSize: '0.76rem', color: '#64748B', fontWeight: '600' }}>
+                                                        {photoDate}
                                                     </span>
                                                 </div>
-                                                <div style={{ padding: '16px 18px' }}>
-                                                    <h3 style={{
-                                                        fontSize: '1.05rem',
-                                                        fontWeight: '800',
-                                                        color: 'var(--secondary)',
-                                                        margin: '0 0 6px 0',
-                                                        lineHeight: '1.4'
-                                                    }}>
-                                                        {event.title}
-                                                    </h3>
-                                                    <span style={{
-                                                        fontSize: '0.8rem',
+                                                <h4 style={{ fontSize: '1.02rem', fontWeight: '800', color: 'var(--secondary)', margin: '0 0 6px 0', lineHeight: '1.3' }}>
+                                                    {photoTitle}
+                                                </h4>
+                                                {item.description && (
+                                                    <p style={{
                                                         color: '#64748B',
-                                                        fontWeight: '600',
-                                                        display: 'inline-flex',
-                                                        alignItems: 'center',
-                                                        gap: '4px'
+                                                        fontSize: '0.84rem',
+                                                        lineHeight: '1.5',
+                                                        margin: 0,
+                                                        display: '-webkit-box',
+                                                        WebkitLineClamp: 2,
+                                                        WebkitBoxOrient: 'vertical',
+                                                        overflow: 'hidden'
                                                     }}>
-                                                        <Calendar size={12} /> {event.date}
-                                                    </span>
+                                                        {item.description}
+                                                    </p>
+                                                )}
+                                            </div>
+                                        )}
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                ) : (
+                    /* 2. OVERVIEW: 3-COLUMN ALBUM CARDS GRID */
+                    filteredEvents.length === 0 ? (
+                        <div style={{
+                            textAlign: 'center',
+                            padding: '60px 20px',
+                            backgroundColor: 'white',
+                            borderRadius: '20px',
+                            border: '1.5px solid var(--border-color)',
+                            color: '#64748B'
+                        }}>
+                            <Images size={48} style={{ opacity: 0.4, marginBottom: '16px' }} />
+                            <h3 style={{ fontSize: '1.3rem', color: 'var(--secondary)', marginBottom: '8px' }}>
+                                No event albums found matching your search
+                            </h3>
+                            <p style={{ margin: 0, fontSize: '0.95rem' }}>
+                                Try clearing your search query or selecting a different Rotary year.
+                            </p>
+                        </div>
+                    ) : (
+                        <div style={{
+                            display: 'grid',
+                            gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
+                            gap: '28px'
+                        }}>
+                            {filteredEvents.map(event => {
+                                const coverImg = getPhotoPath(event.coverPhoto || event.photos[0]);
+
+                                return (
+                                    <div
+                                        key={event.id}
+                                        onClick={() => openAlbum(event.id)}
+                                        className="gallery-album-card"
+                                        style={{
+                                            backgroundColor: 'white',
+                                            borderRadius: '20px',
+                                            border: '1.5px solid var(--border-color)',
+                                            overflow: 'hidden',
+                                            cursor: 'pointer',
+                                            boxShadow: 'var(--shadow-sm)',
+                                            transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                                            display: 'flex',
+                                            flexDirection: 'column'
+                                        }}
+                                    >
+                                        {/* Album Cover Photo */}
+                                        <div style={{
+                                            position: 'relative',
+                                            height: '240px',
+                                            overflow: 'hidden',
+                                            backgroundColor: '#0F172A'
+                                        }}>
+                                            <img
+                                                src={getCloudinaryUrl(coverImg)}
+                                                alt={event.title}
+                                                loading="lazy"
+                                                onError={(e) => handleImageError(e, coverImg)}
+                                                style={{
+                                                    width: '100%',
+                                                    height: '100%',
+                                                    objectFit: 'cover',
+                                                    transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)'
+                                                }}
+                                                className="album-cover-img"
+                                            />
+
+                                            {/* Gradient dark overlay at bottom for text contrast */}
+                                            <div style={{
+                                                position: 'absolute',
+                                                inset: 0,
+                                                background: 'linear-gradient(to top, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.2) 50%, rgba(15, 23, 42, 0) 100%)'
+                                            }} />
+
+                                            {/* Top-Left: Category Tag */}
+                                            <div style={{
+                                                position: 'absolute',
+                                                top: '14px',
+                                                left: '14px',
+                                                backgroundColor: 'rgba(0, 61, 165, 0.88)',
+                                                backdropFilter: 'blur(8px)',
+                                                color: 'white',
+                                                padding: '5px 12px',
+                                                borderRadius: '20px',
+                                                fontSize: '0.75rem',
+                                                fontWeight: '800',
+                                                letterSpacing: '0.3px',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: '5px'
+                                            }}>
+                                                <Tag size={12} />
+                                                <span>{event.category}</span>
+                                            </div>
+
+                                            {/* Bottom: Date */}
+                                            <div style={{
+                                                position: 'absolute',
+                                                bottom: '12px',
+                                                left: '16px',
+                                                color: 'rgba(255, 255, 255, 0.95)',
+                                                fontSize: '0.85rem',
+                                                fontWeight: '700',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: '6px'
+                                            }}>
+                                                <Calendar size={13} color="#93C5FD" />
+                                                <span>{event.date}</span>
+                                            </div>
+                                        </div>
+
+                                        {/* Card Content */}
+                                        <div style={{
+                                            padding: '22px 22px 18px 22px',
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            flex: 1
+                                        }}>
+                                            <h3 style={{
+                                                fontSize: '1.25rem',
+                                                fontWeight: '800',
+                                                color: 'var(--secondary)',
+                                                margin: '0 0 10px 0',
+                                                lineHeight: '1.35'
+                                            }}>
+                                                {event.title}
+                                            </h3>
+
+                                            <p style={{
+                                                color: '#64748B',
+                                                fontSize: '0.9rem',
+                                                lineHeight: '1.6',
+                                                margin: '0 0 18px 0',
+                                                flex: 1,
+                                                display: '-webkit-box',
+                                                WebkitLineClamp: 2,
+                                                WebkitBoxOrient: 'vertical',
+                                                overflow: 'hidden'
+                                            }}>
+                                                {event.description}
+                                            </p>
+
+                                            <div style={{
+                                                borderTop: '1px solid #F1F5F9',
+                                                paddingTop: '14px',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'space-between',
+                                                color: 'var(--primary)',
+                                                fontWeight: '700',
+                                                fontSize: '0.9rem'
+                                            }}>
+                                                <span>View Full Album</span>
+                                                <div style={{
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    gap: '6px',
+                                                    backgroundColor: 'rgba(0, 61, 165, 0.08)',
+                                                    padding: '6px 12px',
+                                                    borderRadius: '20px'
+                                                }}>
+                                                    <span>Explore</span>
+                                                    <ArrowRight size={15} className="album-arrow-icon" style={{ transition: 'transform 0.2s ease' }} />
                                                 </div>
                                             </div>
-                                        );
-                                    })}
-                                </div>
-                            </div>
-                        )}
-                    </div>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    )
                 )}
             </section>
 
-            {/* Event-Scoped Fullscreen Lightbox Modal */}
+            {/* LIGHTBOX MODAL WITH ZOOM IN & ZOOM OUT */}
             {lightbox.isOpen && lightbox.event && (
-                <div 
-                    onClick={closeLightbox}
+                <div
                     style={{
                         position: 'fixed',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        backgroundColor: 'rgba(15, 23, 42, 0.96)',
-                        zIndex: 99999,
+                        inset: 0,
+                        zIndex: 9999,
+                        backgroundColor: 'rgba(5, 11, 24, 0.96)',
+                        backdropFilter: 'blur(16px)',
                         display: 'flex',
                         flexDirection: 'column',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        animation: 'fadeInUp 0.3s ease forwards',
-                        padding: '20px'
-                    }}
-                >
-                    {/* Top Controls Bar */}
-                    <div style={{
-                        position: 'absolute',
-                        top: '20px',
-                        left: 0,
-                        right: 0,
-                        display: 'flex',
                         justifyContent: 'space-between',
                         alignItems: 'center',
-                        padding: '0 30px',
-                        color: 'white',
-                        zIndex: 100000
-                    }}>
+                        padding: '18px 22px',
+                        userSelect: 'none'
+                    }}
+                    onClick={closeLightbox}
+                >
+                    {/* Top Header Bar */}
+                    <div
+                        style={{
+                            width: '100%',
+                            maxWidth: '1200px',
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            gap: '16px',
+                            zIndex: 10
+                        }}
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        {/* Title & Category/Date */}
                         <div>
-                            <div style={{ fontSize: '1.1rem', fontWeight: '800', color: 'white' }}>
-                                {lightbox.event.allTitles ? lightbox.event.allTitles[lightbox.photoIndex] : lightbox.event.title}
+                            <div style={{ fontSize: '1.15rem', fontWeight: '800', color: 'white', letterSpacing: '-0.2px' }}>
+                                {getPhotoTitle(lightbox.event, lightbox.photoIndex)}
                             </div>
-                            <div style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.6)', marginTop: '2px' }}>
-                                {lightbox.event.allCategories ? lightbox.event.allCategories[lightbox.photoIndex] : lightbox.event.category} • {lightbox.event.allDates ? lightbox.event.allDates[lightbox.photoIndex] : lightbox.event.date}
+                            <div style={{ fontSize: '0.85rem', color: '#93C5FD', marginTop: '2px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                <span>{getPhotoCategory(lightbox.event, lightbox.photoIndex)}</span>
+                                <span>•</span>
+                                <span style={{ color: 'rgba(255,255,255,0.7)' }}>{getPhotoDate(lightbox.event, lightbox.photoIndex)}</span>
                             </div>
                         </div>
 
-                        <button 
-                            onClick={closeLightbox}
-                            style={{
-                                background: 'rgba(255, 255, 255, 0.1)',
-                                border: 'none',
-                                color: 'white',
-                                width: '42px',
-                                height: '42px',
-                                borderRadius: '50%',
+                        {/* Right Controls: Zoom Toolbar + Close */}
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                            {/* Zoom In / Out Group */}
+                            <div style={{
                                 display: 'flex',
                                 alignItems: 'center',
-                                justifyContent: 'center',
-                                cursor: 'pointer',
-                                transition: 'background 0.3s'
-                            }}
-                            onMouseEnter={(e) => e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.25)'}
-                            onMouseLeave={(e) => e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.1)'}
-                        >
-                            <X size={22} />
-                        </button>
+                                gap: '4px',
+                                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                                border: '1px solid rgba(255, 255, 255, 0.2)',
+                                borderRadius: '30px',
+                                padding: '4px 8px'
+                            }}>
+                                <button
+                                    onClick={handleZoomOut}
+                                    disabled={zoomLevel <= 1}
+                                    title="Zoom Out (-)"
+                                    style={{
+                                        background: 'none',
+                                        border: 'none',
+                                        color: zoomLevel <= 1 ? 'rgba(255,255,255,0.3)' : 'white',
+                                        cursor: zoomLevel <= 1 ? 'not-allowed' : 'pointer',
+                                        padding: '6px',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        borderRadius: '50%',
+                                        transition: 'background 0.2s'
+                                    }}
+                                >
+                                    <ZoomOut size={18} />
+                                </button>
+
+                                <span style={{
+                                    color: '#93C5FD',
+                                    fontSize: '0.82rem',
+                                    fontWeight: '800',
+                                    minWidth: '46px',
+                                    textAlign: 'center'
+                                }}>
+                                    {Math.round(zoomLevel * 100)}%
+                                </span>
+
+                                <button
+                                    onClick={handleZoomIn}
+                                    disabled={zoomLevel >= 3}
+                                    title="Zoom In (+)"
+                                    style={{
+                                        background: 'none',
+                                        border: 'none',
+                                        color: zoomLevel >= 3 ? 'rgba(255,255,255,0.3)' : 'white',
+                                        cursor: zoomLevel >= 3 ? 'not-allowed' : 'pointer',
+                                        padding: '6px',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        borderRadius: '50%',
+                                        transition: 'background 0.2s'
+                                    }}
+                                >
+                                    <ZoomIn size={18} />
+                                </button>
+
+                                {zoomLevel > 1 && (
+                                    <button
+                                        onClick={handleResetZoom}
+                                        title="Reset Zoom (0)"
+                                        style={{
+                                            background: 'rgba(255, 255, 255, 0.15)',
+                                            border: 'none',
+                                            color: 'white',
+                                            cursor: 'pointer',
+                                            padding: '4px 8px',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '4px',
+                                            borderRadius: '14px',
+                                            fontSize: '0.75rem',
+                                            fontWeight: '700',
+                                            marginLeft: '4px'
+                                        }}
+                                    >
+                                        <RotateCcw size={12} /> Reset
+                                    </button>
+                                )}
+                            </div>
+
+                            {/* Close Button */}
+                            <button
+                                onClick={closeLightbox}
+                                title="Close (Esc)"
+                                style={{
+                                    background: 'rgba(255, 255, 255, 0.1)',
+                                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                                    color: 'white',
+                                    width: '40px',
+                                    height: '40px',
+                                    borderRadius: '50%',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    cursor: 'pointer',
+                                    transition: 'all 0.2s'
+                                }}
+                                onMouseEnter={(e) => e.target.style.backgroundColor = 'rgba(239, 68, 68, 0.8)'}
+                                onMouseLeave={(e) => e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.1)'}
+                            >
+                                <X size={20} />
+                            </button>
+                        </div>
                     </div>
 
-                    {/* Image Viewer Container */}
-                    <div style={{
-                        position: 'relative',
-                        maxWidth: '960px',
-                        width: '100%',
-                        maxHeight: '75vh',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center'
-                    }}>
+                    {/* Image Viewer with Drag / Pan & Zoom */}
+                    <div
+                        style={{
+                            position: 'relative',
+                            maxWidth: '1100px',
+                            width: '100%',
+                            maxHeight: '74vh',
+                            height: '74vh',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            overflow: 'hidden'
+                        }}
+                        onClick={(e) => e.stopPropagation()}
+                    >
                         {/* Prev Button */}
                         {lightbox.event.photos.length > 1 && (
                             <button
                                 onClick={(e) => navigateLightbox(-1, e)}
                                 style={{
                                     position: 'absolute',
-                                    left: '-65px',
-                                    background: 'rgba(255, 255, 255, 0.12)',
-                                    border: 'none',
+                                    left: '10px',
+                                    zIndex: 20,
+                                    background: 'rgba(15, 23, 42, 0.75)',
+                                    backdropFilter: 'blur(8px)',
+                                    border: '1.5px solid rgba(255, 255, 255, 0.2)',
                                     color: 'white',
-                                    width: '52px',
-                                    height: '52px',
+                                    width: '48px',
+                                    height: '48px',
                                     borderRadius: '50%',
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
                                     cursor: 'pointer',
-                                    transition: 'background 0.3s'
+                                    transition: 'all 0.2s'
                                 }}
-                                onMouseEnter={(e) => e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.25)'}
-                                onMouseLeave={(e) => e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.12)'}
-                                className="lightbox-nav-btn"
+                                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--primary)'}
+                                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(15, 23, 42, 0.75)'}
+                                title="Previous Photo (Left Arrow)"
                             >
-                                <ChevronLeft size={30} />
+                                <ChevronLeft size={28} />
                             </button>
                         )}
 
-                        <img 
-                            src={getCloudinaryUrl(lightbox.event.photos[lightbox.photoIndex])} 
-                            alt={`${lightbox.event.title} - photo ${lightbox.photoIndex + 1}`}
-                            onError={(e) => handleImageError(e, lightbox.event.photos[lightbox.photoIndex])}
+                        <img
+                            src={getCloudinaryUrl(getPhotoPath(lightbox.event.photos[lightbox.photoIndex]))}
+                            alt={getPhotoTitle(lightbox.event, lightbox.photoIndex)}
+                            onError={(e) => handleImageError(e, getPhotoPath(lightbox.event.photos[lightbox.photoIndex]))}
+                            onDoubleClick={handleToggleZoom}
+                            onMouseDown={handleMouseDown}
+                            onMouseMove={handleMouseMove}
+                            onMouseUp={handleMouseUp}
+                            onMouseLeave={handleMouseUp}
+                            draggable={false}
                             style={{
                                 maxWidth: '100%',
-                                maxHeight: '75vh',
+                                maxHeight: '74vh',
                                 objectFit: 'contain',
-                                borderRadius: '10px',
-                                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.7)',
-                                border: '1.5px solid rgba(255, 255, 255, 0.12)'
+                                borderRadius: '12px',
+                                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8)',
+                                border: '1.5px solid rgba(255, 255, 255, 0.15)',
+                                transform: `scale(${zoomLevel}) translate(${pan.x / zoomLevel}px, ${pan.y / zoomLevel}px)`,
+                                transformOrigin: 'center center',
+                                transition: isDragging ? 'none' : 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+                                cursor: zoomLevel > 1 ? (isDragging ? 'grabbing' : 'grab') : 'zoom-in',
+                                userSelect: 'none'
                             }}
-                            onClick={(e) => e.stopPropagation()}
                         />
 
                         {/* Next Button */}
@@ -973,68 +1219,82 @@ export default function Gallery() {
                                 onClick={(e) => navigateLightbox(1, e)}
                                 style={{
                                     position: 'absolute',
-                                    right: '-65px',
-                                    background: 'rgba(255, 255, 255, 0.12)',
-                                    border: 'none',
+                                    right: '10px',
+                                    zIndex: 20,
+                                    background: 'rgba(15, 23, 42, 0.75)',
+                                    backdropFilter: 'blur(8px)',
+                                    border: '1.5px solid rgba(255, 255, 255, 0.2)',
                                     color: 'white',
-                                    width: '52px',
-                                    height: '52px',
+                                    width: '48px',
+                                    height: '48px',
                                     borderRadius: '50%',
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
                                     cursor: 'pointer',
-                                    transition: 'background 0.3s'
+                                    transition: 'all 0.2s'
                                 }}
-                                onMouseEnter={(e) => e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.25)'}
-                                onMouseLeave={(e) => e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.12)'}
-                                className="lightbox-nav-btn"
+                                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--primary)'}
+                                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(15, 23, 42, 0.75)'}
+                                title="Next Photo (Right Arrow)"
                             >
-                                <ChevronRight size={30} />
+                                <ChevronRight size={28} />
                             </button>
                         )}
                     </div>
 
-                    {/* Bottom Caption and Index */}
-                    <div style={{
-                        marginTop: '25px',
-                        color: 'white',
-                        textAlign: 'center',
-                        maxWidth: '650px',
-                        padding: '0 20px'
-                    }}>
-                        <div style={{
-                            display: 'inline-block',
-                            backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                            border: '1px solid rgba(255, 255, 255, 0.2)',
-                            padding: '6px 16px',
-                            borderRadius: '20px',
-                            fontSize: '0.85rem',
-                            fontWeight: '700',
-                            color: '#93C5FD'
-                        }}>
-                            Photo {lightbox.photoIndex + 1} of {lightbox.event.photos.length}
-                        </div>
+                    {/* Bottom Helper Bar */}
+                    <div
+                        style={{
+                            color: 'rgba(255, 255, 255, 0.7)',
+                            textAlign: 'center',
+                            fontSize: '0.82rem',
+                            zIndex: 10,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '12px'
+                        }}
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <span>
+                            {zoomLevel > 1
+                                ? "Drag to pan image • Double-click or click [Reset] to reset zoom"
+                                : "Double-click photo or use [+] / [-] buttons to zoom • Arrow keys navigate"
+                            }
+                        </span>
                     </div>
-
-                    {/* Responsive Lightbox styling */}
-                    <style dangerouslySetInnerHTML={{__html: `
-                        @media (max-width: 1024px) {
-                            .lightbox-nav-btn {
-                                position: static !important;
-                                margin: 10px !important;
-                            }
-                            div[style*="maxHeight: '75vh'"] {
-                                flex-direction: column !important;
-                            }
-                            .lightbox-nav-btn {
-                                width: 44px !important;
-                                height: 44px !important;
-                            }
-                        }
-                    `}} />
                 </div>
             )}
+
+            {/* Micro-interaction & Responsive CSS */}
+            <style dangerouslySetInnerHTML={{
+                __html: `
+                .gallery-album-card:hover {
+                    transform: translateY(-8px);
+                    box-shadow: 0 16px 36px rgba(0, 61, 165, 0.14) !important;
+                    border-color: rgba(0, 61, 165, 0.35) !important;
+                }
+                .gallery-album-card:hover .album-cover-img {
+                    transform: scale(1.08);
+                }
+                .gallery-album-card:hover .album-arrow-icon {
+                    transform: translateX(4px);
+                }
+                .album-photo-item:hover .album-photo-img {
+                    transform: scale(1.08);
+                }
+                .album-photo-item:hover .photo-hover-overlay {
+                    opacity: 1 !important;
+                }
+                .back-albums-btn:hover {
+                    transform: translateX(-4px);
+                }
+                @media (max-width: 768px) {
+                    .gallery-album-card {
+                        margin-bottom: 8px;
+                    }
+                }
+            `}} />
         </div>
     );
 }

@@ -99,6 +99,7 @@ export default function Home({ setCurrentPage }) {
             primaryBtn: { text: "Join Our Club", isLink: true, action: "#join" },
             secondaryBtn: { text: "Discover Our Story", isLink: false, action: "about" }
         },
+        /* Temporarily commented out - preserved for future use
         {
             badge: "PEOPLE OF ACTION",
             title: "Turning compassion into action",
@@ -107,6 +108,7 @@ export default function Home({ setCurrentPage }) {
             primaryBtn: { text: "Our Projects", isLink: false, action: "projects" },
             secondaryBtn: { text: "Get Involved", isLink: true, action: "#join" }
         },
+        */
         {
             badge: "DOING GOOD IN THE WORLD",
             title: "Creating lasting change together",
@@ -122,7 +124,7 @@ export default function Home({ setCurrentPage }) {
             setCurrentSlide(prev => (prev + 1) % heroSlides.length);
         }, 6000);
         return () => clearInterval(timer);
-    }, []);
+    }, [heroSlides.length]);
 
     const legacySectionRef = useRef(null);
     const [legacyVisible, setLegacyVisible] = useState(false);
