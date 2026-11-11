@@ -97,13 +97,6 @@ const installationPhotos = [
     "/images/rotary club 89th installation/hero 1.jpeg"
 ];
 
-// All 3 photos from Toilet Block Inauguration
-const toiletPhotos = [
-    "/images/ROTARY CLUB toilet inaguration/Cam 1 Photos _644_.jpeg",
-    "/images/ROTARY CLUB toilet inaguration/Cam 1 Photos _651_.jpeg",
-    "/images/ROTARY CLUB toilet inaguration/Cam 1 Photos _655_.jpeg"
-];
-
 // All 33 photos from Diwali Celebration 2026
 const diwaliPhotos = [
     "/images/Diwali celebration 2026/VJY00537.jpg.jpeg",
@@ -147,53 +140,7 @@ const diwaliPhotos = [
     "/images/Diwali celebration 2026/VJY01579.jpg.jpeg"
 ];
 
-// Single-photo events grouped together into the Club Initiatives album
-const initiativesPhotos = [
-    {
-        title: "Blood Donation Camp",
-        category: "Community Service",
-        date: "July 2026",
-        src: "/images/gallery/BLOOD DONATION CAMP.jpeg",
-        description: "Organized a mega voluntary blood donation drive in partnership with local healthcare authorities to support critical community needs."
-    },
-    {
-        title: "Tree Plantation Drive at KLNCE",
-        category: "Environment",
-        date: "June 2026",
-        src: "/images/gallery/Tree plantation at KLNCE.jpeg",
-        description: "Green initiative aimed at afforestation, ecological balance, and environmental sustainability on campus grounds."
-    },
-    {
-        title: "Stag Meeting at Kodaikanal",
-        category: "Fellowship & Family",
-        date: "May 2026",
-        src: "/images/gallery/Stag meeting at Kodaikanal.jpeg",
-        description: "Annual fellowship weekend retreat fostering stronger camaraderie, team bonding, and strategic project planning."
-    },
-    {
-        title: "Vetrikku Vazi - Plus 2 Career Guidance",
-        category: "Youth Service",
-        date: "April 2026",
-        src: "/images/gallery/VETRIKKU VAZI - PLUS 2 STUDENTS TRAINING.jpeg",
-        description: "Empowering higher secondary students with comprehensive career guidance, competitive exam readiness, and future skills development."
-    },
-    {
-        title: "Narcotics Awareness Program",
-        category: "Youth Service",
-        date: "March 2026",
-        src: "/images/gallery/NARCOTIS AWA.jpeg",
-        description: "Educating school and college students on substance abuse hazards and promoting healthy, drug-free lifestyle habits."
-    },
-    {
-        title: "Value Your Spouse Program",
-        category: "Fellowship & Family",
-        date: "February 2026",
-        src: "/images/gallery/VALUE YOUR SPOUSE.jpeg",
-        description: "A special family fellowship evening celebrating and honoring Rotary spouses for their constant dedication and community support."
-    }
-];
-
-// Organized Event Data: 4 high-impact albums
+// Organized Event Data: Club fellowship & celebration albums
 const galleryEvents = [
     {
         id: "89th-installation-ceremony",
@@ -214,26 +161,6 @@ const galleryEvents = [
         coverPhoto: "/images/Diwali celebration 2026/VJY00537.jpg.jpeg",
         description: "A grand festival of lights celebration bringing together Rotarians and their families for an evening of joy, traditional festivities, cultural performances, and fellowship.",
         photos: diwaliPhotos
-    },
-    {
-        id: "toilet-block-inauguration",
-        title: "Community Sanitation & Toilet Block Inauguration",
-        date: "August 2026",
-        year: "2025 - 2026",
-        category: "Community Service",
-        coverPhoto: "/images/ROTARY CLUB toilet inaguration/Cam 1 Photos _644_.jpeg",
-        description: "Construction and official handover of modern sanitation facilities and dedicated toilet blocks, promoting hygiene, health, and dignified access for the school and local community.",
-        photos: toiletPhotos
-    },
-    {
-        id: "club-initiatives-community-drives",
-        title: "Club Initiatives & Community Drives",
-        date: "Rotary Year 2025 - 2026",
-        year: "2025 - 2026",
-        category: "Community & Youth Service",
-        coverPhoto: "/images/gallery/Tree plantation at KLNCE.jpeg",
-        description: "A curated collection of impactful club projects, community health camps, youth leadership workshops, environmental drives, and fellowship programs.",
-        photos: initiativesPhotos
     }
 ];
 
@@ -310,23 +237,14 @@ export default function Gallery() {
     const filteredEvents = useMemo(() => {
         return galleryEvents.filter(ev => {
             const matchesYear = selectedYear === "All" || ev.year === selectedYear;
-            const searchLower = searchQuery.toLowerCase();
+            const searchLower = searchQuery.toLowerCase().trim();
 
-            const matchesDirect = searchQuery === "" ||
+            const matchesDirect = searchLower === "" ||
                 ev.title.toLowerCase().includes(searchLower) ||
                 ev.description.toLowerCase().includes(searchLower) ||
                 ev.category.toLowerCase().includes(searchLower);
 
-            // Also search inside sub-initiatives
-            const matchesSub = ev.photos.some(p =>
-                typeof p === 'object' && (
-                    p.title.toLowerCase().includes(searchLower) ||
-                    p.category.toLowerCase().includes(searchLower) ||
-                    (p.description && p.description.toLowerCase().includes(searchLower))
-                )
-            );
-
-            return matchesYear && (matchesDirect || matchesSub);
+            return matchesYear && matchesDirect;
         });
     }, [selectedYear, searchQuery]);
 
@@ -389,7 +307,12 @@ export default function Gallery() {
         setLightbox(prev => ({ ...prev, photoIndex: newIndex }));
     };
 
+    const hasDraggedRef = React.useRef(false);
+    const dragStartPosRef = React.useRef({ x: 0, y: 0 });
+
     const handleMouseDown = (e) => {
+        hasDraggedRef.current = false;
+        dragStartPosRef.current = { x: e.clientX, y: e.clientY };
         if (zoomLevel <= 1) return;
         e.preventDefault();
         setIsDragging(true);
@@ -397,12 +320,28 @@ export default function Gallery() {
     };
 
     const handleMouseMove = (e) => {
+        if (Math.abs(e.clientX - dragStartPosRef.current.x) > 4 || Math.abs(e.clientY - dragStartPosRef.current.y) > 4) {
+            hasDraggedRef.current = true;
+        }
         if (!isDragging || zoomLevel <= 1) return;
         setPan({ x: e.clientX - dragStart.x, y: e.clientY - dragStart.y });
     };
 
     const handleMouseUp = () => {
         setIsDragging(false);
+    };
+
+    const handleImageClick = (e) => {
+        e.stopPropagation();
+        if (hasDraggedRef.current) {
+            hasDraggedRef.current = false;
+            return;
+        }
+        if (zoomLevel > 1) {
+            handleResetZoom();
+        } else {
+            setZoomLevel(2);
+        }
     };
 
     // Keyboard navigation & zoom shortcuts
@@ -547,18 +486,6 @@ export default function Gallery() {
                                     ))}
                                 </select>
                             </div>
-
-                            <span style={{
-                                backgroundColor: '#F1F5F9',
-                                color: 'var(--secondary)',
-                                padding: '6px 14px',
-                                borderRadius: '20px',
-                                fontSize: '0.85rem',
-                                fontWeight: '700',
-                                border: '1px solid var(--border-color)'
-                            }}>
-                                {filteredEvents.length} {filteredEvents.length === 1 ? 'Album' : 'Albums'}
-                            </span>
                         </div>
                     </div>
                 </section>
@@ -695,125 +622,79 @@ export default function Gallery() {
                             gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
                             gap: '24px'
                         }}>
-                            {activeEvent.photos.map((item, pIdx) => {
-                                const photoPath = getPhotoPath(item);
-                                const photoTitle = getPhotoTitle(activeEvent, pIdx);
-                                const photoCategory = getPhotoCategory(activeEvent, pIdx);
-                                const photoDate = getPhotoDate(activeEvent, pIdx);
-                                const isInitiativeItem = typeof item === 'object';
-
-                                return (
-                                    <div
-                                        key={pIdx}
-                                        onClick={() => openLightbox(activeEvent, pIdx)}
-                                        style={{
-                                            borderRadius: '18px',
-                                            overflow: 'hidden',
-                                            backgroundColor: 'white',
-                                            cursor: 'pointer',
-                                            border: '1.5px solid var(--border-color)',
-                                            boxShadow: 'var(--shadow-sm)',
-                                            display: 'flex',
-                                            flexDirection: 'column',
-                                            transition: 'all 0.3s ease'
-                                        }}
-                                        className="album-photo-item"
-                                    >
-                                        <div style={{
-                                            height: isInitiativeItem ? '200px' : '220px',
-                                            position: 'relative',
-                                            overflow: 'hidden',
-                                            backgroundColor: '#0F172A'
-                                        }}>
-                                            <img
-                                                src={getCloudinaryUrl(photoPath)}
-                                                alt={photoTitle}
-                                                loading="lazy"
-                                                onError={(e) => handleImageError(e, photoPath)}
-                                                style={{
-                                                    width: '100%',
-                                                    height: '100%',
-                                                    objectFit: 'cover',
-                                                    transition: 'transform 0.4s ease'
-                                                }}
-                                                className="album-photo-img"
-                                            />
-                                            {/* Hover Overlay with View icon */}
-                                            <div
-                                                className="photo-hover-overlay"
-                                                style={{
-                                                    position: 'absolute',
-                                                    inset: 0,
-                                                    backgroundColor: 'rgba(0, 61, 165, 0.45)',
-                                                    display: 'flex',
-                                                    flexDirection: 'column',
-                                                    alignItems: 'center',
-                                                    justifyContent: 'center',
-                                                    color: 'white',
-                                                    opacity: 0,
-                                                    transition: 'opacity 0.25s ease',
-                                                    backdropFilter: 'blur(2px)'
-                                                }}
-                                            >
-                                                <div style={{
-                                                    width: '46px',
-                                                    height: '46px',
-                                                    borderRadius: '50%',
-                                                    backgroundColor: 'rgba(255, 255, 255, 0.25)',
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    justifyContent: 'center',
-                                                    marginBottom: '8px',
-                                                    border: '1.5px solid white'
-                                                }}>
-                                                    <Eye size={22} color="white" />
-                                                </div>
-                                                <span style={{ fontSize: '0.85rem', fontWeight: '700' }}>
-                                                    View Photo
-                                                </span>
+                            {activeEvent.photos.map((photoPath, pIdx) => (
+                                <div
+                                    key={pIdx}
+                                    onClick={() => openLightbox(activeEvent, pIdx)}
+                                    style={{
+                                        borderRadius: '18px',
+                                        overflow: 'hidden',
+                                        backgroundColor: 'white',
+                                        cursor: 'pointer',
+                                        border: '1.5px solid var(--border-color)',
+                                        boxShadow: 'var(--shadow-sm)',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        transition: 'all 0.3s ease'
+                                    }}
+                                    className="album-photo-item"
+                                >
+                                    <div style={{
+                                        height: '230px',
+                                        position: 'relative',
+                                        overflow: 'hidden',
+                                        backgroundColor: '#0F172A'
+                                    }}>
+                                        <img
+                                            src={getCloudinaryUrl(photoPath)}
+                                            alt={`${activeEvent.title} - ${pIdx + 1}`}
+                                            loading="lazy"
+                                            onError={(e) => handleImageError(e, photoPath)}
+                                            style={{
+                                                width: '100%',
+                                                height: '100%',
+                                                objectFit: 'cover',
+                                                transition: 'transform 0.4s ease'
+                                            }}
+                                            className="album-photo-img"
+                                        />
+                                        {/* Hover Overlay with View icon */}
+                                        <div
+                                            className="photo-hover-overlay"
+                                            style={{
+                                                position: 'absolute',
+                                                inset: 0,
+                                                backgroundColor: 'rgba(0, 61, 165, 0.45)',
+                                                display: 'flex',
+                                                flexDirection: 'column',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                color: 'white',
+                                                opacity: 0,
+                                                transition: 'opacity 0.25s ease',
+                                                backdropFilter: 'blur(2px)'
+                                            }}
+                                        >
+                                            <div style={{
+                                                width: '46px',
+                                                height: '46px',
+                                                borderRadius: '50%',
+                                                backgroundColor: 'rgba(255, 255, 255, 0.25)',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                marginBottom: '8px',
+                                                border: '1.5px solid white'
+                                            }}>
+                                                <Eye size={22} color="white" />
                                             </div>
+                                            <span style={{ fontSize: '0.85rem', fontWeight: '700' }}>
+                                                View & Zoom Photo
+                                            </span>
                                         </div>
-
-                                        {/* For initiatives: show clean title and category badge card */}
-                                        {isInitiativeItem && (
-                                            <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', flex: 1, backgroundColor: 'white' }}>
-                                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', gap: '6px' }}>
-                                                    <span style={{
-                                                        backgroundColor: 'rgba(0, 61, 165, 0.08)',
-                                                        color: 'var(--primary)',
-                                                        fontSize: '0.72rem',
-                                                        fontWeight: '800',
-                                                        padding: '3px 10px',
-                                                        borderRadius: '12px'
-                                                    }}>
-                                                        {photoCategory}
-                                                    </span>
-                                                    <span style={{ fontSize: '0.76rem', color: '#64748B', fontWeight: '600' }}>
-                                                        {photoDate}
-                                                    </span>
-                                                </div>
-                                                <h4 style={{ fontSize: '1.02rem', fontWeight: '800', color: 'var(--secondary)', margin: '0 0 6px 0', lineHeight: '1.3' }}>
-                                                    {photoTitle}
-                                                </h4>
-                                                {item.description && (
-                                                    <p style={{
-                                                        color: '#64748B',
-                                                        fontSize: '0.84rem',
-                                                        lineHeight: '1.5',
-                                                        margin: 0,
-                                                        display: '-webkit-box',
-                                                        WebkitLineClamp: 2,
-                                                        WebkitBoxOrient: 'vertical',
-                                                        overflow: 'hidden'
-                                                    }}>
-                                                        {item.description}
-                                                    </p>
-                                                )}
-                                            </div>
-                                        )}
                                     </div>
-                                );
-                            })}
+                                </div>
+                            ))}
                         </div>
                     </div>
                 ) : (
@@ -1192,6 +1073,7 @@ export default function Gallery() {
                             src={getCloudinaryUrl(getPhotoPath(lightbox.event.photos[lightbox.photoIndex]))}
                             alt={getPhotoTitle(lightbox.event, lightbox.photoIndex)}
                             onError={(e) => handleImageError(e, getPhotoPath(lightbox.event.photos[lightbox.photoIndex]))}
+                            onClick={handleImageClick}
                             onDoubleClick={handleToggleZoom}
                             onMouseDown={handleMouseDown}
                             onMouseMove={handleMouseMove}
@@ -1208,7 +1090,7 @@ export default function Gallery() {
                                 transform: `scale(${zoomLevel}) translate(${pan.x / zoomLevel}px, ${pan.y / zoomLevel}px)`,
                                 transformOrigin: 'center center',
                                 transition: isDragging ? 'none' : 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
-                                cursor: zoomLevel > 1 ? (isDragging ? 'grabbing' : 'grab') : 'zoom-in',
+                                cursor: zoomLevel > 1 ? (isDragging ? 'grabbing' : 'zoom-out') : 'zoom-in',
                                 userSelect: 'none'
                             }}
                         />
@@ -1258,8 +1140,8 @@ export default function Gallery() {
                     >
                         <span>
                             {zoomLevel > 1
-                                ? "Drag to pan image • Double-click or click [Reset] to reset zoom"
-                                : "Double-click photo or use [+] / [-] buttons to zoom • Arrow keys navigate"
+                                ? "Drag to pan image • Click or double-click to zoom out • [Reset] resets zoom"
+                                : "Click photo to zoom • [+] / [-] buttons also adjust zoom • Arrow keys navigate"
                             }
                         </span>
                     </div>
