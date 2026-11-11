@@ -95,7 +95,7 @@ export default function Home({ setCurrentPage }) {
             badge: "SERVICE ABOVE SELF",
             title: "Fellowship that inspires service",
             desc: "Bringing leaders and communities together to create lasting change through fellowship, integrity, and service.",
-            image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?q=80&w=600",
+            image: "https://res.cloudinary.com/doeodacsg/image/upload/w_1920,c_limit,q_auto,f_auto/websites/rotary-website/gallery/89th_installation/hero_1",
             primaryBtn: { text: "Join Our Club", isLink: true, action: "#join" },
             secondaryBtn: { text: "Discover Our Story", isLink: false, action: "about" }
         },
@@ -239,7 +239,7 @@ export default function Home({ setCurrentPage }) {
                                     left: 0,
                                     width: '100%',
                                     height: '100%',
-                                    backgroundImage: `linear-gradient(to right, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.5) 100%), url(${slide.image})`,
+                                    backgroundImage: `linear-gradient(to right, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.5) 100%), url("${slide.image}")`,
                                     backgroundSize: 'cover',
                                     backgroundPosition: 'center',
                                     zIndex: 1
